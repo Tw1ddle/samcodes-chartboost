@@ -14,8 +14,9 @@
 	
 	<target id="NDLL" output="${LIBPREFIX}samcodeschartboost${debug_extra}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">	
 		<outdir name="../ndll/${BINDIR}"/>
-		<ext value=".ndll" if="windows || mac || linux" />
+		<ext value=".ndll" if="windows || mac || linux"/>
 		<files id="common"/>
+		<files id="iphone" if="iphone"/>
 	</target>
 	
 	<target id="default">
