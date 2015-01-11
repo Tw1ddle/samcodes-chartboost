@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<section if="ios">
+		<ndll name="samcodeschartboost" if="ios" />
+		<dependency name="project/lib/libChartboost.a" />
+		<dependency name="QuartzCore.framework"/>
+		<dependency name="SystemConfiguration.framework" />
+		<dependency name="AdSupport.framework" />
+	</section>
+	
+	<section if="android">
+		<dependency name="samcodes-chartboost" path="dependencies/samcodes-chartboost"/>
+		<android extension="com.samcodes.chartboost.ChartboostExtension" />
+		<template path="dependencies/samcodes-chartboost/libs/chartboost.jar" rename="deps/samcodes-chartboost/libs/chartboost.jar" />
+	</section>
+</project>

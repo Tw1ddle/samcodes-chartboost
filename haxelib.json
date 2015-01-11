@@ -1,0 +1,11 @@
+{
+	"name": "samcodes-chartboost",
+	"url": "http://samcodes.co.uk/code/",
+	"license": "MIT",
+	"tags": ["chartboost","ads","interstitials","android","ios"],
+	"description": "Chartboost ads for Android and iOS",
+	"version": "1.0.0",
+	"releasenote": "Initial release",
+	"contributors": ["samcodes"],
+	"dependencies": {}
+}
