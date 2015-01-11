@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<section if="ios">
-		<ndll name="samcodeschartboost" if="ios" />
+		<ndll name="samcodeschartboost" />
 		<dependency name="project/lib/libChartboost.a" />
 		<dependency name="QuartzCore.framework"/>
 		<dependency name="SystemConfiguration.framework" />
