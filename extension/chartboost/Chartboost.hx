@@ -11,7 +11,22 @@ import flash.Lib;
 #if (android || ios)
 @:allow(extension.Chartboost) class Chartboost
 {
-	public static function setListener(listener:ChartboostListener):Void {
+	// Must be called before use of any other methods in this class
+	public static function init(?appId:String, ?appSignature:String):Void {
+		#if ios
+		if (appId == null || appSignature == null) {
+			throw "Chartboost appId/appSignature not passed. On iOS appId and appSignature parameters must be passed in Chartboost.init.";
+		}
+		#end
+		
+		Chartboost.initBindings();
+		
+		#if ios
+		init_chartboost(appId, appSignature);
+		#end
+	}
+	
+	public static function setListener(listener:ChartboostListener):Void {		
 		set_listener(listener);
 	}
 	
@@ -51,20 +66,6 @@ import flash.Lib;
 		return has_cached_rewarded_video(id);
 	}
 	
-	public static function init(?appId:String, ?appSignature:String):Void {
-		#if ios
-		if (appId == null || appSignature == null) {
-			throw "Chartboost appId/appSignature not passed. On iOS appId and appSignature parameters must be passed in Chartboost.init.";
-		}
-		#end
-		
-		Chartboost.initBindings();
-		
-		#if ios
-		init_chartboost(appId, appSignature);
-		#end
-	}
-	
 	private static function initBindings() {
 		#if android
 		var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
@@ -75,7 +76,7 @@ import flash.Lib;
 		
 		#if ios
 		if (init_chartboost == null) {
-			init_chartboost = Lib.load(namespaceName, "init_chartboost", 2);
+			init_chartboost = Lib.load(namespaceName, "initChartboost", 2);
 		}
 		#end
 		
