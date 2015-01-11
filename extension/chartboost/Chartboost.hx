@@ -76,7 +76,7 @@ import flash.Lib;
 		
 		#if ios
 		if (init_chartboost == null) {
-			init_chartboost = Lib.load(namespaceName, "initChartboost", 2);
+			init_chartboost = Lib.load(namespaceName, "init_chartboost", 2);
 		}
 		#end
 		
@@ -85,7 +85,7 @@ import flash.Lib;
 			set_listener = JNI.createStaticMethod(packageName, "setListener", "(Lorg/haxe/lime/HaxeObject;)V");
 			#end
 			#if ios
-			set_listener = Lib.load(namespaceName, "setListener", 1);
+			set_listener = Lib.load(namespaceName, "set_listener", 1);
 			#end
 		}
 		if (show_interstitial == null) {
@@ -93,7 +93,7 @@ import flash.Lib;
 			show_interstitial = JNI.createStaticMethod(packageName, "showInterstitial", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			show_interstitial = Lib.load(namespaceName, "showInterstitial", 1);
+			show_interstitial = Lib.load(namespaceName, "show_interstitial", 1);
 			#end
 		}
 		if (cache_interstitial == null) {
@@ -101,7 +101,7 @@ import flash.Lib;
 			cache_interstitial = JNI.createStaticMethod(packageName, "cacheInterstitial", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			cache_interstitial = Lib.load(namespaceName, "cacheInterstitial", 1);
+			cache_interstitial = Lib.load(namespaceName, "cache_interstitial", 1);
 			#end
 		}
 		if (has_cached_interstitial == null) {
@@ -109,7 +109,7 @@ import flash.Lib;
 			has_cached_interstitial = JNI.createStaticMethod(packageName, "hasCachedInterstitial", "(Ljava/lang/String;)Z");
 			#end
 			#if ios
-			has_cached_interstitial = Lib.load(namespaceName, "hasCachedInterstitial", 1);
+			has_cached_interstitial = Lib.load(namespaceName, "has_cached_interstitial", 1);
 			#end
 		}
 		if (show_more_apps == null) {
@@ -117,7 +117,7 @@ import flash.Lib;
 			show_more_apps = JNI.createStaticMethod(packageName, "showMoreApps", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			show_more_apps = Lib.load(namespaceName, "showMoreApps", 1);
+			show_more_apps = Lib.load(namespaceName, "show_more_apps", 1);
 			#end
 		}
 		if (cache_more_apps == null) {
@@ -125,7 +125,7 @@ import flash.Lib;
 			cache_more_apps = JNI.createStaticMethod(packageName, "cacheMoreApps", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			cache_more_apps = Lib.load(namespaceName, "cacheMoreApps", 1);
+			cache_more_apps = Lib.load(namespaceName, "cache_more_apps", 1);
 			#end
 		}
 		if (has_cached_more_apps == null) {
@@ -133,7 +133,7 @@ import flash.Lib;
 			has_cached_more_apps = JNI.createStaticMethod(packageName, "hasCachedMoreApps", "(Ljava/lang/String;)Z");
 			#end
 			#if ios
-			has_cached_more_apps = Lib.load(namespaceName, "hasCachedMoreApps", 1);
+			has_cached_more_apps = Lib.load(namespaceName, "has_cached_more_apps", 1);
 			#end
 		}
 		if (show_rewarded_video == null) {
@@ -141,7 +141,7 @@ import flash.Lib;
 			show_rewarded_video = JNI.createStaticMethod(packageName, "showRewardedVideo", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			show_rewarded_video = Lib.load(namespaceName, "showRewardedVideo", 1);
+			show_rewarded_video = Lib.load(namespaceName, "show_rewarded_video", 1);
 			#end
 		}
 		if (cache_rewarded_video == null) {
@@ -149,7 +149,7 @@ import flash.Lib;
 			cache_rewarded_video = JNI.createStaticMethod(packageName, "cacheRewardedVideo", "(Ljava/lang/String;)V");
 			#end
 			#if ios
-			cache_rewarded_video = Lib.load(namespaceName, "cacheRewardedVideo", 1);
+			cache_rewarded_video = Lib.load(namespaceName, "cache_rewarded_video", 1);
 			#end
 		}
 		if (has_cached_rewarded_video == null) {
@@ -157,7 +157,7 @@ import flash.Lib;
 			has_cached_rewarded_video = JNI.createStaticMethod(packageName, "hasCachedRewardedVideo", "(Ljava/lang/String;)Z");
 			#end
 			#if ios
-			has_cached_rewarded_video = Lib.load(namespaceName, "hasCachedRewardedVideo", 1);
+			has_cached_rewarded_video = Lib.load(namespaceName, "has_cached_rewarded_video", 1);
 			#end
 		}
 	}
