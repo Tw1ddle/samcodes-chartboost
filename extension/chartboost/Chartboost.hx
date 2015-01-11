@@ -27,7 +27,7 @@ import flash.Lib;
 	}
 	
 	public static function setListener(listener:ChartboostListener):Void {
-		if (listener == null) {
+		if (set_listener == null) {
 			#if android
 			set_listener = JNI.createStaticMethod(packageName, "setListener", "(Lorg/haxe/lime/HaxeObject;)V");
 			#end
