@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
+	<ndll name="samcodeschartboost" />
+
 	<section if="ios">
-		<ndll name="samcodeschartboost" />
-		<dependency name="project/lib/libChartboost.a" />
+		<dependency name="project/include/libChartboost.a" />
 		<dependency name="QuartzCore.framework"/>
 		<dependency name="SystemConfiguration.framework" />
 		<dependency name="AdSupport.framework" />
