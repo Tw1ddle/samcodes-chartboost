@@ -26,7 +26,16 @@ import flash.Lib;
 		#end
 	}
 	
-	public static function setListener(listener:ChartboostListener):Void {		
+	public static function setListener(listener:ChartboostListener):Void {
+		if (listener == null) {
+			#if android
+			set_listener = JNI.createStaticMethod(packageName, "setListener", "(Lorg/haxe/lime/HaxeObject;)V");
+			#end
+			#if ios
+			set_listener = Lib.load(namespaceName, "set_listener", 1);
+			#end
+		}
+		
 		set_listener(listener);
 	}
 	
@@ -66,14 +75,7 @@ import flash.Lib;
 		return has_cached_rewarded_video(id);
 	}
 	
-	private static function initBindings() {
-		#if android
-		var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
-		#end
-		#if ios
-		var namespaceName:String = "samcodes";
-		#end
-		
+	private static function initBindings() {		
 		#if ios
 		if (init_chartboost == null) {
 			init_chartboost = Lib.load(namespaceName, "init_chartboost", 2);
@@ -161,6 +163,13 @@ import flash.Lib;
 			#end
 		}
 	}
+	
+	#if android
+	private static var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
+	#end
+	#if ios
+	private static var namespaceName:String = "samcodes";
+	#end
 	
 	#if ios
 	private static var init_chartboost:Dynamic = null;
