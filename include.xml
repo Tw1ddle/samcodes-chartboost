@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<ndll name="samcodeschartboost" />
+	<ndll name="samcodeschartboost" if="ios" />
 
 	<section if="ios">
 		<dependency name="project/include/libChartboost.a" />

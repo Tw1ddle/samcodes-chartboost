@@ -1,7 +1,7 @@
 #ifndef CHARTBOOSTEXT_H
 #define CHARTBOOSTEXT_H
 
-namespace samcodes
+namespace samcodeschartboost
 {
     void initChartboost(const char *appId, const char *appSignature);
 	void showInterstitial(const char* location);

@@ -9,7 +9,7 @@
 #include <hx/CFFI.h>
 #include "SamcodesChartboost.h"
 
-using namespace samcodes;
+using namespace samcodeschartboost;
 
 #ifdef IPHONE
 
@@ -22,9 +22,9 @@ static value set_listener(value onEvent)
 }
 DEFINE_PRIM(set_listener, 1);
 
-static value init_chartboost(value id, value appSignature)
+static value init_chartboost(value id, value signature)
 {
-    initChartboost(val_string(id), val_string(appSignature));
+    initChartboost(val_string(id), val_string(signature));
     return alloc_null();
 }
 DEFINE_PRIM(init_chartboost, 2);
