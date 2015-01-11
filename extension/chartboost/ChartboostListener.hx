@@ -163,7 +163,7 @@ class ChartboostListener
 		}
 		
 		if (Reflect.hasField(inEvent, "reward_coins")) {
-			uri = Std.int(Reflect.field (inEvent, "reward_coins"));
+			reward_coins = cast (Reflect.field (inEvent, "reward_coins"));
 		}
 		
 		switch(type) {
