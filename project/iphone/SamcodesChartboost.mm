@@ -255,7 +255,7 @@ namespace samcodes
     bool hasCachedMoreApps(const char* location)
 	{
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        return [Chartboost hasCachedMoreApps:nsLocation];
+        return [Chartboost hasMoreApps:nsLocation];
 	}
 	
 	void showRewardedVideo(const char* location)
@@ -273,6 +273,6 @@ namespace samcodes
     bool hasCachedRewardedVideo(const char* location)
 	{
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        return [Chartboost hasCachedRewardedVideo:nsLocation];
+        return [Chartboost hasRewardedVideo:nsLocation];
 	}
 }
