@@ -208,7 +208,7 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 
 @end
 
-namespace samcodes
+namespace samcodeschartboost
 {	
     void initChartboost(const char *appId, const char *appSignature)
     {
