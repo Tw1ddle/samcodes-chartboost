@@ -41,4 +41,18 @@ Chartboost.showInterstitial("mylocation"); // Shows an interstitial at 'mylocati
 
 ### Example ###
 
-For a working example refer to this demo app: https://github.com/Tw1ddle/samcodes-chartboost-demo
+For a full example see this app: https://github.com/Tw1ddle/samcodes-chartboost-demo
+
+![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-chartboost-demo/blob/master/screenshots/main.png?raw=true "Demo app")
+
+### Notes ###
+
+For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode.
+
+If you need to rebuild the iOS libs for any reason navigate to ```/project``` and run this:
+
+```bash
+haxelib run hxcpp Build.xml -Diphoneos
+haxelib run hxcpp Build.xml -Diphoneos -DHXCPP_ARMV7
+haxelib run hxcpp Build.xml -Diphoneos -DHXCPP_ARM64
+```
