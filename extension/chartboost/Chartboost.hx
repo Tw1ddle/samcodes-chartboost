@@ -14,7 +14,7 @@ import flash.Lib;
 	// Must be called before use of any other methods in this class
 	public static function init(?appId:String, ?appSignature:String):Void {
 		#if ios
-		if (appId == null || appSignature == null) {
+		if (appId == null || appSignature == null || appId.length <= 10 || appSignature.length <= 10) {
 			throw "Chartboost appId/appSignature not passed. On iOS appId and appSignature parameters must be passed in Chartboost.init.";
 		}
 		#end
