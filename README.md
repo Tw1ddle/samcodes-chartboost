@@ -16,16 +16,16 @@ Doesn't support:
 
 ### Usage ###
 
-Include the library through project.xml:
+Include the library in your project file:
 ```xml
 <include path="lib/samcodes-chartboost/include.xml" />
 ```
-Android project.xml:
+For Android also fill in your app identifier and signature:
 ```xml
-	<setenv name="ChartboostAppId" value="your_app_id" />
-	<setenv name="ChartboostAppSignature" value="your_app_signature" />
+<setenv name="ChartboostAppId" value="your_app_id" />
+<setenv name="ChartboostAppSignature" value="your_app_signature" />
 ```
-For iOS pass as the app identifier and signature as parameters in the Chartboost initialization method:
+For iOS pass the app identifier and signature as parameters in the init call:
 ```haxe
 Chartboost.init("your_app_id", "your_app_signature");
 
@@ -37,7 +37,6 @@ Chartboost.cacheInterstitial("mylocation"); // Cache interstitial at 'mylocation
 Chartboost.showInterstitial("mylocation"); // Shows an interstitial at 'mylocation'. Will display faster if previously cached.
 
 // And so on...
-
 ```
 
 ### Example ###
