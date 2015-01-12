@@ -218,6 +218,9 @@ class ChartboostListener
 			case DID_DISPLAY_REWARDED_VIDEO:
 				didDisplayRewardedVideo(location);
 				
+			case WILL_DISPLAY_VIDEO:
+				willDisplayVideo(location);
+				
 			case DID_FAIL_TO_RECORD_CLICK:
 				didFailToRecordClick(uri);
 				
