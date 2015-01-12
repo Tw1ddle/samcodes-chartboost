@@ -26,8 +26,14 @@ import flash.Lib;
 		#end
 	}
 	
-	public static function setListener(listener:ChartboostListener):Void {		
+	public static function setListener(listener:ChartboostListener):Void {
+		#if android
 		set_listener(listener);
+		#end
+		
+		#if ios
+		set_listener(listener.notify);
+		#end
 	}
 	
 	public static function showInterstitial(id:String):Void {
