@@ -2,6 +2,8 @@
 
 Unofficial Chartboost ads library support for OpenFL Android/iOS targets.
 
+### Features ###
+
 Supports:
 * Caching and showing interstitials.
 * Caching and showing "more apps" panels.
@@ -57,7 +59,7 @@ For a full example see the demo app: https://github.com/Tw1ddle/samcodes-chartbo
 
 For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode.
 
-If you need to rebuild the iOS libs for any reason navigate to ```/project``` and run this:
+If you need to rebuild the iOS libs for any reason navigate to ```/project``` and run:
 
 ```bash
 haxelib run hxcpp Build.xml -Diphoneos
