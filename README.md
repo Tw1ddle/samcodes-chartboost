@@ -14,13 +14,19 @@ Doesn't support:
 * Chartboost InPlay type ads.
 * Age gates.
 
+### Install ###
+
+```bash
+haxelib install samcodes-chartboost
+```
+
 ### Usage ###
 
 Include the library in your project file:
 ```xml
 <include path="lib/samcodes-chartboost/include.xml" />
 ```
-For Android also fill in your app identifier and signature:
+For Android also fill in your app identifier and signature here:
 ```xml
 <setenv name="ChartboostAppId" value="your_app_id" />
 <setenv name="ChartboostAppSignature" value="your_app_signature" />
@@ -28,7 +34,9 @@ For Android also fill in your app identifier and signature:
 For iOS pass the app identifier and signature as parameters in the init call:
 ```haxe
 Chartboost.init("your_app_id", "your_app_signature");
+```
 
+```haxe
 // Basic usage
 Chartboost.setListener(new MyChartboostListener(listener)); // Attach a extended ChartboostListener to handle/respond to SDK events like 'shouldDisplayInterstitial', 'didDismissInterstitial' etc.
 
@@ -41,7 +49,7 @@ Chartboost.showInterstitial("mylocation"); // Shows an interstitial at 'mylocati
 
 ### Example ###
 
-For a full example see this app: https://github.com/Tw1ddle/samcodes-chartboost-demo
+For a full example see the demo app: https://github.com/Tw1ddle/samcodes-chartboost-demo
 
 ![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-chartboost-demo/blob/master/screenshots/main.png?raw=true "Demo app")
 
