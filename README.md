@@ -24,12 +24,12 @@ haxelib install samcodes-chartboost
 
 ### Usage ###
 
-Include the haxelib:
+Include the haxelib through Project.xml:
 ```xml
 <haxelib name="samcodes-chartboost" />
 ```
 
-For Android also fill in your app identifier and signature here:
+For Android fill in your app identifier and signature here too:
 ```xml
 <setenv name="ChartboostAppId" value="your_app_id" />
 <setenv name="ChartboostAppSignature" value="your_app_signature" />
