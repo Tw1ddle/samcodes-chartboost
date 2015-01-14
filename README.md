@@ -24,10 +24,11 @@ haxelib install samcodes-chartboost
 
 ### Usage ###
 
-Include the library in your project file:
+Include the haxelib:
 ```xml
-<include path="lib/samcodes-chartboost/include.xml" />
+<haxelib name="samcodes-chartboost" />
 ```
+
 For Android also fill in your app identifier and signature here:
 ```xml
 <setenv name="ChartboostAppId" value="your_app_id" />
