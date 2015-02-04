@@ -54,7 +54,7 @@ Chartboost.showInterstitial("mylocation"); // Shows an interstitial at 'mylocati
 
 For a full example see the demo app: https://github.com/Tw1ddle/samcodes-chartboost-demo
 
-![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-chartboost-demo/blob/master/screenshots/main.png?raw=true "Demo app")
+![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-interstitial.png?raw=true "Demo app")
 
 ### Notes ###
 
