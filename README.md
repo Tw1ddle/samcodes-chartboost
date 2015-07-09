@@ -60,7 +60,7 @@ For a full example see the demo app: https://github.com/Tw1ddle/samcodes-ads-dem
 
 For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode.
 
-If you need to rebuild the iOS libs for any reason navigate to ```/project``` and run:
+Note that as of SDK version 5.5.0, Chartboost is only compatible with iOS 6.0 and above. If you need to rebuild the iOS ndlls navigate to ```/project``` and run:
 
 ```bash
 haxelib run hxcpp Build.xml -Diphoneos
