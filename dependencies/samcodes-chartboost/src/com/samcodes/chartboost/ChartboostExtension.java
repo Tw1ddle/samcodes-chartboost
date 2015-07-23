@@ -204,12 +204,6 @@ public class ChartboostExtension extends Extension
 				callHaxe("didFailToRecordClick", new Object[] {uri});
 			}
 		}
-		
-		@Override
-		public void didPrefetchVideos() {
-			Log.i(TAG, "DID PREFETCH VIDEOS");
-			callHaxe("didPrefetchVideos", new Object[] {});
-		}
 
 		@Override
 		public boolean shouldDisplayRewardedVideo(String location) {

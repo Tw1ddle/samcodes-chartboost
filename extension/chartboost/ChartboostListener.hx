@@ -66,6 +66,7 @@ class ChartboostListener
 		
 	}
 	
+	// Note this appears to be iOS-only as of Android SDK 5.5.0, iOS SDK 5.5.1
 	public function didPrefetchVideos():Void {
 		
 	}
