@@ -72,6 +72,14 @@ import flash.Lib;
 		return has_cached_rewarded_video(id);
 	}
 	
+	public static function closeImpression():Void {
+		close_impression();
+	}
+	
+	public static function isAnyViewVisible():Bool {
+		return is_any_view_visible();
+	}
+	
 	private static function initBindings() {
 		#if android
 		var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
@@ -166,6 +174,22 @@ import flash.Lib;
 			has_cached_rewarded_video = Lib.load(ndllName, "has_cached_rewarded_video", 1);
 			#end
 		}
+		if (close_impression == null) {
+			#if android
+			close_impression = JNI.createStaticMethod(packageName, "closeImpression", "()V");
+			#end
+			#if ios
+			close_impression = Lib.load(ndllName, "close_impression", 0);
+			#end
+		}
+		if (is_any_view_visible == null) {
+			#if android
+			is_any_view_visible = JNI.createStaticMethod(packageName, "isAnyViewVisible", "()Z");
+			#end
+			#if ios
+			is_any_view_visible = Lib.load(ndllName, "is_any_view_visible", 0);
+			#end
+		}
 	}
 	
 	#if ios
@@ -181,5 +205,7 @@ import flash.Lib;
 	private static var show_rewarded_video:Dynamic = null;
 	private static var cache_rewarded_video:Dynamic = null;
 	private static var has_cached_rewarded_video:Dynamic = null;
+	private static var close_impression:Dynamic = null;
+	private static var is_any_view_visible:Dynamic = null;
 }
 #end

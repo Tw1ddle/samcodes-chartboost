@@ -20,6 +20,8 @@ import com.chartboost.sdk.CBLocation;
 
 public class ChartboostExtension extends Extension 
 {
+	private static String appId = "::ENV_ChartboostAppId::"; 
+	private static String appSignature = "::ENV_ChartboostAppSignature::";
 	private static String TAG = "ChartboostExtension";
 	
 	public static HaxeObject callback = null;
@@ -288,9 +290,6 @@ public class ChartboostExtension extends Extension
 	};
 	private ChartboostDelegate delegate = new AChartboostDelegate();
 	
-	private static String appId = "::ENV_ChartboostAppId::"; 
-	private static String appSignature = "::ENV_ChartboostAppSignature::";
-	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		if(ChartboostExtension.appId == "null" || ChartboostExtension.appSignature == "null") {
@@ -369,5 +368,13 @@ public class ChartboostExtension extends Extension
 	
 	public static void showRewardedVideo(String id) {
 		Chartboost.showRewardedVideo(id);
+	}
+	
+	public static void closeImpression() {
+		Chartboost.closeImpression();
+	}
+	
+	public static boolean isAnyViewVisible() {
+		return Chartboost.isAnyViewVisible();
 	}
 }

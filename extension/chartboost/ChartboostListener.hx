@@ -66,6 +66,11 @@ class ChartboostListener
 		
 	}
 	
+	// Note this appears to be iOS-only as of Android SDK 5.5.0, iOS SDK 5.5.1
+	public function didPrefetchVideos():Void {
+		
+	}
+	
 	public function shouldDisplayRewardedVideo(location:String):Void {
 		
 	}
@@ -107,7 +112,6 @@ class ChartboostListener
 	}
 	
 	// TODO there are far better ways of doing this
-	
 	#if ios
 	// Interstitial events
 	private static inline var SHOULD_REQUEST_INTERSTITIAL:String = "shouldRequestInterstitial";
@@ -130,6 +134,7 @@ class ChartboostListener
 	private static inline var DID_DISPLAY_MORE_APPS:String = "didDisplayMoreApps";
 	
 	// Rewarded video events
+	private static inline var DID_PREFETCH_VIDEOS:String = "didPrefetchVideos";
 	private static inline var SHOULD_DISPLAY_REWARDED_VIDEO:String = "shouldDisplayRewardedVideo";
 	private static inline var DID_CACHE_REWARDED_VIDEO:String = "didCacheRewardedVideo";
 	private static inline var DID_FAIL_TO_LOAD_REWARDED_VIDEO:String = "didFailToLoadRewardedVideo";
@@ -201,6 +206,8 @@ class ChartboostListener
 			case DID_DISPLAY_MORE_APPS:
 				didDisplayMoreApps(location);
 				
+			case DID_PREFETCH_VIDEOS:
+				didPrefetchVideos();
 			case SHOULD_DISPLAY_REWARDED_VIDEO:
 				shouldDisplayRewardedVideo(location);
 			case DID_CACHE_REWARDED_VIDEO:
