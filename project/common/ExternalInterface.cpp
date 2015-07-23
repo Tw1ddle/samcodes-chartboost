@@ -89,6 +89,19 @@ static value has_cached_rewarded_video(value location)
 }
 DEFINE_PRIM(has_cached_rewarded_video, 1);
 
+static value close_impression()
+{
+	closeImpression();
+	return alloc_null();
+}
+DEFINE_PRIM(close_impression, 0);
+
+static value is_any_view_visible
+{
+	return alloc_bool(isAnyViewVisible());
+}
+DEFINE_PRIM(is_any_view_visible, 0);
+
 extern "C" void samcodeschartboost_main()
 {
 	val_int(0);
@@ -100,7 +113,6 @@ extern "C" int samcodeschartboost_register_prims()
 	return 0; 
 }
 
-// TODO need to do this more cleanly
 extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins)
 {
     if(chartboostEventHandle == 0)

@@ -119,6 +119,12 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 	sendChartboostEvent("didFailToLoadMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
+// Called after videos have been successfully prefetched
+- (void)didPrefetchVideos
+{
+	sendChartboostEvent("didPrefetchVideos", "", "", 0);
+}
+
 // Called before a rewarded video will be displayed on the screen.
 - (BOOL)shouldDisplayRewardedVideo:(CBLocation)location
 {
@@ -184,27 +190,6 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 {
 	return YES;
 }
-
-/*
-// Use the following if you're seeing the Apple keyboard covering Chartboost interstitials
-- (BOOL)shouldDisplayInterstitial:(NSString *)location
-{
-    NSLog(@"about to display interstitial at location %@", location);
-    [self.window endEditing:YES];
-    return YES;
-}
-
-// Called after the App Store sheet is dismissed, when displaying the embedded app sheet.
-- (void)didCompleteAppStoreSheetFlow
-{
-}
-
-// Called if Chartboost SDK pauses click actions awaiting confirmation from the user. Use
-// to implement an age gate in your game.
-- (void)didPauseClickForConfirmation
-{
-}
-*/
 
 @end
 
@@ -274,5 +259,15 @@ namespace samcodeschartboost
 	{
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
         return [Chartboost hasRewardedVideo:nsLocation];
+	}
+	
+	void closeImpression()
+	{
+		[Chartboost closeImpression];
+	}
+	
+	bool isAnyViewVisible()
+	{
+		return [Chartboost isAnyViewVisible];
 	}
 }
