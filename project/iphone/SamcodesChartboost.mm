@@ -8,6 +8,13 @@
 
 extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins);
 
+void queueChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins)
+{
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+		sendChartboostEvent(type, location, uri, reward_coins);
+	}];
+}
+
 @interface MyChartboostDelegate : NSObject<ChartboostDelegate>
 @end
 
@@ -16,7 +23,7 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 // Called before requesting an interstitial via the Chartboost API server.
 - (BOOL)shouldRequestInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("shouldRequestInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("shouldRequestInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
     
     return YES;
 }
@@ -24,7 +31,7 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 // Called before an interstitial will be displayed on the screen.
 - (BOOL)shouldDisplayInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("shouldDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("shouldDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
     
     return YES;
 }
@@ -32,51 +39,51 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 // Called after an interstitial has been displayed on the screen.
 - (void)didDisplayInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("didDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after an interstitial has been loaded from the Chartboost API
 // servers and cached locally.
 - (void)didCacheInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("didCacheInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCacheInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after an interstitial has attempted to load from the Chartboost API
 // servers but failed.
  - (void)didFailToLoadInterstitial:(CBLocation)location withError:(CBLoadError)error
  {
-	 sendChartboostEvent("didFailToLoadInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	 queueChartboostEvent("didFailToLoadInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
  }
 
 // Called after a click is registered, but the user is not forwarded to the App Store.
 - (void)didFailToRecordClick:(CBLocation)location withError:(CBClickError)error
 {
-	sendChartboostEvent("didFailToRecordClick", "", "", 0);
+	queueChartboostEvent("didFailToRecordClick", "", "", 0);
 }
 
 // Called after an interstitial has been dismissed.
 - (void)didDismissInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("didDismissInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDismissInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after an interstitial has been closed.
 - (void)didCloseInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("didCloseInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCloseInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after an interstitial has been clicked.
 - (void)didClickInterstitial:(CBLocation)location
 {
-	sendChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called before a MoreApps page will be displayed on the screen.
 - (BOOL)shouldDisplayMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("shouldDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("shouldDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
     
     return YES;
 }
@@ -84,45 +91,45 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 // Called after a MoreApps page has been displayed on the screen.
 - (void)didDisplayMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("didDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a MoreApps page has been loaded from the Chartboost API
 // servers and cached locally.
 - (void)didCacheMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("didCacheMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCacheMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a MoreApps page has been dismissed.
 - (void)didDismissMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("didDismissMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDismissMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a MoreApps page has been closed.
 - (void)didCloseMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("didCloseMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCloseMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a MoreApps page has been clicked.
 - (void)didClickMoreApps:(CBLocation)location
 {
-	sendChartboostEvent("didClickMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didClickMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a MoreApps page attempted to load from the Chartboost API
 // servers but failed.
 - (void)didFailToLoadMoreApps:(CBLocation)location withError:(CBLoadError)error
 {
-	sendChartboostEvent("didFailToLoadMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didFailToLoadMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called before a rewarded video will be displayed on the screen.
 - (BOOL)shouldDisplayRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("shouldDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("shouldDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
     
     return YES;
 }
@@ -130,52 +137,52 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
 // Called after a rewarded video has been displayed on the screen.
 - (void)didDisplayRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("didDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has been loaded from the Chartboost API
 // servers and cached locally.
 - (void)didCacheRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("didCacheRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCacheRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has attempted to load from the Chartboost API
 // servers but failed.
 - (void)didFailToLoadRewardedVideo:(CBLocation)location withError:(CBLoadError)error
 {
-	sendChartboostEvent("didFailToLoadRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didFailToLoadRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has been dismissed.
 - (void)didDismissRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("didDismissRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didDismissRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has been closed.
 - (void)didCloseRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("didCloseRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didCloseRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has been clicked.
 - (void)didClickRewardedVideo:(CBLocation)location
 {
-	sendChartboostEvent("didClickRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didClickRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Called after a rewarded video has been viewed completely and user is eligible for reward.
 - (void)didCompleteRewardedVideo:(CBLocation)location withReward:(int)reward
 {
-	sendChartboostEvent("didCompleteRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", reward);
+	queueChartboostEvent("didCompleteRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", reward);
 }
 
 // Implement to be notified of when a video will be displayed on the screen for 
 // a given CBLocation. You can then do things like mute effects and sounds.
 - (void)willDisplayVideo:(CBLocation)location
 {
-	sendChartboostEvent("willDisplayVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("willDisplayVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
 }
 
 // Whether Chartboost should show ads in the first session

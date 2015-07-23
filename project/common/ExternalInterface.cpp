@@ -96,11 +96,10 @@ extern "C" void samcodeschartboost_main()
 DEFINE_ENTRY_POINT(samcodeschartboost_main);
 
 extern "C" int samcodeschartboost_register_prims()
-{ 
+{
 	return 0; 
 }
 
-// TODO need to do this more cleanly
 extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins)
 {
     if(chartboostEventHandle == 0)
