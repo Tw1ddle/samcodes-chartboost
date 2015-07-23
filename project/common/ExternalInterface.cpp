@@ -96,7 +96,7 @@ static value close_impression()
 }
 DEFINE_PRIM(close_impression, 0);
 
-static value is_any_view_visible
+static value is_any_view_visible()
 {
 	return alloc_bool(isAnyViewVisible());
 }
