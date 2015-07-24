@@ -129,7 +129,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 // Called after videos have been successfully prefetched
 - (void)didPrefetchVideos
 {
-	sendChartboostEvent("didPrefetchVideos", "", "", 0);
+	queueChartboostEvent("didPrefetchVideos", "", "", 0);
 }
 
 // Called before a rewarded video will be displayed on the screen.
