@@ -56,9 +56,9 @@ For a full example using a custom listener see the demo app: https://github.com/
 
 ### Notes ###
 
-For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode.
+Chartboost requires an iOS deployment target of 6.0 or above.
 
-Note that as of SDK version 5.5.0, Chartboost is only compatible with iOS 6.0 and above. If you need to rebuild the iOS ndlls navigate to ```/project``` and run:
+For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode. If you need to rebuild the iOS ndlls navigate to ```/project``` and run:
 
 ```bash
 haxelib run hxcpp Build.xml -Diphoneos
