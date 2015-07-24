@@ -5,7 +5,7 @@
 	"tags": ["chartboost","ads","interstitials","android","ios"],
 	"description": "Chartboost ads for Android and iOS",
 	"version": "1.0.1",
-	"releasenote": "Updated to latest Chartboost SDKs (5.5.1)",
+	"releasenote": "Updated to latest Chartboost SDKs (5.5.1), new bindings, bugfixes",
 	"contributors": ["samcodes"],
 	"dependencies": {}
 }
