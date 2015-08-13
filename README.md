@@ -56,6 +56,8 @@ For a full example using a custom listener see the demo app: https://github.com/
 
 ### Notes ###
 
+Note that you should add ```#if (android || ios)``` conditionals around your imports and calls to this library, especially for cross platform projects, as there is no stub implementation for other platforms included.
+
 Chartboost requires an iOS deployment target of 6.0 or above.
 
 For running on iOS, you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode. If you need to rebuild the iOS ndlls navigate to ```/project``` and run:
