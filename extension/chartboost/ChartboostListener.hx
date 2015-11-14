@@ -153,7 +153,7 @@ class ChartboostListener {
 		var location:String = ""; 
 		var uri:String = "";
 		var reward_coins:Int = 0;
-		var error:String = "";
+		var error:Int = -1;
 		
 		if (Reflect.hasField(inEvent, "type")) {
 			type = Std.string (Reflect.field (inEvent, "type"));
