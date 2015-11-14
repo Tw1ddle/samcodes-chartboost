@@ -6,7 +6,7 @@
 #import "Chartboost.h"
 #include "SamcodesChartboost.h"
 
-extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins);
+extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins, int error);
 
 void queueChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins, int error)
 {
@@ -77,7 +77,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 // Called after an interstitial has been clicked.
 - (void)didClickInterstitial:(CBLocation)location
 {
-	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0);
+	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1);
 }
 
 // Called before a MoreApps page will be displayed on the screen.
