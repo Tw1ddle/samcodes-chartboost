@@ -7,6 +7,10 @@
 		<dependency name="QuartzCore.framework"/>
 		<dependency name="SystemConfiguration.framework" />
 		<dependency name="AdSupport.framework" />
+		<dependency name="StoreKit.framework" />
+		<dependency name="Foundation.framework" />
+		<dependency name="CoreGraphics.framework" />
+		<dependency name="UIKit.framework" />
 	</section>
 	
 	<section if="android">

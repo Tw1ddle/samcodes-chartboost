@@ -24,9 +24,9 @@ haxelib install samcodes-chartboost
 
 See the demo app for a complete example using a custom listener: https://github.com/Tw1ddle/samcodes-ads-demo
 
-![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-video.png?raw=true "Demo app")
-	
 ![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-interstitial.png?raw=true "Demo app")
+
+![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-video.png?raw=true "Demo app")
 
 ### Usage ###
 
