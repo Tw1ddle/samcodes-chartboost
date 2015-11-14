@@ -80,7 +80,7 @@ public class ChartboostExtension extends Extension
 			Log.i(TAG, "DID FAIL TO LOAD INTERSTITIAL " + (location != null ? location : "null") + " Error: " + error.name());
 			
 			if(location != null) {
-				callHaxe("didFailToLoadInterstitial", new Object[] {location});
+				callHaxe("didFailToLoadInterstitial", new Object[] {location, new Integer(error.ordinal())});
 			}
 		}
 
@@ -147,7 +147,7 @@ public class ChartboostExtension extends Extension
 			Log.i(TAG, "DID FAIL TO LOAD MOREAPPS: " + (location != null ? location : "null") + " Error: " + error.name());
 			
 			if(location != null) {
-				callHaxe("didFailToLoadMoreApps", new Object[] {location});
+				callHaxe("didFailToLoadMoreApps", new Object[] {location, new Integer(error.ordinal())});
 			}
 		}
 
@@ -198,10 +198,10 @@ public class ChartboostExtension extends Extension
 
 		@Override
 		public void didFailToRecordClick(String uri, CBClickError error) {
-			Log.i(TAG, "DID FAILED TO RECORD CLICK " + (uri != null ? uri : "null") + ", error: " + error.name());
+			Log.i(TAG, "DID FAILED TO RECORD CLICK " + (uri != null ? uri : "null") + ", error: " + error.ordinal());
 			
 			if(uri != null) {
-				callHaxe("didFailToRecordClick", new Object[] {uri});
+				callHaxe("didFailToRecordClick", new Object[] {uri, new Integer(error.ordinal())});
 			}
 		}
 
@@ -230,7 +230,7 @@ public class ChartboostExtension extends Extension
 			Log.i(TAG, "DID FAIL TO LOAD REWARDED VIDEO: " + (location != null ? location : "null") + " Error: " + error.name());
 			
 			if(location != null) {
-				callHaxe("didFailToLoadRewardedVideo", new Object[] {location});
+				callHaxe("didFailToLoadRewardedVideo", new Object[] {location, new Integer(error.ordinal())});
 			}
 		}
 
@@ -291,7 +291,7 @@ public class ChartboostExtension extends Extension
 	private ChartboostDelegate delegate = new AChartboostDelegate();
 	
 	@Override
-	public void onCreate (Bundle savedInstanceState) {
+	public void onCreate (Bundle savedInstanceState) {		
 		if(ChartboostExtension.appId == "null" || ChartboostExtension.appSignature == "null") {
 			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
 			Log.e(TAG, "Refer to the Chartboost SDK documentation");
@@ -302,6 +302,9 @@ public class ChartboostExtension extends Extension
 		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + ChartboostExtension.appId + " AND APP SIGNATURE " + ChartboostExtension.appSignature);
 		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.appId, ChartboostExtension.appSignature);
 		Chartboost.setDelegate(delegate);
+		Chartboost.onCreate(Extension.mainActivity);
+		
+		super.onCreate(savedInstanceState);
 	}
 	
 	@Override
@@ -332,6 +335,16 @@ public class ChartboostExtension extends Extension
 	public void onDestroy() {
 		super.onDestroy();
 		Chartboost.onDestroy(Extension.mainActivity);
+	}
+	
+	@Override
+	public boolean onBackPressed() {
+		// If an interstitial is onscreen, close it
+		if(Chartboost.onBackPressed()) {
+			return false;
+		} else {
+			return super.onBackPressed();
+		}
 	}
 	
 	public static boolean hasCachedInterstitial(String id) {

@@ -113,7 +113,7 @@ extern "C" int samcodeschartboost_register_prims()
 	return 0; 
 }
 
-extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins)
+extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins, int error)
 {
     if(chartboostEventHandle == 0)
     {
@@ -125,6 +125,7 @@ extern "C" void sendChartboostEvent(const char* type, const char* location, cons
     alloc_field(o, val_id("location"), alloc_string(location));
 	alloc_field(o, val_id("uri"), alloc_string(uri));
 	alloc_field(o, val_id("reward_coins"), alloc_int(reward_coins));
+	alloc_field(o, val_id("error"), alloc_int(error));
 	val_call1(chartboostEventHandle->get(), o);
 }
 

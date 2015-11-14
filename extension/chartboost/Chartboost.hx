@@ -9,8 +9,7 @@ import flash.Lib;
 #end
 
 #if (android || ios)
-@:allow(extension.Chartboost) class Chartboost
-{
+@:allow(extension.Chartboost) class Chartboost {
 	// Must be called before use of any other methods in this class
 	public static function init(?appId:String, ?appSignature:String):Void {
 		#if ios

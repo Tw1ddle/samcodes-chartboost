@@ -1,7 +1,6 @@
 package extension.chartboost;
 
-class ChartboostListener
-{
+class ChartboostListener {
 	public function shouldRequestInterstitial(location:String):Void {
 		
 	}
@@ -14,7 +13,7 @@ class ChartboostListener
 		
 	}
 	
-	public function didFailToLoadInterstitial(location:String):Void {
+	public function didFailToLoadInterstitial(location:String, error:Int):Void {
 		
 	}
 	
@@ -42,7 +41,7 @@ class ChartboostListener
 		
 	}
 	
-	public function didFailToLoadMoreApps(location:String):Void {
+	public function didFailToLoadMoreApps(location:String, error:Int):Void {
 		
 	}
 	
@@ -79,7 +78,7 @@ class ChartboostListener
 		
 	}
 	
-	public function didFailToLoadRewardedVideo(location:String):Void {
+	public function didFailToLoadRewardedVideo(location:String, error:Int):Void {
 		
 	}
 	
@@ -107,7 +106,7 @@ class ChartboostListener
 		
 	}
 	
-	public function didFailToRecordClick(uri:String):Void {
+	public function didFailToRecordClick(uri:String, error:Int):Void {
 		
 	}
 	
@@ -154,6 +153,7 @@ class ChartboostListener
 		var location:String = ""; 
 		var uri:String = "";
 		var reward_coins:Int = 0;
+		var error:String = "";
 		
 		if (Reflect.hasField(inEvent, "type")) {
 			type = Std.string (Reflect.field (inEvent, "type"));
@@ -171,6 +171,10 @@ class ChartboostListener
 			reward_coins = cast (Reflect.field (inEvent, "reward_coins"));
 		}
 		
+		if (Reflect.hasField(inEvent, "error")) {
+			error = cast (Reflect.field (inEvent, "error"));
+		}
+		
 		switch(type) {
 			case SHOULD_REQUEST_INTERSTITIAL:
 				shouldRequestInterstitial(location);
@@ -179,7 +183,7 @@ class ChartboostListener
 			case DID_CACHE_INTERSTITIAL:
 				didCacheInterstitial(location);
 			case DID_FAIL_TO_LOAD_INTERSTITIAL:
-				didFailToLoadInterstitial(location);
+				didFailToLoadInterstitial(location, error);
 			case DID_DISMISS_INTERSTITIAL:
 				didDismissInterstitial(location);
 			case DID_CLOSE_INTERSTITIAL:
@@ -194,7 +198,7 @@ class ChartboostListener
 			case SHOULD_DISPLAY_MORE_APPS:
 				shouldDisplayMoreApps(location);
 			case DID_FAIL_TO_LOAD_MORE_APPS:
-				didFailToLoadMoreApps(location);
+				didFailToLoadMoreApps(location, error);
 			case DID_CACHE_MORE_APPS:
 				didCacheMoreApps(location);
 			case DID_DISMISS_MORE_APPS:
@@ -213,7 +217,7 @@ class ChartboostListener
 			case DID_CACHE_REWARDED_VIDEO:
 				didCacheRewardedVideo(location);
 			case DID_FAIL_TO_LOAD_REWARDED_VIDEO:
-				didFailToLoadRewardedVideo(location);
+				didFailToLoadRewardedVideo(location, error);
 			case DID_DISMISS_REWARDED_VIDEO:
 				didDismissRewardedVideo(location);
 			case DID_CLOSE_REWARDED_VIDEO:
@@ -229,7 +233,7 @@ class ChartboostListener
 				willDisplayVideo(location);
 				
 			case DID_FAIL_TO_RECORD_CLICK:
-				didFailToRecordClick(uri);
+				didFailToRecordClick(uri, error);
 				
 			default:
 			{
