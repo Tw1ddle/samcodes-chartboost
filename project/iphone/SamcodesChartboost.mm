@@ -77,7 +77,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 // Called after an interstitial has been clicked.
 - (void)didClickInterstitial:(CBLocation)location
 {
-	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1), false);
+	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 }
 
 // Called before a MoreApps page will be displayed on the screen.
@@ -281,12 +281,12 @@ namespace samcodeschartboost
 	void setCustomID(const char* id)
 	{
 		NSString *nsId = [[NSString alloc] initWithUTF8String:id];
-		[Chartboost setCustomID:id];
+		[Chartboost setCustomId:nsId];
 	}
 	
 	const char* getCustomID()
 	{
-		NSString *nsId = [Chartboost getCustomID];
+		NSString *nsId = [Chartboost getCustomId];
 		return [nsId UTF8String];
 	}
 	
