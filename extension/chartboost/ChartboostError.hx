@@ -57,7 +57,7 @@ class ChartboostError {
 		if (id < 0 || id >= orderedLoadingErrorDescriptions.length) {
 			return "UNKNOWN CHARTBOOST AD LOADING ERROR";
 		}
-		return orderedLoadingErrorDescriptions[i];
+		return orderedLoadingErrorDescriptions[id];
 	}
 	
 	private static var orderedLoadingErrorDescriptions:Array<String> = [
@@ -86,7 +86,7 @@ class ChartboostError {
 		if (id < 0 || id >= orderedLoadingErrorDescriptions.length) {
 			return "UNKNOWN CHARTBOOST CLICK ERROR";
 		}
-		return orderedClickErrorDescriptions[i];
+		return orderedClickErrorDescriptions[id];
 	}
 	
 	private static var orderedClickErrorDescriptions:Array<String> = [
