@@ -45,6 +45,15 @@ public class ChartboostExtension extends Extension
 		}
 		
 		@Override
+		public static boolean didInitialize(boolean status) {
+			Log.i(TAG, "DID INITIALIZE " + status);
+			
+			callHaxe("didInitialize", new Object[] {status});
+			
+			return status;
+		}
+		
+		@Override
 		public boolean shouldRequestInterstitial(String location) {
 			Log.i(TAG, "SHOULD REQUEST INTERSTITIAL " + (location != null ? location : "null"));
 			
@@ -389,5 +398,25 @@ public class ChartboostExtension extends Extension
 	
 	public static boolean isAnyViewVisible() {
 		return Chartboost.isAnyViewVisible();
+	}
+	
+	public static void setCustomID(String id) {
+		Chartboost.setCustomID(id);
+	}
+	
+	public static String getCustomID() {
+		return Chartboost.getCustomID();
+	}
+	
+	public static void setShouldRequestInterstitialsInFirstSession(boolean shouldRequest) {
+		Chartboost.setShouldRequestInterstitialsInFirstSession(shouldRequest);
+	}
+	
+	public static void setShouldDisplayLoadingViewForMoreApps(boolean shouldDisplay) {
+		Chartboost.setShouldDisplayLoadingViewForMoreApps(shouldDisplay);
+	}
+	
+	public static void setShouldPrefetchVideoContent(boolean shouldPrefetch) {
+		Chartboost.setShouldPrefetchVideoContent(shouldPrefetch);
 	}
 }

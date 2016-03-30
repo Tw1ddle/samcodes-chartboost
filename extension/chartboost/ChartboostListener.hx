@@ -65,11 +65,6 @@ class ChartboostListener {
 		
 	}
 	
-	// Note this appears to be iOS-only as of Android SDK 5.5.0, iOS SDK 5.5.1
-	public function didPrefetchVideos():Void {
-		
-	}
-	
 	public function shouldDisplayRewardedVideo(location:String):Void {
 		
 	}
@@ -110,6 +105,10 @@ class ChartboostListener {
 		
 	}
 	
+	public function didInitialize(status:Bool):Void {
+		
+	}
+	
 	// TODO there are far better ways of doing this
 	#if ios
 	// Interstitial events
@@ -133,7 +132,6 @@ class ChartboostListener {
 	private static inline var DID_DISPLAY_MORE_APPS:String = "didDisplayMoreApps";
 	
 	// Rewarded video events
-	private static inline var DID_PREFETCH_VIDEOS:String = "didPrefetchVideos";
 	private static inline var SHOULD_DISPLAY_REWARDED_VIDEO:String = "shouldDisplayRewardedVideo";
 	private static inline var DID_CACHE_REWARDED_VIDEO:String = "didCacheRewardedVideo";
 	private static inline var DID_FAIL_TO_LOAD_REWARDED_VIDEO:String = "didFailToLoadRewardedVideo";
@@ -147,6 +145,7 @@ class ChartboostListener {
 	
 	// Misc
 	private static inline var DID_FAIL_TO_RECORD_CLICK:String = "didFailToRecordClick";
+	private static inline var DID_INITIALIZE:String = "didInitialize";
 	
 	public function notify(inEvent:Dynamic):Void {
 		var type:String = "";
@@ -154,6 +153,7 @@ class ChartboostListener {
 		var uri:String = "";
 		var reward_coins:Int = 0;
 		var error:Int = -1;
+		var status:Bool = false;
 		
 		if (Reflect.hasField(inEvent, "type")) {
 			type = Std.string (Reflect.field (inEvent, "type"));
@@ -173,6 +173,10 @@ class ChartboostListener {
 		
 		if (Reflect.hasField(inEvent, "error")) {
 			error = cast (Reflect.field (inEvent, "error"));
+		}
+		
+		if (Reflect.hasField(inEvent, "status")) {
+			status = cast (Reflect.field(inEvent, "status"));
 		}
 		
 		switch(type) {
@@ -210,8 +214,6 @@ class ChartboostListener {
 			case DID_DISPLAY_MORE_APPS:
 				didDisplayMoreApps(location);
 				
-			case DID_PREFETCH_VIDEOS:
-				didPrefetchVideos();
 			case SHOULD_DISPLAY_REWARDED_VIDEO:
 				shouldDisplayRewardedVideo(location);
 			case DID_CACHE_REWARDED_VIDEO:
@@ -234,6 +236,8 @@ class ChartboostListener {
 				
 			case DID_FAIL_TO_RECORD_CLICK:
 				didFailToRecordClick(uri, error);
+			case DID_INITIALIZE:
+				didInitialize(status);
 				
 			default:
 			{

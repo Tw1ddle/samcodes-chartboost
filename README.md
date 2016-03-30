@@ -5,12 +5,14 @@ Unofficial Chartboost ads library support for OpenFL Android/iOS targets.
 ### Features ###
 
 Supports:
-* Caching, showing and dismissing static and video interstitials, "more apps" panels and rewarded video ads.
+* Caching, showing and dismissing static and video interstitials.
+* More apps panels.
+* Rewarded videos.
 * Customizable listener for reacting to SDK events.
 * Custom ad locations.
 
 Doesn't support:
-* Chartboost Store features.
+* Chartboost In-App purchase analytics.
 * Chartboost InPlay type ads.
 * Age gates.
 
@@ -58,9 +60,9 @@ Chartboost.showInterstitial("mylocation"); // Show an interstitial at 'mylocatio
 
 ### Notes ###
 
-If in doubt, refer to the official Chartboost documentation.
+If in doubt, refer to the official [Chartboost](https://www.chartboost.com/) documentation.
 
-Add ```#if (android || ios)``` conditionals around your imports and calls to this haxelib, especially for cross platform projects, as there is no stub implementation for other platforms included.
+Use ```#if (android || ios)``` conditionals around your imports and calls to this library for cross platform projects, as there is no stub/fallback implementation included in the haxelib.
 
 For iOS you need to drag your ```libChartboost.a``` into the "link binaries with libraries" section under the "build phases" tab in Xcode. If you need to rebuild the iOS or simulator ndlls navigate to ```/project``` and run:
 

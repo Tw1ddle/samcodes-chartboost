@@ -3,7 +3,7 @@
 
 namespace samcodeschartboost
 {
-    void initChartboost(const char *appId, const char *appSignature);
+    void initChartboost(const char* appId, const char* appSignature);
 	void showInterstitial(const char* location);
     void cacheInterstitial(const char* location);
     bool hasCachedInterstitial(const char* location);
@@ -15,6 +15,13 @@ namespace samcodeschartboost
     bool hasCachedRewardedVideo(const char* location);
 	void closeImpression();
 	bool isAnyViewVisible();
+	void setCustomID(const char* id);
+	const char* getCustomID();
+	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest);
+	void setShouldDisplayLoadingViewForMoreApps(bool shouldDisplay);
+	void setShouldPrefetchVideoContent(bool shouldPrefetch);
+	const char* getSDKVersion();
+	void setStatusBarBehavior(bool shouldHide);
 }
 
 #endif

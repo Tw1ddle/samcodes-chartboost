@@ -1,10 +1,13 @@
 /*
  * Chartboost.h
  * Chartboost
- * 6.0.1
+ * 6.4.0
  *
  * Copyright 2011 Chartboost. All rights reserved.
  */
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /*!
  @typedef NS_ENUM (NSUInteger, CBFramework)
@@ -28,14 +31,12 @@ typedef NS_ENUM(NSUInteger, CBFramework) {
     CBFrameworkCocoonJS,
     /*! Cocos2d-x. */
     CBFrameworkCocos2dx,
-    /*! MoPub. */
-    CBFrameworkMoPub,
-    /*! Fyber. */
-    CBFrameworkFyber,
     /*! Prime31Unreal. */
     CBFrameworkPrime31Unreal,
     /*! Weeby. */
-    CBFrameworkWeeby
+    CBFrameworkWeeby,
+    /*! Unknown. Other */
+    CBFrameworkOther
 };
 
 /*!
@@ -60,6 +61,8 @@ typedef NS_ENUM(NSUInteger, CBMediation) {
     CBMediationMoPub,
     /*! Supersonic */
     CBMediationSupersonic,
+    /*! AdMob */
+    CBMediationAdMob,
 };
 
 
@@ -72,29 +75,31 @@ typedef NS_ENUM(NSUInteger, CBMediation) {
  */
 typedef NS_ENUM(NSUInteger, CBLoadError) {
     /*! Unknown internal error. */
-    CBLoadErrorInternal,
+    CBLoadErrorInternal = 0,
     /*! Network is currently unavailable. */
-    CBLoadErrorInternetUnavailable,
+    CBLoadErrorInternetUnavailable = 1,
     /*! Too many requests are pending for that location.  */
-    CBLoadErrorTooManyConnections,
+    CBLoadErrorTooManyConnections = 2,
     /*! Interstitial loaded with wrong orientation. */
-    CBLoadErrorWrongOrientation,
+    CBLoadErrorWrongOrientation = 3,
     /*! Interstitial disabled, first session. */
-    CBLoadErrorFirstSessionInterstitialsDisabled,
+    CBLoadErrorFirstSessionInterstitialsDisabled = 4,
     /*! Network request failed. */
-    CBLoadErrorNetworkFailure,
+    CBLoadErrorNetworkFailure = 5,
     /*!  No ad received. */
-    CBLoadErrorNoAdFound,
+    CBLoadErrorNoAdFound = 6,
     /*! Session not started. */
-    CBLoadErrorSessionNotStarted,
+    CBLoadErrorSessionNotStarted = 7,
+	/*! There is an impression already visible.*/
+	CBLoadErrorImpressionAlreadyVisible = 8,
     /*! User manually cancelled the impression. */
-    CBLoadErrorUserCancellation,
+    CBLoadErrorUserCancellation = 10,
     /*! No location detected. */
-    CBLoadErrorNoLocationFound,
+    CBLoadErrorNoLocationFound = 11,
+    /*! Error downloading asset. */
+    CBLoadErrorAssetDownloadFailure = 16,
     /*! Video Prefetching is not finished */
-    CBLoadErrorPrefetchingIncomplete,
-    /*! There is an impression already visible.*/
-    CBLoadErrorImpressionAlreadyVisible
+    CBLoadErrorPrefetchingIncomplete = 21
 };
 
 /*!
@@ -213,6 +218,18 @@ extern CBLocation const CBLocationDefault;
 + (void)startWithAppId:(NSString*)appId
           appSignature:(NSString*)appSignature
               delegate:(id<ChartboostDelegate>)delegate;
+
+/*!
+ @abstract 
+ Set the Chartboost Delegate
+ 
+ @param del The new Chartboost Delegate for the sharedChartboost instance
+ 
+ @discussion This doesn't need to be called when calling startWithAppID, only later
+ to switch the delegate object.
+ */
++ (void)setDelegate:(id<ChartboostDelegate>)del;
+
 
 /*!
  @abstract
@@ -502,6 +519,14 @@ example setFramework:Unity withVersion:4.6, setFrameworkVersion:5.2.1
  */
 + (void)setShouldPrefetchVideoContent:(BOOL)shouldPrefetch;
 
+
+/*!
+ @abstract
+ Returns the version of the Chartboost SDK.
+ */
++ (NSString*)getSDKVersion;
+
+
 #pragma mark - Advanced Caching
 
 /*!
@@ -583,6 +608,17 @@ example setFramework:Unity withVersion:4.6, setFrameworkVersion:5.2.1
  */
 + (void)setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior;
 
+
+/*!
+ @abstract 
+ returns YES if auto IAP tracking is enabled, NO if it isn't.
+
+ @discussion Call to check if automatic tracking of in-app purchases is enabled. 
+ The setting is controlled by the server.
+ */
++ (BOOL)getAutoIAPTracking;
+
+
 @end
 
 /*!
@@ -600,6 +636,17 @@ example setFramework:Unity withVersion:4.6, setFrameworkVersion:5.2.1
 @protocol ChartboostDelegate <NSObject>
 
 @optional
+
+/*!
+ @abstract
+ Called after the SDK has been successfully initialized
+ 
+ @param status The result of the initialization. YES if successful. NO if failed.
+
+ @discussion Implement to be notified of when the initialization process has finished.
+ */
+
+- (void)didInitialize:(BOOL)status;
 
 #pragma mark - Interstitial Delegate
 
@@ -818,6 +865,9 @@ example setFramework:Unity withVersion:4.6, setFrameworkVersion:5.2.1
  Called after videos have been successfully prefetched.
  
  @discussion Implement to be notified of when the prefetching process has finished successfully.
+
+ @deprecated This method has been deprecated and will be removed in a future version. Use didInitialize instead
+ 
  */
 
 - (void)didPrefetchVideos;

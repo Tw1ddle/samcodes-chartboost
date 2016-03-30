@@ -79,6 +79,34 @@ import flash.Lib;
 		return is_any_view_visible();
 	}
 	
+	public static function setCustomID(id:String):Void {
+		set_custom_id(id);
+	}
+	
+	public static function getCustomID():String {
+		return get_custom_id();
+	}
+	
+	public static function setShouldRequestInterstitialsInFirstSession(shouldRequest:Bool):Void {
+		set_should_request_interstitials_in_first_session(shouldRequest);
+	}
+	
+	public static function setShouldDisplayLoadingViewForMoreApps(shouldDisplay:Bool):Void {
+		set_should_display_loading_view_for_more_apps(shouldDisplay);
+	}
+	
+	public static function setShouldPrefetchVideoContent(shouldPrefetch:Bool):Void {
+		set_should_prefetch_video_content(shouldPrefetch);
+	}
+	
+	public static function getSDKVersion():String {
+		return get_sdk_version();
+	}
+	
+	public static function setShouldHideSystemUI(shouldHide:Bool):Void {
+		set_should_hide_system_ui(shouldHide);
+	}
+	
 	private static function initBindings() {
 		#if android
 		var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
@@ -189,6 +217,62 @@ import flash.Lib;
 			is_any_view_visible = Lib.load(ndllName, "is_any_view_visible", 0);
 			#end
 		}
+		if (set_custom_id == null) {
+			#if android
+			set_custom_id = JNI.createStaticMethod(packageName, "setCustomID", "(Ljava/lang/String;)V");
+			#end
+			#if ios
+			set_custom_id = Lib.load(ndllName, "set_custom_id", 1);
+			#end
+		}
+		if (get_custom_id == null) {
+			#if android
+			get_custom_id = JNI.createStaticMethod(packageName, "getCustomID", "()Ljava/lang/String;");
+			#end
+			#if ios
+			get_custom_id = Lib.load(ndllName, "get_custom_id", 0);
+			#end
+		}
+		if (set_should_request_interstitials_in_first_session == null) {
+			#if android
+			set_should_request_interstitials_in_first_session = JNI.createStaticMethod(packageName, "setShouldRequestInterstitialsInFirstSession", "(Z)V");
+			#end
+			#if ios
+			set_should_request_interstitials_in_first_session = Lib.load(ndllName, "set_should_request_interstitials_in_first_session", 1);
+			#end
+		}
+		if (set_should_display_loading_view_for_more_apps == null) {
+			#if android
+			set_should_display_loading_view_for_more_apps = JNI.createStaticMethod(packageName, "setShouldDisplayLoadingViewForMoreApps", "(Z)V");
+			#end
+			#if ios
+			set_should_display_loading_view_for_more_apps = Lib.load(ndllName, "set_should_display_loading_view_for_more_apps", 1);
+			#end
+		}
+		if (set_should_prefetch_video_content == null) {
+			#if android
+			set_should_prefetch_video_content = JNI.createStaticMethod(packageName, "setShouldPrefetchVideoContent", "(Z)V");
+			#end
+			#if ios
+			set_should_prefetch_video_content = Lib.load(ndllName, "set_should_prefetch_video_content", 1);
+			#end
+		}
+		if (get_sdk_version == null) {
+			#if android
+			get_sdk_version = JNI.createStaticMethod(packageName, "getSDKVersion", "()Ljava/lang/String;");
+			#end
+			#if ios
+			get_sdk_version = Lib.load(ndllName, "get_sdk_version", 0);
+			#end
+		}
+		if (set_should_hide_system_ui == null) {
+			#if android
+			set_should_hide_system_ui = JNI.createStaticMethod(packageName, "setShouldHideSystemUI", "(Z)V");
+			#end
+			#if ios
+			set_should_hide_system_ui = Lib.load(ndllName, "set_status_bar_behavior", 1); // NOTE this approximates the Android behaviour (either ignore or respect the status bar area)
+			#end
+		}
 	}
 	
 	#if ios
@@ -206,5 +290,12 @@ import flash.Lib;
 	private static var has_cached_rewarded_video:Dynamic = null;
 	private static var close_impression:Dynamic = null;
 	private static var is_any_view_visible:Dynamic = null;
+	private static var set_custom_id:Dynamic = null;
+	private static var get_custom_id:Dynamic = null;
+	private static var set_should_request_interstitials_in_first_session:Dynamic = null;
+	private static var set_should_display_loading_view_for_more_apps:Dynamic = null;
+	private static var set_should_prefetch_video_content:Dynamic = null;
+	private static var get_sdk_version:Dynamic = null;
+	private static var set_should_hide_system_ui:Dynamic = null;
 }
 #end
