@@ -41,7 +41,7 @@ class ChartboostError {
 		if (id < 0 || id >= orderedClickErrorDescriptions.length) {
 			return "UNKNOWN CHARTBOOST CLICK ERROR";
 		}
-		return orderedClickErrorDescriptions[i];
+		return orderedClickErrorDescriptions[id];
 	}
 	
 	private static var orderedClickErrorDescriptions:Array<String> = [
