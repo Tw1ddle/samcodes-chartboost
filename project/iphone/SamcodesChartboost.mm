@@ -278,7 +278,7 @@ namespace samcodeschartboost
 		return [Chartboost isAnyViewVisible];
 	}
 	
-	void setCustomID(const char* id)
+	void setCustomId(const char* id)
 	{
 		NSString *nsId = [[NSString alloc] initWithUTF8String:id];
 		[Chartboost setCustomId:nsId];
