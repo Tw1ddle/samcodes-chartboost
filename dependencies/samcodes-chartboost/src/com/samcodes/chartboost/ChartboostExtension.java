@@ -45,12 +45,11 @@ public class ChartboostExtension extends Extension
 		}
 		
 		@Override
-		public static boolean didInitialize(boolean status) {
-			Log.i(TAG, "DID INITIALIZE " + status);
+		public void didInitialize() {
+			Log.i(TAG, "DID INITIALIZE");
 			
-			callHaxe("didInitialize", new Object[] {status});
-			
-			return status;
+			// NOTE according to the 6.4.1 docs this method provides a boolean on iOS indicating status of initialization, so passing "true" for success here
+			callHaxe("didInitialize", new Object[] {new Boolean(true)});
 		}
 		
 		@Override
@@ -356,7 +355,7 @@ public class ChartboostExtension extends Extension
 		}
 	}
 	
-	public static boolean hasCachedInterstitial(String id) {
+	public static boolean hasInterstitial(String id) {
 		return Chartboost.hasInterstitial(id); 
 	}
 
@@ -368,7 +367,7 @@ public class ChartboostExtension extends Extension
 		Chartboost.showInterstitial(id); 
 	}
 	
-	public static boolean hasCachedMoreApps(String id) {
+	public static boolean hasMoreApps(String id) {
 		return Chartboost.hasMoreApps(id);
 	}
 	
@@ -380,7 +379,7 @@ public class ChartboostExtension extends Extension
 		Chartboost.showMoreApps(id);
 	}
 	
-	public static boolean hasCachedRewardedVideo(String id) {
+	public static boolean hasRewardedVideo(String id) {
 		return Chartboost.hasRewardedVideo(id);
 	}
 	
@@ -400,12 +399,12 @@ public class ChartboostExtension extends Extension
 		return Chartboost.isAnyViewVisible();
 	}
 	
-	public static void setCustomID(String id) {
-		Chartboost.setCustomID(id);
+	public static void setCustomId(String id) {
+		Chartboost.setCustomId(id);
 	}
 	
-	public static String getCustomID() {
-		return Chartboost.getCustomID();
+	public static String getCustomId() {
+		return Chartboost.getCustomId();
 	}
 	
 	public static void setShouldRequestInterstitialsInFirstSession(boolean shouldRequest) {
@@ -418,5 +417,13 @@ public class ChartboostExtension extends Extension
 	
 	public static void setShouldPrefetchVideoContent(boolean shouldPrefetch) {
 		Chartboost.setShouldPrefetchVideoContent(shouldPrefetch);
+	}
+	
+	public static String getSDKVersion() {
+		return Chartboost.getSDKVersion();
+	}
+	
+	public static void setShouldHideSystemUI(boolean shouldHide) {
+		Chartboost.setShouldHideSystemUI(shouldHide);
 	}
 }

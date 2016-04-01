@@ -6,13 +6,13 @@ namespace samcodeschartboost
     void initChartboost(const char* appId, const char* appSignature);
 	void showInterstitial(const char* location);
     void cacheInterstitial(const char* location);
-    bool hasCachedInterstitial(const char* location);
+    bool hasInterstitial(const char* location);
 	void showMoreApps(const char* location);
     void cacheMoreApps(const char* location);
-    bool hasCachedMoreApps(const char* location);
+    bool hasMoreApps(const char* location);
 	void showRewardedVideo(const char* location);
     void cacheRewardedVideo(const char* location);
-    bool hasCachedRewardedVideo(const char* location);
+    bool hasRewardedVideo(const char* location);
 	void closeImpression();
 	bool isAnyViewVisible();
 	void setCustomID(const char* id);

@@ -1,9 +1,10 @@
 # CHANGELOG
 
 ## 1.0.3 -> 1.0.2
+* Renamed hasCachedInterstitial etc. to hasInterstitial, hasMoreApps and hasRewardedVideo to match latest SDKs
 * Updated bindings and upgraded to latest Chartboost SDKs (Android 6.4.0, iOS 6.4.0)
-* Added configuration method bindings including setShouldRequestInterstitialsInFirstSession.
-* Replace deprecated didPrefetchVideos with didInitialize callback.
+* Added configuration method bindings including setShouldRequestInterstitialsInFirstSession
+* Replace deprecated didPrefetchVideos with didInitialize callback
 
 ## 1.0.1 -> 1.0.2
 * Updated bindings and upgraded to latest Chartboost SDKs (Android 6.0.2, iOS 6.0.1)

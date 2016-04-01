@@ -226,7 +226,7 @@ namespace samcodeschartboost
         [Chartboost cacheInterstitial:nsLocation];
     }
 	
-    bool hasCachedInterstitial(const char* location)
+    bool hasInterstitial(const char* location)
     {
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
         return [Chartboost hasInterstitial:nsLocation];
@@ -244,7 +244,7 @@ namespace samcodeschartboost
         [Chartboost cacheMoreApps:nsLocation];
 	}
 	
-    bool hasCachedMoreApps(const char* location)
+    bool hasMoreApps(const char* location)
 	{
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
         return [Chartboost hasMoreApps:nsLocation];
@@ -262,7 +262,7 @@ namespace samcodeschartboost
         [Chartboost cacheRewardedVideo:nsLocation];
 	}
 	
-    bool hasCachedRewardedVideo(const char* location)
+    bool hasRewardedVideo(const char* location)
 	{
         NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
         return [Chartboost hasRewardedVideo:nsLocation];

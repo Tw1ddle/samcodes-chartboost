@@ -43,8 +43,8 @@ import flash.Lib;
 		cache_interstitial(id);
 	}
 
-	public static function hasCachedInterstitial(id:String):Bool {
-		return has_cached_interstitial(id);
+	public static function hasInterstitial(id:String):Bool {
+		return has_interstitial(id);
 	}
 	
 	public static function showMoreApps(id:String):Void {
@@ -55,8 +55,8 @@ import flash.Lib;
 		cache_more_apps(id);
 	}
 	
-	public static function hasCachedMoreApps(id:String):Bool {
-		return has_cached_more_apps(id);
+	public static function hasMoreApps(id:String):Bool {
+		return has_more_apps(id);
 	}
 	
 	public static function showRewardedVideo(id:String):Void {
@@ -67,8 +67,8 @@ import flash.Lib;
 		cache_rewarded_video(id);
 	}
 	
-	public static function hasCachedRewardedVideo(id:String):Bool {
-		return has_cached_rewarded_video(id);
+	public static function hasRewardedVideo(id:String):Bool {
+		return has_rewarded_video(id);
 	}
 	
 	public static function closeImpression():Void {
@@ -79,11 +79,11 @@ import flash.Lib;
 		return is_any_view_visible();
 	}
 	
-	public static function setCustomID(id:String):Void {
+	public static function setCustomId(id:String):Void {
 		set_custom_id(id);
 	}
 	
-	public static function getCustomID():String {
+	public static function getCustomId():String {
 		return get_custom_id();
 	}
 	
@@ -107,173 +107,62 @@ import flash.Lib;
 		set_should_hide_system_ui(shouldHide);
 	}
 	
-	private static function initBindings() {
-		#if android
-		var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
-		#end
-		#if ios
-		var ndllName:String = "samcodeschartboost";
-		#end
-		
+	private static function initBindings() {		
 		#if ios
 		if (init_chartboost == null) {
 			init_chartboost = Lib.load(ndllName, "init_chartboost", 2);
 		}
 		#end
 		
-		if (set_listener == null) {
-			#if android
-			set_listener = JNI.createStaticMethod(packageName, "setListener", "(Lorg/haxe/lime/HaxeObject;)V");
-			#end
-			#if ios
-			set_listener = Lib.load(ndllName, "set_listener", 1);
-			#end
-		}
-		if (show_interstitial == null) {
-			#if android
-			show_interstitial = JNI.createStaticMethod(packageName, "showInterstitial", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			show_interstitial = Lib.load(ndllName, "show_interstitial", 1);
-			#end
-		}
-		if (cache_interstitial == null) {
-			#if android
-			cache_interstitial = JNI.createStaticMethod(packageName, "cacheInterstitial", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			cache_interstitial = Lib.load(ndllName, "cache_interstitial", 1);
-			#end
-		}
-		if (has_cached_interstitial == null) {
-			#if android
-			has_cached_interstitial = JNI.createStaticMethod(packageName, "hasCachedInterstitial", "(Ljava/lang/String;)Z");
-			#end
-			#if ios
-			has_cached_interstitial = Lib.load(ndllName, "has_cached_interstitial", 1);
-			#end
-		}
-		if (show_more_apps == null) {
-			#if android
-			show_more_apps = JNI.createStaticMethod(packageName, "showMoreApps", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			show_more_apps = Lib.load(ndllName, "show_more_apps", 1);
-			#end
-		}
-		if (cache_more_apps == null) {
-			#if android
-			cache_more_apps = JNI.createStaticMethod(packageName, "cacheMoreApps", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			cache_more_apps = Lib.load(ndllName, "cache_more_apps", 1);
-			#end
-		}
-		if (has_cached_more_apps == null) {
-			#if android
-			has_cached_more_apps = JNI.createStaticMethod(packageName, "hasCachedMoreApps", "(Ljava/lang/String;)Z");
-			#end
-			#if ios
-			has_cached_more_apps = Lib.load(ndllName, "has_cached_more_apps", 1);
-			#end
-		}
-		if (show_rewarded_video == null) {
-			#if android
-			show_rewarded_video = JNI.createStaticMethod(packageName, "showRewardedVideo", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			show_rewarded_video = Lib.load(ndllName, "show_rewarded_video", 1);
-			#end
-		}
-		if (cache_rewarded_video == null) {
-			#if android
-			cache_rewarded_video = JNI.createStaticMethod(packageName, "cacheRewardedVideo", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			cache_rewarded_video = Lib.load(ndllName, "cache_rewarded_video", 1);
-			#end
-		}
-		if (has_cached_rewarded_video == null) {
-			#if android
-			has_cached_rewarded_video = JNI.createStaticMethod(packageName, "hasCachedRewardedVideo", "(Ljava/lang/String;)Z");
-			#end
-			#if ios
-			has_cached_rewarded_video = Lib.load(ndllName, "has_cached_rewarded_video", 1);
-			#end
-		}
-		if (close_impression == null) {
-			#if android
-			close_impression = JNI.createStaticMethod(packageName, "closeImpression", "()V");
-			#end
-			#if ios
-			close_impression = Lib.load(ndllName, "close_impression", 0);
-			#end
-		}
-		if (is_any_view_visible == null) {
-			#if android
-			is_any_view_visible = JNI.createStaticMethod(packageName, "isAnyViewVisible", "()Z");
-			#end
-			#if ios
-			is_any_view_visible = Lib.load(ndllName, "is_any_view_visible", 0);
-			#end
-		}
-		if (set_custom_id == null) {
-			#if android
-			set_custom_id = JNI.createStaticMethod(packageName, "setCustomID", "(Ljava/lang/String;)V");
-			#end
-			#if ios
-			set_custom_id = Lib.load(ndllName, "set_custom_id", 1);
-			#end
-		}
-		if (get_custom_id == null) {
-			#if android
-			get_custom_id = JNI.createStaticMethod(packageName, "getCustomID", "()Ljava/lang/String;");
-			#end
-			#if ios
-			get_custom_id = Lib.load(ndllName, "get_custom_id", 0);
-			#end
-		}
-		if (set_should_request_interstitials_in_first_session == null) {
-			#if android
-			set_should_request_interstitials_in_first_session = JNI.createStaticMethod(packageName, "setShouldRequestInterstitialsInFirstSession", "(Z)V");
-			#end
-			#if ios
-			set_should_request_interstitials_in_first_session = Lib.load(ndllName, "set_should_request_interstitials_in_first_session", 1);
-			#end
-		}
-		if (set_should_display_loading_view_for_more_apps == null) {
-			#if android
-			set_should_display_loading_view_for_more_apps = JNI.createStaticMethod(packageName, "setShouldDisplayLoadingViewForMoreApps", "(Z)V");
-			#end
-			#if ios
-			set_should_display_loading_view_for_more_apps = Lib.load(ndllName, "set_should_display_loading_view_for_more_apps", 1);
-			#end
-		}
-		if (set_should_prefetch_video_content == null) {
-			#if android
-			set_should_prefetch_video_content = JNI.createStaticMethod(packageName, "setShouldPrefetchVideoContent", "(Z)V");
-			#end
-			#if ios
-			set_should_prefetch_video_content = Lib.load(ndllName, "set_should_prefetch_video_content", 1);
-			#end
-		}
-		if (get_sdk_version == null) {
-			#if android
-			get_sdk_version = JNI.createStaticMethod(packageName, "getSDKVersion", "()Ljava/lang/String;");
-			#end
-			#if ios
-			get_sdk_version = Lib.load(ndllName, "get_sdk_version", 0);
-			#end
-		}
-		if (set_should_hide_system_ui == null) {
-			#if android
-			set_should_hide_system_ui = JNI.createStaticMethod(packageName, "setShouldHideSystemUI", "(Z)V");
-			#end
-			#if ios
-			set_should_hide_system_ui = Lib.load(ndllName, "set_status_bar_behavior", 1); // NOTE this approximates the Android behaviour (either ignore or respect the status bar area)
-			#end
-		}
+		initBinding(set_listener, "setListener", "(Lorg/haxe/lime/HaxeObject;)V", "set_listener", 1);
+		initBinding(show_interstitial, "showInterstitial", "(Ljava/lang/String;)V", "show_interstitial", 1);
+		initBinding(cache_interstitial, "cacheInterstitial", "(Ljava/lang/String;)V", "cache_interstitial", 1);
+		initBinding(has_interstitial, "hasInterstitial", "(Ljava/lang/String;)Z", "has_interstitial", 1);
+		initBinding(show_more_apps, "showMoreApps", "(Ljava/lang/String;)V", "show_more_apps", 1);
+		initBinding(cache_more_apps, "cacheMoreApps", "(Ljava/lang/String;)V", "cache_more_apps", 1);
+		initBinding(has_more_apps, "hasMoreApps", "(Ljava/lang/String;)Z", "has_more_apps", 1);
+		initBinding(show_rewarded_video,  "showRewardedVideo", "(Ljava/lang/String;)V", "show_rewarded_video", 1);
+		initBinding(cache_rewarded_video, "cacheRewardedVideo", "(Ljava/lang/String;)V", "cache_rewarded_video", 1);
+		initBinding(has_rewarded_video, "hasRewardedVideo", "(Ljava/lang/String;)Z", "has_rewarded_video", 1);
+		initBinding(close_impression, "closeImpression", "()V", "close_impression", 0);
+		initBinding(is_any_view_visible, "isAnyViewVisible", "()Z", "is_any_view_visible", 0);
+		initBinding(set_custom_id, "setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
+		initBinding(get_custom_id, "getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
+		initBinding(set_should_request_interstitials_in_first_session, "setShouldRequestInterstitialsInFirstSession", "(Z)V", "set_should_request_interstitials_in_first_session", 1);
+		initBinding(set_should_display_loading_view_for_more_apps, "setShouldDisplayLoadingViewForMoreApps", "(Z)V", "set_should_display_loading_view_for_more_apps", 1);
+		initBinding(set_should_prefetch_video_content, "setShouldPrefetchVideoContent", "(Z)V", "set_should_prefetch_video_content", 1);
+		initBinding(get_sdk_version, "getSDKVersion", "()Ljava/lang/String;", "get_sdk_version", 0);
+		initBinding(set_should_hide_system_ui, "setShouldHideSystemUI", "(Z)V", "set_status_bar_behavior", 1);
 	}
+	
+	private static inline function initBinding(binding:Dynamic, jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Void {
+		if (binding != null) {
+			trace("Attempted to initialize a non-null binding. Are you initializing the ads SDK more than once?");
+			return;
+		}
+		#if android
+		binding = JNI.createStaticMethod(packageName, jniMethod, jniSignature);
+		#end
+		#if ios
+		binding = Lib.load(ndllName, ndllMethod, argCount);
+		#end
+		
+		#if debug
+		if (binding == null) {
+			while (true) {
+				trace("Fail");
+			}
+			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllMethod + " (" + Std.string(argCount) + ").";
+		}
+		#end
+	}
+	
+	#if android
+	private static inline var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
+	#end
+	#if ios
+	private static inline var ndllName:String = "samcodeschartboost";
+	#end
 	
 	#if ios
 	private static var init_chartboost:Dynamic = null;
@@ -281,13 +170,13 @@ import flash.Lib;
 	private static var set_listener:Dynamic = null;
 	private static var show_interstitial:Dynamic = null;
 	private static var cache_interstitial:Dynamic = null;
-	private static var has_cached_interstitial:Dynamic = null;
+	private static var has_interstitial:Dynamic = null;
 	private static var show_more_apps:Dynamic = null;
 	private static var cache_more_apps:Dynamic = null;
-	private static var has_cached_more_apps:Dynamic = null;
+	private static var has_more_apps:Dynamic = null;
 	private static var show_rewarded_video:Dynamic = null;
 	private static var cache_rewarded_video:Dynamic = null;
-	private static var has_cached_rewarded_video:Dynamic = null;
+	private static var has_rewarded_video:Dynamic = null;
 	private static var close_impression:Dynamic = null;
 	private static var is_any_view_visible:Dynamic = null;
 	private static var set_custom_id:Dynamic = null;

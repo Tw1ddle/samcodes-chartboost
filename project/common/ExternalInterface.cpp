@@ -43,11 +43,11 @@ static value cache_interstitial(value location)
 }
 DEFINE_PRIM(cache_interstitial, 1);
 
-static value has_cached_interstitial(value location)
+static value has_interstitial(value location)
 {
-    return alloc_bool(hasCachedInterstitial(val_string(location)));
+    return alloc_bool(hasInterstitial(val_string(location)));
 }
-DEFINE_PRIM(has_cached_interstitial, 1);
+DEFINE_PRIM(has_interstitial, 1);
 
 static value show_more_apps(value location)
 {
@@ -63,11 +63,11 @@ static value cache_more_apps(value location)
 }
 DEFINE_PRIM(cache_more_apps, 1);
 
-static value has_cached_more_apps(value location)
+static value has_more_apps(value location)
 {
-	return alloc_bool(hasCachedMoreApps(val_string(location)));
+	return alloc_bool(hasMoreApps(val_string(location)));
 }
-DEFINE_PRIM(has_cached_more_apps, 1);
+DEFINE_PRIM(has_more_apps, 1);
 
 static value show_rewarded_video(value location)
 {
@@ -83,11 +83,11 @@ static value cache_rewarded_video(value location)
 }
 DEFINE_PRIM(cache_rewarded_video, 1);
 
-static value has_cached_rewarded_video(value location)
+static value has_rewarded_video(value location)
 {
-	return alloc_bool(hasCachedRewardedVideo(val_string(location)));
+	return alloc_bool(hasRewardedVideo(val_string(location)));
 }
-DEFINE_PRIM(has_cached_rewarded_video, 1);
+DEFINE_PRIM(has_rewarded_video, 1);
 
 static value close_impression()
 {

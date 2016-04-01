@@ -53,7 +53,7 @@ Chartboost.setListener(new MyChartboostListener(listener)); // Attach your own e
 
 Chartboost.cacheInterstitial("mylocation"); // Cache an interstitial at 'mylocation'. Locations are added to the Chartboost dashboard automatically.
 
-Chartboost.showInterstitial("mylocation"); // Show an interstitial at 'mylocation'. Will display faster if previously cached.
+Chartboost.showInterstitial("mylocation"); // Show an interstitial at 'mylocation'. Will display faster if previously cached (check Chartboost.hasInterstitial()).
 
 // And so on...
 ```
