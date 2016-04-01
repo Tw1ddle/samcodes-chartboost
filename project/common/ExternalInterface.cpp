@@ -107,7 +107,7 @@ static value set_custom_id(value id)
 	setCustomId(val_string(id));
 	return alloc_null();
 }
-DEFINE_PRIM(set_custom_id, 0);
+DEFINE_PRIM(set_custom_id, 1);
 
 static value get_custom_id()
 {
