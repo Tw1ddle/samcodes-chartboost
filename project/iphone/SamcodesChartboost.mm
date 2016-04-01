@@ -284,7 +284,7 @@ namespace samcodeschartboost
 		[Chartboost setCustomId:nsId];
 	}
 	
-	const char* getCustomID()
+	const char* getCustomId()
 	{
 		NSString *nsId = [Chartboost getCustomId];
 		return [nsId UTF8String];

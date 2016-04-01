@@ -15,8 +15,8 @@ namespace samcodeschartboost
     bool hasRewardedVideo(const char* location);
 	void closeImpression();
 	bool isAnyViewVisible();
-	void setCustomID(const char* id);
-	const char* getCustomID();
+	void setCustomId(const char* id);
+	const char* getCustomId();
 	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest);
 	void setShouldDisplayLoadingViewForMoreApps(bool shouldDisplay);
 	void setShouldPrefetchVideoContent(bool shouldPrefetch);

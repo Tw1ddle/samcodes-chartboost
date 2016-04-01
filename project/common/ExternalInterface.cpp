@@ -102,9 +102,16 @@ static value is_any_view_visible()
 }
 DEFINE_PRIM(is_any_view_visible, 0);
 
+static value set_custom_id(value id)
+{
+	setCustomId(val_string(id));
+	return alloc_null();
+}
+DEFINE_PRIM(set_custom_id, 0);
+
 static value get_custom_id()
 {
-	return alloc_string(getCustomID());
+	return alloc_string(getCustomId());
 }
 DEFINE_PRIM(get_custom_id, 0);
 
