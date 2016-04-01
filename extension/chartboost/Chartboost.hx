@@ -43,7 +43,7 @@ import flash.Lib;
 		cache_interstitial(id);
 	}
 
-	public static function hasInterstitial(id:String):Bool {
+	public static function hasInterstitial(id:String):Bool {		
 		return has_interstitial(id);
 	}
 	
@@ -83,7 +83,7 @@ import flash.Lib;
 		set_custom_id(id);
 	}
 	
-	public static function getCustomId():String {
+	public static function getCustomId():String {		
 		return get_custom_id();
 	}
 	
@@ -114,47 +114,43 @@ import flash.Lib;
 		}
 		#end
 		
-		initBinding(set_listener, "setListener", "(Lorg/haxe/lime/HaxeObject;)V", "set_listener", 1);
-		initBinding(show_interstitial, "showInterstitial", "(Ljava/lang/String;)V", "show_interstitial", 1);
-		initBinding(cache_interstitial, "cacheInterstitial", "(Ljava/lang/String;)V", "cache_interstitial", 1);
-		initBinding(has_interstitial, "hasInterstitial", "(Ljava/lang/String;)Z", "has_interstitial", 1);
-		initBinding(show_more_apps, "showMoreApps", "(Ljava/lang/String;)V", "show_more_apps", 1);
-		initBinding(cache_more_apps, "cacheMoreApps", "(Ljava/lang/String;)V", "cache_more_apps", 1);
-		initBinding(has_more_apps, "hasMoreApps", "(Ljava/lang/String;)Z", "has_more_apps", 1);
-		initBinding(show_rewarded_video,  "showRewardedVideo", "(Ljava/lang/String;)V", "show_rewarded_video", 1);
-		initBinding(cache_rewarded_video, "cacheRewardedVideo", "(Ljava/lang/String;)V", "cache_rewarded_video", 1);
-		initBinding(has_rewarded_video, "hasRewardedVideo", "(Ljava/lang/String;)Z", "has_rewarded_video", 1);
-		initBinding(close_impression, "closeImpression", "()V", "close_impression", 0);
-		initBinding(is_any_view_visible, "isAnyViewVisible", "()Z", "is_any_view_visible", 0);
-		initBinding(set_custom_id, "setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
-		initBinding(get_custom_id, "getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
-		initBinding(set_should_request_interstitials_in_first_session, "setShouldRequestInterstitialsInFirstSession", "(Z)V", "set_should_request_interstitials_in_first_session", 1);
-		initBinding(set_should_display_loading_view_for_more_apps, "setShouldDisplayLoadingViewForMoreApps", "(Z)V", "set_should_display_loading_view_for_more_apps", 1);
-		initBinding(set_should_prefetch_video_content, "setShouldPrefetchVideoContent", "(Z)V", "set_should_prefetch_video_content", 1);
-		initBinding(get_sdk_version, "getSDKVersion", "()Ljava/lang/String;", "get_sdk_version", 0);
-		initBinding(set_should_hide_system_ui, "setShouldHideSystemUI", "(Z)V", "set_status_bar_behavior", 1);
+		set_listener = initBinding("setListener", "(Lorg/haxe/lime/HaxeObject;)V", "set_listener", 1);
+		show_interstitial = initBinding("showInterstitial", "(Ljava/lang/String;)V", "show_interstitial", 1);
+		cache_interstitial = initBinding("cacheInterstitial", "(Ljava/lang/String;)V", "cache_interstitial", 1);
+		has_interstitial = initBinding("hasInterstitial", "(Ljava/lang/String;)Z", "has_interstitial", 1);
+		show_more_apps = initBinding("showMoreApps", "(Ljava/lang/String;)V", "show_more_apps", 1);
+		cache_more_apps = initBinding("cacheMoreApps", "(Ljava/lang/String;)V", "cache_more_apps", 1);
+		has_more_apps = initBinding("hasMoreApps", "(Ljava/lang/String;)Z", "has_more_apps", 1);
+		show_rewarded_video = initBinding("showRewardedVideo", "(Ljava/lang/String;)V", "show_rewarded_video", 1);
+		cache_rewarded_video = initBinding("cacheRewardedVideo", "(Ljava/lang/String;)V", "cache_rewarded_video", 1);
+		has_rewarded_video = initBinding("hasRewardedVideo", "(Ljava/lang/String;)Z", "has_rewarded_video", 1);
+		close_impression = initBinding("closeImpression", "()V", "close_impression", 0);
+		is_any_view_visible = initBinding("isAnyViewVisible", "()Z", "is_any_view_visible", 0);
+		set_custom_id = initBinding("setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
+		get_custom_id = initBinding("getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
+		set_should_request_interstitials_in_first_session = initBinding("setShouldRequestInterstitialsInFirstSession", "(Z)V", "set_should_request_interstitials_in_first_session", 1); // BAD - too long??
+		set_should_display_loading_view_for_more_apps = initBinding("setShouldDisplayLoadingViewForMoreApps", "(Z)V", "set_should_display_loading_view_for_more_apps", 1);
+		set_should_prefetch_video_content = initBinding("setShouldPrefetchVideoContent", "(Z)V", "set_should_prefetch_video_content", 1);
+		get_sdk_version = initBinding("getSDKVersion", "()Ljava/lang/String;", "get_sdk_version", 0);
+		set_should_hide_system_ui = initBinding("setShouldHideSystemUI", "(Z)V", "set_status_bar_behavior", 1);
 	}
 	
-	private static inline function initBinding(binding:Dynamic, jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Void {
-		if (binding != null) {
-			trace("Attempted to initialize a non-null binding. Are you initializing the ads SDK more than once?");
-			return;
-		}
+	private static inline function initBinding(jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Dynamic {		
 		#if android
-		binding = JNI.createStaticMethod(packageName, jniMethod, jniSignature);
+		var binding = JNI.createStaticMethod(packageName, jniMethod, jniSignature);
 		#end
+		
 		#if ios
-		binding = Lib.load(ndllName, ndllMethod, argCount);
+		var binding = Lib.load(ndllName, ndllMethod, argCount);
 		#end
 		
 		#if debug
 		if (binding == null) {
-			while (true) {
-				trace("Fail");
-			}
 			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllMethod + " (" + Std.string(argCount) + ").";
 		}
 		#end
+		
+		return binding;
 	}
 	
 	#if android
