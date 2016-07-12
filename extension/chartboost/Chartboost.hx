@@ -146,7 +146,7 @@ import flash.Lib;
 		
 		#if debug
 		if (binding == null) {
-			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllName + "_" + ndllMethod + " (" + Std.string(argCount) + ").";
+			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllMethod + " (" + Std.string(argCount) + ").";
 		}
 		#end
 		
