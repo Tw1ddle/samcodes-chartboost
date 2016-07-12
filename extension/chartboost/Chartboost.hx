@@ -43,7 +43,7 @@ import flash.Lib;
 		cache_interstitial(id);
 	}
 
-	public static function hasInterstitial(id:String):Bool {		
+	public static function hasInterstitial(id:String):Bool {
 		return has_interstitial(id);
 	}
 	
@@ -83,7 +83,7 @@ import flash.Lib;
 		set_custom_id(id);
 	}
 	
-	public static function getCustomId():String {		
+	public static function getCustomId():String {
 		return get_custom_id();
 	}
 	
@@ -107,7 +107,7 @@ import flash.Lib;
 		set_should_hide_system_ui(shouldHide);
 	}
 	
-	private static function initBindings() {		
+	private static function initBindings() {
 		#if ios
 		if (init_chartboost == null) {
 			init_chartboost = Lib.load(ndllName, "init_chartboost", 2);
@@ -135,18 +135,18 @@ import flash.Lib;
 		set_should_hide_system_ui = initBinding("setShouldHideSystemUI", "(Z)V", "set_status_bar_behavior", 1);
 	}
 	
-	private static inline function initBinding(jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Dynamic {		
+	private static inline function initBinding(jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Dynamic {
 		#if android
 		var binding = JNI.createStaticMethod(packageName, jniMethod, jniSignature);
 		#end
 		
 		#if ios
-		var binding = Lib.load(ndllName, ndllMethod, argCount);
+		var binding = Lib.load(ndllName, ndllName + "_" + ndllMethod, argCount);
 		#end
 		
 		#if debug
 		if (binding == null) {
-			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllMethod + " (" + Std.string(argCount) + ").";
+			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllName + "_" + ndllMethod + " (" + Std.string(argCount) + ").";
 		}
 		#end
 		
