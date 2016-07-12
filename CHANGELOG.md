@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.3 -> 1.0.4
+* Fixed a bug with non-unique CFFI primitive names, which could cause clashes (duplicate symbol errors) when using other haxelibs
+
 ## 1.0.3 -> 1.0.2
 * Renamed hasCachedInterstitial etc. to hasInterstitial, hasMoreApps and hasRewardedVideo to match latest SDKs
 * Updated bindings and upgraded to latest Chartboost SDKs (Android 6.4.0, iOS 6.4.0)
