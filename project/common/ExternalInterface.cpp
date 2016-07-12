@@ -24,28 +24,28 @@ DEFINE_PRIM(samcodeschartboost_set_listener, 1);
 
 static value samcodeschartboost_init_chartboost(value id, value signature)
 {
-    initChartboost(val_string(id), val_string(signature));
-    return alloc_null();
+	initChartboost(val_string(id), val_string(signature));
+	return alloc_null();
 }
 DEFINE_PRIM(samcodeschartboost_init_chartboost, 2);
 
 static value samcodeschartboost_show_interstitial(value location)
 {
-    showInterstitial(val_string(location));
-    return alloc_null();
+	showInterstitial(val_string(location));
+	return alloc_null();
 }
 DEFINE_PRIM(samcodeschartboost_show_interstitial, 1);
 
 static value samcodeschartboost_cache_interstitial(value location)
 {
-    cacheInterstitial(val_string(location));
-    return alloc_null();
+	cacheInterstitial(val_string(location));
+	return alloc_null();
 }
 DEFINE_PRIM(samcodeschartboost_cache_interstitial, 1);
 
 static value samcodeschartboost_has_interstitial(value location)
 {
-    return alloc_bool(hasInterstitial(val_string(location)));
+	return alloc_bool(hasInterstitial(val_string(location)));
 }
 DEFINE_PRIM(samcodeschartboost_has_interstitial, 1);
 
@@ -162,10 +162,10 @@ extern "C" int samcodeschartboost_register_prims()
 
 extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins, int error, bool status)
 {
-    if(chartboostEventHandle == 0)
-    {
-        return;
-    }
+	if(chartboostEventHandle == 0)
+	{
+		return;
+	}
 	value o = alloc_empty_object();
 	alloc_field(o, val_id("type"), alloc_string(type));
 	alloc_field(o, val_id("location"), alloc_string(location));
