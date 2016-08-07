@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.4 -> 1.0.5
+ * Updated bindings and upgraded to latest Chartboost SDKs (Android 6.4.2, iOS 6.4.7)
+
 ## 1.0.3 -> 1.0.4
 * Fixed a bug with non-unique CFFI primitive names, which could cause clashes (duplicate symbol errors) when using other haxelibs
 
