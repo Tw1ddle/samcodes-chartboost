@@ -18,9 +18,9 @@ import com.chartboost.sdk.Model.CBError.CBClickError;
 import com.chartboost.sdk.Model.CBError.CBImpressionError;
 import com.chartboost.sdk.CBLocation;
 
-public class ChartboostExtension extends Extension 
+public class ChartboostExtension extends Extension
 {
-	private static String appId = "::ENV_ChartboostAppId::"; 
+	private static String appId = "::ENV_ChartboostAppId::";
 	private static String appSignature = "::ENV_ChartboostAppSignature::";
 	private static String TAG = "ChartboostExtension";
 	
@@ -58,7 +58,7 @@ public class ChartboostExtension extends Extension
 			
 			if(location != null) {
 				callHaxe("shouldRequestInterstitial", new Object[] {location});
-			}			
+			}
 			
 			return true;
 		}
@@ -299,7 +299,7 @@ public class ChartboostExtension extends Extension
 	private ChartboostDelegate delegate = new AChartboostDelegate();
 	
 	@Override
-	public void onCreate (Bundle savedInstanceState) {		
+	public void onCreate (Bundle savedInstanceState) {
 		if(ChartboostExtension.appId == "null" || ChartboostExtension.appSignature == "null") {
 			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
 			Log.e(TAG, "Refer to the Chartboost SDK documentation");
@@ -356,7 +356,7 @@ public class ChartboostExtension extends Extension
 	}
 	
 	public static boolean hasInterstitial(String id) {
-		return Chartboost.hasInterstitial(id); 
+		return Chartboost.hasInterstitial(id);
 	}
 
 	public static void cacheInterstitial(String id) {
@@ -364,7 +364,7 @@ public class ChartboostExtension extends Extension
 	}
 	
 	public static void showInterstitial(String id) {
-		Chartboost.showInterstitial(id); 
+		Chartboost.showInterstitial(id);
 	}
 	
 	public static boolean hasMoreApps(String id) {
@@ -409,6 +409,14 @@ public class ChartboostExtension extends Extension
 	
 	public static void setShouldRequestInterstitialsInFirstSession(boolean shouldRequest) {
 		Chartboost.setShouldRequestInterstitialsInFirstSession(shouldRequest);
+	}
+	
+	public static boolean getAutoCacheAds() {
+		return Chartboost.getAutoCacheAds();
+	}
+	
+	public static void setAutoCacheAds(boolean autoCacheAds) {
+		Chartboost.setAutoCacheAds(autoCacheAds);
 	}
 	
 	public static void setShouldDisplayLoadingViewForMoreApps(boolean shouldDisplay) {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.5 -> 1.0.6
+ * Updated bindings and upgraded to latest Chartboost SDKs (iOS 6.5.0, Android 6.5.1)
+ * Added bindings for getAutoCacheAds, setAutoCacheAds.
+
 ## 1.0.4 -> 1.0.5
  * Updated bindings and upgraded to latest Chartboost SDKs (Android 6.4.2, iOS 6.4.7)
 

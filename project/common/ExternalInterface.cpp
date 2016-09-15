@@ -122,6 +122,19 @@ static value samcodeschartboost_set_should_request_interstitials_in_first_sessio
 }
 DEFINE_PRIM(samcodeschartboost_set_should_request_interstitials_in_first_session, 1);
 
+static value samcodeschartboost_get_auto_cache_ads()
+{
+	return alloc_bool(getAutoCacheAds());
+}
+DEFINE_PRIM(samcodeschartboost_get_auto_cache_ads, 0);
+
+static value samcodeschartboost_set_auto_cache_ads(value autoCache)
+{
+	setAutoCacheAds(alloc_bool(autoCache));
+	return alloc_null();
+}
+DEFINE_PRIM(samcodeschartboost_set_auto_cache_ads, 1);
+
 static value samcodeschartboost_set_should_display_loading_view_for_more_apps(value shouldDisplay)
 {
 	setShouldDisplayLoadingViewForMoreApps(val_bool(shouldDisplay));

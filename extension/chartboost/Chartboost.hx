@@ -91,6 +91,14 @@ import flash.Lib;
 		set_should_request_interstitials_in_first_session(shouldRequest);
 	}
 	
+	public static function getAutoCacheAds():Bool {
+		return get_auto_cache_ads();
+	}
+	
+	public static function setAutoCacheAds(autoCacheAds:Bool):Void {
+		set_auto_cache_ads(autoCacheAds);
+	}
+	
 	public static function setShouldDisplayLoadingViewForMoreApps(shouldDisplay:Bool):Void {
 		set_should_display_loading_view_for_more_apps(shouldDisplay);
 	}
@@ -129,6 +137,8 @@ import flash.Lib;
 		set_custom_id = initBinding("setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
 		get_custom_id = initBinding("getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
 		set_should_request_interstitials_in_first_session = initBinding("setShouldRequestInterstitialsInFirstSession", "(Z)V", "set_should_request_interstitials_in_first_session", 1);
+		get_auto_cache_ads = initBinding("getAutoCacheAds", "()Z", "get_auto_cache_ads", 0);
+		set_auto_cache_ads = initBinding("setAutoCacheAds", "(Z)V", "set_auto_cache_ads", 1);
 		set_should_display_loading_view_for_more_apps = initBinding("setShouldDisplayLoadingViewForMoreApps", "(Z)V", "set_should_display_loading_view_for_more_apps", 1);
 		set_should_prefetch_video_content = initBinding("setShouldPrefetchVideoContent", "(Z)V", "set_should_prefetch_video_content", 1);
 		get_sdk_version = initBinding("getSDKVersion", "()Ljava/lang/String;", "get_sdk_version", 0);
@@ -178,6 +188,8 @@ import flash.Lib;
 	private static var set_custom_id:Dynamic = null;
 	private static var get_custom_id:Dynamic = null;
 	private static var set_should_request_interstitials_in_first_session:Dynamic = null;
+	private static var get_auto_cache_ads:Dynamic = null;
+	private static var set_auto_cache_ads:Dynamic = null;
 	private static var set_should_display_loading_view_for_more_apps:Dynamic = null;
 	private static var set_should_prefetch_video_content:Dynamic = null;
 	private static var get_sdk_version:Dynamic = null;

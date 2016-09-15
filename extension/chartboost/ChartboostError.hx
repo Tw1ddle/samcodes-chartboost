@@ -3,8 +3,8 @@ package extension.chartboost;
 // Helpers for getting names of errors
 // Note the methods need updating whenever the Chartboost SDK is updated/changes or adds new errors, else there's no guarantee that the mappings to the enums are correct.
 class ChartboostError {
-	#if ios	
-	private static function getLoadingErrorDescription(id:Int):String {
+	#if ios
+	private static function orderedImpressionErrorDescriptions(id:Int):String {
 		return switch(id) {
 			case 0:
 				"INTERNAL";
@@ -32,6 +32,8 @@ class ChartboostError {
 				"ASSET_DOWNLOAD_FAILURE";
 			case 21:
 				"PREFETCHING_INCOMPLETE";
+			case 22:
+				"WEB_VIEW_SCRIPT_ERROR";
 			default:
 				"UNKNOWN CHARTBOOST AD LOADING ERROR";
 		};
@@ -53,14 +55,14 @@ class ChartboostError {
 	#end
 
 	#if android
-	private static function getLoadingErrorDescription(id:Int):String {
-		if (id < 0 || id >= orderedLoadingErrorDescriptions.length) {
-			return "UNKNOWN CHARTBOOST AD LOADING ERROR";
+	private static function getImpressionErrorDescription(id:Int):String {
+		if (id < 0 || id >= orderedImpressionErrorDescriptions.length) {
+			return "UNKNOWN CHARTBOOST IMPRESSION ERROR";
 		}
-		return orderedLoadingErrorDescriptions[id];
+		return orderedImpressionErrorDescriptions[id];
 	}
 	
-	private static var orderedLoadingErrorDescriptions:Array<String> = [
+	private static var orderedImpressionErrorDescriptions:Array<String> = [
 		"INTERNAL",
 		"INTERNET_UNAVAILABLE",
 		"TOO_MANY_CONNECTIONS",
@@ -70,7 +72,7 @@ class ChartboostError {
 		"NO_AD_FOUND",
 		"SESSION_NOT_STARTED",
 		"IMPRESSION_ALREADY_VISIBLE",
-		"MY_HOST_ACTIVITY",
+		"NO_HOST_ACTIVITY",
 		"USER_CANCELLATION",
 		"INVALID_LOCATION",
 		"VIDEO_UNAVAILABLE",
@@ -79,11 +81,20 @@ class ChartboostError {
 		"INVALID_RESPONSE",
 		"ASSETS_DOWNLOAD_FAILURE",
 		"ERROR_CREATING_VIEW",
-		"ERROR_DISPLAYING_VIEW"
+		"ERROR_DISPLAYING_VIEW",
+		"INCOMPATIBLE_API_VERSION",
+		"ERROR_LOADING_WEB_VIEW",
+		"ASSET_PREFETCH_IN_PROGRESS",
+		"EMPTY_LOCAL_AD_LIST",
+		"ACTIVITY_MISSING_IN_MANIFEST",
+		"EMPTY_LOCAL_VIDEO_LIST",
+		"END_POINT_DISABLED",
+		"HARDWARE_ACCELERATION_DISABLED",
+		"PENDING_IMPRESSION_ERROR"
 	];
 	
 	private static function getClickErrorDescription(id:Int):String {
-		if (id < 0 || id >= orderedLoadingErrorDescriptions.length) {
+		if (id < 0 || id >= orderedClickErrorDescriptions.length) {
 			return "UNKNOWN CHARTBOOST CLICK ERROR";
 		}
 		return orderedClickErrorDescriptions[id];
@@ -98,8 +109,8 @@ class ChartboostError {
 	];
 	#end
 	
-	public static function descriptionForLoadingError(id:Int):String {
-		return getLoadingErrorDescription(id);
+	public static function descriptionForImpressionError(id:Int):String {
+		return getImpressionErrorDescription(id);
 	}
 	
 	public static function descriptionForClickError(id:Int):String {

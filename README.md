@@ -12,8 +12,8 @@ Supports:
 * Custom ad locations.
 
 Doesn't support:
-* Chartboost In-App purchase analytics.
 * Chartboost InPlay type ads.
+* Chartboost Analytics.
 * Age gates.
 
 If there is something you would like adding let me know. Pull requests welcomed too!

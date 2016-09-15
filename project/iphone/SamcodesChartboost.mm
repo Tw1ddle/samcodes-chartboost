@@ -24,7 +24,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 - (BOOL)shouldRequestInterstitial:(CBLocation)location
 {
 	queueChartboostEvent("shouldRequestInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-    
+
     return YES;
 }
 
@@ -32,7 +32,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 - (BOOL)shouldDisplayInterstitial:(CBLocation)location
 {
 	queueChartboostEvent("shouldDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-    
+
     return YES;
 }
 
@@ -84,7 +84,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 - (BOOL)shouldDisplayMoreApps:(CBLocation)location
 {
 	queueChartboostEvent("shouldDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-    
+
     return YES;
 }
 
@@ -136,7 +136,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 - (BOOL)shouldDisplayRewardedVideo:(CBLocation)location
 {
 	queueChartboostEvent("shouldDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-    
+
     return YES;
 }
 
@@ -184,7 +184,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 	queueChartboostEvent("didCompleteRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", reward, -1, false);
 }
 
-// Implement to be notified of when a video will be displayed on the screen for 
+// Implement to be notified of when a video will be displayed on the screen for
 // a given CBLocation. You can then do things like mute effects and sounds.
 - (void)willDisplayVideo:(CBLocation)location
 {
@@ -201,14 +201,14 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 @end
 
 namespace samcodeschartboost
-{	
+{
     void initChartboost(const char *appId, const char *appSignature)
     {
         MyChartboostDelegate *myObject = [MyChartboostDelegate new];
-        
+
         NSString *nsAppId = [[NSString alloc] initWithUTF8String:appId];
         NSString *nsSignature = [[NSString alloc] initWithUTF8String:appSignature];
-        
+
         [Chartboost startWithAppId:nsAppId
                       appSignature:nsSignature
                           delegate:myObject];
@@ -293,6 +293,16 @@ namespace samcodeschartboost
 	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest)
 	{
 		[Chartboost setShouldRequestInterstitialsInFirstSession:shouldRequest];
+	}
+	
+	bool getAutoCacheAds()
+	{
+		return [Chartboost getAutoCacheAds];
+	}
+	
+	void setAutoCacheAds(bool autoCache)
+	{
+		[Chartboost setAutoCacheAds:autoCache];
 	}
 	
 	void setShouldDisplayLoadingViewForMoreApps(bool shouldDisplay)

@@ -18,6 +18,8 @@ namespace samcodeschartboost
 	void setCustomId(const char* id);
 	const char* getCustomId();
 	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest);
+	bool getAutoCacheAds();
+	void setAutoCacheAds(bool autoCache);
 	void setShouldDisplayLoadingViewForMoreApps(bool shouldDisplay);
 	void setShouldPrefetchVideoContent(bool shouldPrefetch);
 	const char* getSDKVersion();
