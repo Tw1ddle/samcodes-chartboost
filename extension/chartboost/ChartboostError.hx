@@ -4,7 +4,7 @@ package extension.chartboost;
 // Note the methods need updating whenever the Chartboost SDK is updated/changes or adds new errors, else there's no guarantee that the mappings to the enums are correct.
 class ChartboostError {
 	#if ios
-	private static function orderedImpressionErrorDescriptions(id:Int):String {
+	private static function getImpressionErrorDescription(id:Int):String {
 		return switch(id) {
 			case 0:
 				"INTERNAL";
@@ -35,7 +35,7 @@ class ChartboostError {
 			case 22:
 				"WEB_VIEW_SCRIPT_ERROR";
 			default:
-				"UNKNOWN CHARTBOOST AD LOADING ERROR";
+				"UNKNOWN CHARTBOOST IMPRESSION ERROR";
 		};
 	}
 	
