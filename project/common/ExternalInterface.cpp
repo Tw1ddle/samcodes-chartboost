@@ -89,13 +89,6 @@ static value samcodeschartboost_has_rewarded_video(value location)
 }
 DEFINE_PRIM(samcodeschartboost_has_rewarded_video, 1);
 
-static value samcodeschartboost_close_impression()
-{
-	closeImpression();
-	return alloc_null();
-}
-DEFINE_PRIM(samcodeschartboost_close_impression, 0);
-
 static value samcodeschartboost_is_any_view_visible()
 {
 	return alloc_bool(isAnyViewVisible());

@@ -71,9 +71,11 @@ import flash.Lib;
 		return has_rewarded_video(id);
 	}
 	
+	#if android
 	public static function closeImpression():Void {
 		close_impression();
 	}
+	#end
 	
 	public static function isAnyViewVisible():Bool {
 		return is_any_view_visible();
@@ -132,7 +134,11 @@ import flash.Lib;
 		show_rewarded_video = initBinding("showRewardedVideo", "(Ljava/lang/String;)V", "show_rewarded_video", 1);
 		cache_rewarded_video = initBinding("cacheRewardedVideo", "(Ljava/lang/String;)V", "cache_rewarded_video", 1);
 		has_rewarded_video = initBinding("hasRewardedVideo", "(Ljava/lang/String;)Z", "has_rewarded_video", 1);
+		
+		#if android
 		close_impression = initBinding("closeImpression", "()V", "close_impression", 0);
+		#end
+		
 		is_any_view_visible = initBinding("isAnyViewVisible", "()Z", "is_any_view_visible", 0);
 		set_custom_id = initBinding("setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
 		get_custom_id = initBinding("getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
@@ -183,7 +189,9 @@ import flash.Lib;
 	private static var show_rewarded_video:Dynamic = null;
 	private static var cache_rewarded_video:Dynamic = null;
 	private static var has_rewarded_video:Dynamic = null;
+	#if android
 	private static var close_impression:Dynamic = null;
+	#end
 	private static var is_any_view_visible:Dynamic = null;
 	private static var set_custom_id:Dynamic = null;
 	private static var get_custom_id:Dynamic = null;

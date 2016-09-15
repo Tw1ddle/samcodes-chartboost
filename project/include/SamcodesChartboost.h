@@ -13,7 +13,6 @@ namespace samcodeschartboost
 	void showRewardedVideo(const char* location);
     void cacheRewardedVideo(const char* location);
     bool hasRewardedVideo(const char* location);
-	void closeImpression();
 	bool isAnyViewVisible();
 	void setCustomId(const char* id);
 	const char* getCustomId();

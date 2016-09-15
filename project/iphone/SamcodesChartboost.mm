@@ -268,11 +268,6 @@ namespace samcodeschartboost
         return [Chartboost hasRewardedVideo:nsLocation];
 	}
 	
-	void closeImpression()
-	{
-		[Chartboost closeImpression];
-	}
-	
 	bool isAnyViewVisible()
 	{
 		return [Chartboost isAnyViewVisible];
