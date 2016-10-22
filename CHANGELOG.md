@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.6 -> 1.0.7
+ * Upgraded to latest Chartboost SDKs (iOS 6.5.2, Android 6.6.0)
+
 ## 1.0.5 -> 1.0.6
  * Updated bindings and upgraded to latest Chartboost SDKs (iOS 6.5.0, Android 6.5.1)
  * Removed iOS binding for closeImpression, as it was removed from the iOS SDK.
