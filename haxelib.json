@@ -5,7 +5,7 @@
 	"tags": ["chartboost","ads","interstitials","android","ios"],
 	"description": "Chartboost ads support for Android and iOS",
 	"version": "1.0.7",
-	"releasenote": "Updated bindings and upgraded to latest Chartboost SDKs (iOS 6.5.0, Android 6.5.1)",
+	"releasenote": "Upgraded to latest Chartboost SDKs (iOS 6.5.2, Android 6.6.0). Add Google Play Services Android dependency.",
 	"contributors": ["samcodes"],
-	"dependencies": {}
+	"dependencies": {"extension-googleplayservices-basement": "1.1.0"}
 }
