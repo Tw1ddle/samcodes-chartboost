@@ -5,11 +5,11 @@ Unofficial Chartboost ads library support for OpenFL Android/iOS targets.
 ### Features ###
 
 Supports:
-* Caching, showing and dismissing static and video interstitials.
+* Static and video interstitials.
 * More apps panels.
 * Rewarded videos.
-* Customizable listener for reacting to SDK events.
-* Custom ad locations.
+* Caching and custom ad locations.
+* Customizable listener for reacting to all SDK events.
 
 Doesn't support:
 * Chartboost InPlay type ads.
