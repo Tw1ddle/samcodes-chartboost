@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.8 -> 1.0.9
+ * Upgraded to latest Chartboost SDK (iOS 6.6.1).
+
 ## 1.0.7 -> 1.0.8
  * Upgraded to latest Chartboost SDKs (iOS 6.6.0, Android 6.6.1)
 
