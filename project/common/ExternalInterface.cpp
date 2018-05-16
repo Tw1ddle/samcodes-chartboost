@@ -7,6 +7,8 @@
 #endif
 
 #include <hx/CFFI.h>
+#include <hx/CFFIPrime.h>
+
 #include "SamcodesChartboost.h"
 
 using namespace samcodeschartboost;
@@ -15,149 +17,116 @@ using namespace samcodeschartboost;
 
 AutoGCRoot* chartboostEventHandle = 0;
 
-static value samcodeschartboost_set_listener(value onEvent)
+static void samcodeschartboost_set_listener(void* onEvent)
 {
 	chartboostEventHandle = new AutoGCRoot(onEvent);
-	return alloc_null();
 }
-DEFINE_PRIM(samcodeschartboost_set_listener, 1);
+DEFINE_PRIME1v(samcodeschartboost_set_listener);
 
-static value samcodeschartboost_init_chartboost(value id, value signature)
+static void samcodeschartboost_show_interstitial(HxString location)
 {
-	initChartboost(val_string(id), val_string(signature));
-	return alloc_null();
+	showInterstitial(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_init_chartboost, 2);
+DEFINE_PRIME1v(samcodeschartboost_show_interstitial);
 
-static value samcodeschartboost_show_interstitial(value location)
+static void samcodeschartboost_cache_interstitial(HxString location)
 {
-	showInterstitial(val_string(location));
-	return alloc_null();
+	cacheInterstitial(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_show_interstitial, 1);
+DEFINE_PRIME1v(samcodeschartboost_cache_interstitial);
 
-static value samcodeschartboost_cache_interstitial(value location)
+static void samcodeschartboost_has_interstitial(HxString location)
 {
-	cacheInterstitial(val_string(location));
-	return alloc_null();
+	return hasInterstitial(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_cache_interstitial, 1);
+DEFINE_PRIME1(samcodeschartboost_has_interstitial);
 
-static value samcodeschartboost_has_interstitial(value location)
+static void samcodeschartboost_show_rewarded_video(HxString location)
 {
-	return alloc_bool(hasInterstitial(val_string(location)));
+	showRewardedVideo(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_has_interstitial, 1);
+DEFINE_PRIME1v(samcodeschartboost_show_rewarded_video);
 
-static value samcodeschartboost_show_more_apps(value location)
+static void samcodeschartboost_cache_rewarded_video(HxString location)
 {
-	showMoreApps(val_string(location));
-	return alloc_null();
+	cacheRewardedVideo(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_show_more_apps, 1);
+DEFINE_PRIME1v(samcodeschartboost_cache_rewarded_video);
 
-static value samcodeschartboost_cache_more_apps(value location)
+static bool samcodeschartboost_has_rewarded_video(HxString location)
 {
-	cacheMoreApps(val_string(location));
-	return alloc_null();
+	returnhasRewardedVideo(location.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_cache_more_apps, 1);
+DEFINE_PRIME1(samcodeschartboost_has_rewarded_video);
 
-static value samcodeschartboost_has_more_apps(value location)
+static bool samcodeschartboost_is_any_view_visible()
 {
-	return alloc_bool(hasMoreApps(val_string(location)));
+	return isAnyViewVisible();
 }
-DEFINE_PRIM(samcodeschartboost_has_more_apps, 1);
+DEFINE_PRIME0(samcodeschartboost_is_any_view_visible);
 
-static value samcodeschartboost_show_rewarded_video(value location)
+static void samcodeschartboost_set_custom_id(HxString id)
 {
-	showRewardedVideo(val_string(location));
-	return alloc_null();
+	setCustomId(id.c_str());
 }
-DEFINE_PRIM(samcodeschartboost_show_rewarded_video, 1);
+DEFINE_PRIME1(samcodeschartboost_set_custom_id);
 
-static value samcodeschartboost_cache_rewarded_video(value location)
+static const char* samcodeschartboost_get_custom_id()
 {
-	cacheRewardedVideo(val_string(location));
-	return alloc_null();
+	return getCustomId();
 }
-DEFINE_PRIM(samcodeschartboost_cache_rewarded_video, 1);
+DEFINE_PRIME0(samcodeschartboost_get_custom_id);
 
-static value samcodeschartboost_has_rewarded_video(value location)
+static void samcodeschartboost_set_should_request_interstitials_in_first_session(bool shouldRequest)
 {
-	return alloc_bool(hasRewardedVideo(val_string(location)));
+	setShouldRequestInterstitialsInFirstSession(shouldRequest);
 }
-DEFINE_PRIM(samcodeschartboost_has_rewarded_video, 1);
+DEFINE_PRIME1v(samcodeschartboost_set_should_request_interstitials_in_first_session);
 
-static value samcodeschartboost_is_any_view_visible()
+static bool samcodeschartboost_get_auto_cache_ads()
 {
-	return alloc_bool(isAnyViewVisible());
+	return getAutoCacheAds();
 }
-DEFINE_PRIM(samcodeschartboost_is_any_view_visible, 0);
+DEFINE_PRIME0(samcodeschartboost_get_auto_cache_ads);
 
-static value samcodeschartboost_set_custom_id(value id)
+static void samcodeschartboost_set_auto_cache_ads(bool autoCache)
 {
-	setCustomId(val_string(id));
-	return alloc_null();
+	setAutoCacheAds(autoCache);
 }
-DEFINE_PRIM(samcodeschartboost_set_custom_id, 1);
+DEFINE_PRIME1v(samcodeschartboost_set_auto_cache_ads);
 
-static value samcodeschartboost_get_custom_id()
+static void samcodeschartboost_set_should_prefetch_video_content(bool shouldPrefetch)
 {
-	return alloc_string(getCustomId());
+	setShouldPrefetchVideoContent(shouldPrefetch);
 }
-DEFINE_PRIM(samcodeschartboost_get_custom_id, 0);
+DEFINE_PRIME1v(samcodeschartboost_set_should_prefetch_video_content);
 
-static value samcodeschartboost_set_should_request_interstitials_in_first_session(value shouldRequest)
+static HxString samcodeschartboost_get_sdk_version()
 {
-	setShouldRequestInterstitialsInFirstSession(val_bool(shouldRequest));
-	return alloc_null();
+	return HxString(getSDKVersion());
 }
-DEFINE_PRIM(samcodeschartboost_set_should_request_interstitials_in_first_session, 1);
+DEFINE_PRIME1(samcodeschartboost_get_sdk_version);
 
-static value samcodeschartboost_get_auto_cache_ads()
-{
-	return alloc_bool(getAutoCacheAds());
-}
-DEFINE_PRIM(samcodeschartboost_get_auto_cache_ads, 0);
-
-static value samcodeschartboost_set_auto_cache_ads(value autoCache)
-{
-	setAutoCacheAds(alloc_bool(autoCache));
-	return alloc_null();
-}
-DEFINE_PRIM(samcodeschartboost_set_auto_cache_ads, 1);
-
-static value samcodeschartboost_set_should_display_loading_view_for_more_apps(value shouldDisplay)
-{
-	setShouldDisplayLoadingViewForMoreApps(val_bool(shouldDisplay));
-	return alloc_null();
-}
-DEFINE_PRIM(samcodeschartboost_set_should_display_loading_view_for_more_apps, 1);
-
-static value samcodeschartboost_set_should_prefetch_video_content(value shouldPrefetch)
-{
-	setShouldPrefetchVideoContent(val_bool(shouldPrefetch));
-	return alloc_null();
-}
-DEFINE_PRIM(samcodeschartboost_set_should_prefetch_video_content, 1);
-
-static value samcodeschartboost_get_sdk_version()
-{
-	return alloc_string(getSDKVersion());
-}
-DEFINE_PRIM(samcodeschartboost_get_sdk_version, 0);
-
-static value samcodeschartboost_set_status_bar_behavior(value shouldHide)
+static void samcodeschartboost_set_status_bar_behavior(bool shouldHide)
 {
 	setStatusBarBehavior(val_bool(shouldHide));
-	return alloc_null();
 }
-DEFINE_PRIM(samcodeschartboost_set_status_bar_behavior, 1);
+DEFINE_PRIME1v(samcodeschartboost_set_status_bar_behavior);
+
+static void samcodeschartboost_set_muted(bool mute)
+{
+	setMuted(mute);
+}
+DEFINE_PRIME1v(samcodeschartboost_set_muted);
+
+static void samcodeschartboost_restrict_data_collection(bool shouldRestrict)
+{
+	restrictDataCollection(shouldRestrict);
+}
+DEFINE_PRIME1v(samcodeschartboost_restrict_data_collection);
 
 extern "C" void samcodeschartboost_main()
 {
-	val_int(0);
 }
 DEFINE_ENTRY_POINT(samcodeschartboost_main);
 

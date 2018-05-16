@@ -93,6 +93,15 @@ public class ChartboostExtension extends Extension
 		}
 
 		@Override
+		public void willDisplayInterstitial(String location) {
+			Log.i(TAG, "WILL DISPLAY INTERSTITIAL " + (location != null ? location : "null"));
+			
+			if(location != null) {
+				callHaxe("willDisplayInterstitial", new Object[] {location});
+			}
+		}
+
+		@Override
 		public void didDismissInterstitial(String location) {
 			Log.i(TAG, "DID DISMISS INTERSTITIAL: " + (location != null ? location : "null"));
 			
@@ -125,82 +134,6 @@ public class ChartboostExtension extends Extension
 			
 			if(location != null) {
 				callHaxe("didDisplayInterstitial", new Object[] {location});
-			}
-		}
-
-		@Override
-		public boolean shouldRequestMoreApps(String location) {
-			Log.i(TAG, "SHOULD REQUEST MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("shouldRequestMoreApps", new Object[] {location});
-			}
-			
-			return true;
-		}
-
-		@Override
-		public boolean shouldDisplayMoreApps(String location) {
-			Log.i(TAG, "SHOULD DISPLAY MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("shouldDisplayMoreApps", new Object[] {location});
-			}
-			
-			return true;
-		}
-
-		@Override
-		public void didFailToLoadMoreApps(String location, CBImpressionError error) {
-			Log.i(TAG, "DID FAIL TO LOAD MOREAPPS: " + (location != null ? location : "null") + " Error: " + error.name());
-			
-			if(location != null) {
-				callHaxe("didFailToLoadMoreApps", new Object[] {location, new Integer(error.ordinal())});
-			}
-		}
-
-		@Override
-		public void didCacheMoreApps(String location) {
-			Log.i(TAG, "DID CACHE MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("didCacheMoreApps", new Object[] {location});
-			}
-		}
-
-		@Override
-		public void didDismissMoreApps(String location) {
-			Log.i(TAG, "DID DISMISS MORE APPS " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("didDismissMoreApps", new Object[] {location});
-			}
-		}
-
-		@Override
-		public void didCloseMoreApps(String location) {
-			Log.i(TAG, "DID CLOSE MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("didCloseMoreApps", new Object[] {location});
-			}
-		}
-
-		@Override
-		public void didClickMoreApps(String location) {
-			Log.i(TAG, "DID CLICK MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("didClickMoreApps", new Object[] {location});
-			}
-		}
-
-		@Override
-		public void didDisplayMoreApps(String location) {
-			Log.i(TAG, "DID DISPLAY MORE APPS: " + (location != null ? location : "null"));
-			
-			if(location != null) {
-				callHaxe("didDisplayMoreApps", new Object[] {location});
 			}
 		}
 
@@ -300,6 +233,8 @@ public class ChartboostExtension extends Extension
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
 		if(ChartboostExtension.appId == "null" || ChartboostExtension.appSignature == "null") {
 			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
 			Log.e(TAG, "Refer to the Chartboost SDK documentation");
@@ -308,11 +243,9 @@ public class ChartboostExtension extends Extension
 		}
 		
 		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + ChartboostExtension.appId + " AND APP SIGNATURE " + ChartboostExtension.appSignature);
-		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.appId, ChartboostExtension.appSignature);
 		Chartboost.setDelegate(delegate);
+		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.appId, ChartboostExtension.appSignature);
 		Chartboost.onCreate(Extension.mainActivity);
-		
-		super.onCreate(savedInstanceState);
 	}
 	
 	@Override
@@ -367,18 +300,6 @@ public class ChartboostExtension extends Extension
 		Chartboost.showInterstitial(id);
 	}
 	
-	public static boolean hasMoreApps(String id) {
-		return Chartboost.hasMoreApps(id);
-	}
-	
-	public static void cacheMoreApps(String id) {
-		Chartboost.cacheMoreApps(id);
-	}
-	
-	public static void showMoreApps(String id) {
-		Chartboost.showMoreApps(id);
-	}
-	
 	public static boolean hasRewardedVideo(String id) {
 		return Chartboost.hasRewardedVideo(id);
 	}
@@ -419,10 +340,6 @@ public class ChartboostExtension extends Extension
 		Chartboost.setAutoCacheAds(autoCacheAds);
 	}
 	
-	public static void setShouldDisplayLoadingViewForMoreApps(boolean shouldDisplay) {
-		Chartboost.setShouldDisplayLoadingViewForMoreApps(shouldDisplay);
-	}
-	
 	public static void setShouldPrefetchVideoContent(boolean shouldPrefetch) {
 		Chartboost.setShouldPrefetchVideoContent(shouldPrefetch);
 	}
@@ -433,5 +350,9 @@ public class ChartboostExtension extends Extension
 	
 	public static void setShouldHideSystemUI(boolean shouldHide) {
 		Chartboost.setShouldHideSystemUI(shouldHide);
+	}
+	
+	public static void restrictDataCollection(boolean shouldRestrict) {
+		Chartboost.restrictDataCollection(Extension.mainActivity, shouldRestrict);
 	}
 }

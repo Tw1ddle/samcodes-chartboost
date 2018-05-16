@@ -17,6 +17,10 @@ class ChartboostListener {
 		
 	}
 	
+	public function willDisplayInterstitial(location:String):Void {
+		
+	}
+	
 	public function didDismissInterstitial(location:String):Void {
 		
 	}
@@ -30,38 +34,6 @@ class ChartboostListener {
 	}
 	
 	public function didDisplayInterstitial(location:String):Void {
-		
-	}
-	
-	public function shouldRequestMoreApps(location:String):Void {
-		
-	}
-	
-	public function shouldDisplayMoreApps(location:String):Void {
-		
-	}
-	
-	public function didFailToLoadMoreApps(location:String, error:Int):Void {
-		
-	}
-	
-	public function didCacheMoreApps(location:String):Void {
-		
-	}
-	
-	public function didDismissMoreApps(location:String):Void {
-		
-	}
-	
-	public function didCloseMoreApps(location:String):Void {
-		
-	}
-	
-	public function didClickMoreApps(location:String):Void {
-		
-	}
-	
-	public function didDisplayMoreApps(location:String):Void {
 		
 	}
 	
@@ -116,20 +88,11 @@ class ChartboostListener {
 	private static inline var SHOULD_DISPLAY_INTERSTITIAL:String = "shouldDisplayInterstitial";
 	private static inline var DID_CACHE_INTERSTITIAL:String = "didCacheInterstitial";
 	private static inline var DID_FAIL_TO_LOAD_INTERSTITIAL:String = "didFailToLoadInterstitial";
+	private static inline var WILL_DISPLAY_INTERSTITIAL:String = "willDisplayInterstitial";
 	private static inline var DID_DISMISS_INTERSTITIAL:String = "didDismissInterstitial";
 	private static inline var DID_CLOSE_INTERSTITIAL:String = "didCloseInterstitial";
 	private static inline var DID_CLICK_INTERSTITIAL:String = "didClickInterstitial";
 	private static inline var DID_DISPLAY_INTERSTITIAL:String = "didDisplayInterstitial";
-	
-	// More-apps events
-	private static inline var SHOULD_REQUEST_MORE_APPS:String = "shouldRequestMoreApps";
-	private static inline var SHOULD_DISPLAY_MORE_APPS:String = "shouldDisplayMoreApps";
-	private static inline var DID_FAIL_TO_LOAD_MORE_APPS:String = "didFailToLoadMoreApps";
-	private static inline var DID_CACHE_MORE_APPS:String = "didCacheMoreApps";
-	private static inline var DID_DISMISS_MORE_APPS:String = "didDismissMoreApps";
-	private static inline var DID_CLOSE_MORE_APPS:String = "didCloseMoreApps";
-	private static inline var DID_CLICK_MORE_APPS:String = "didClickMoreApps";
-	private static inline var DID_DISPLAY_MORE_APPS:String = "didDisplayMoreApps";
 	
 	// Rewarded video events
 	private static inline var SHOULD_DISPLAY_REWARDED_VIDEO:String = "shouldDisplayRewardedVideo";
@@ -149,7 +112,7 @@ class ChartboostListener {
 	
 	public function notify(inEvent:Dynamic):Void {
 		var type:String = "";
-		var location:String = ""; 
+		var location:String = "";
 		var uri:String = "";
 		var reward_coins:Int = 0;
 		var error:Int = -1;
@@ -188,6 +151,8 @@ class ChartboostListener {
 				didCacheInterstitial(location);
 			case DID_FAIL_TO_LOAD_INTERSTITIAL:
 				didFailToLoadInterstitial(location, error);
+			case WILL_DISPLAY_INTERSTITIAL:
+				willDisplayInterstitial(location);
 			case DID_DISMISS_INTERSTITIAL:
 				didDismissInterstitial(location);
 			case DID_CLOSE_INTERSTITIAL:
@@ -196,23 +161,6 @@ class ChartboostListener {
 				didClickInterstitial(location);
 			case DID_DISPLAY_INTERSTITIAL:
 				didDisplayInterstitial(location);
-				
-			case SHOULD_REQUEST_MORE_APPS:
-				shouldRequestMoreApps(location);
-			case SHOULD_DISPLAY_MORE_APPS:
-				shouldDisplayMoreApps(location);
-			case DID_FAIL_TO_LOAD_MORE_APPS:
-				didFailToLoadMoreApps(location, error);
-			case DID_CACHE_MORE_APPS:
-				didCacheMoreApps(location);
-			case DID_DISMISS_MORE_APPS:
-				didDismissMoreApps(location);
-			case DID_CLOSE_MORE_APPS:
-				didCloseMoreApps(location);
-			case DID_CLICK_MORE_APPS:
-				didClickMoreApps(location);
-			case DID_DISPLAY_MORE_APPS:
-				didDisplayMoreApps(location);
 				
 			case SHOULD_DISPLAY_REWARDED_VIDEO:
 				shouldDisplayRewardedVideo(location);

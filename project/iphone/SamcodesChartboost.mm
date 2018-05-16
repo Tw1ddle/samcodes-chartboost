@@ -25,7 +25,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 {
 	queueChartboostEvent("shouldRequestInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 
-    return YES;
+	return YES;
 }
 
 // Called before an interstitial will be displayed on the screen.
@@ -33,7 +33,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 {
 	queueChartboostEvent("shouldDisplayInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 
-    return YES;
+	return YES;
 }
 
 // Called after an interstitial has been displayed on the screen.
@@ -80,52 +80,6 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 	queueChartboostEvent("didClickInterstitial", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 }
 
-// Called before a MoreApps page will be displayed on the screen.
-- (BOOL)shouldDisplayMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("shouldDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-
-    return YES;
-}
-
-// Called after a MoreApps page has been displayed on the screen.
-- (void)didDisplayMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("didDisplayMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-}
-
-// Called after a MoreApps page has been loaded from the Chartboost API
-// servers and cached locally.
-- (void)didCacheMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("didCacheMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-}
-
-// Called after a MoreApps page has been dismissed.
-- (void)didDismissMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("didDismissMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-}
-
-// Called after a MoreApps page has been closed.
-- (void)didCloseMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("didCloseMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-}
-
-// Called after a MoreApps page has been clicked.
-- (void)didClickMoreApps:(CBLocation)location
-{
-	queueChartboostEvent("didClickMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
-}
-
-// Called after a MoreApps page attempted to load from the Chartboost API
-// servers but failed.
-- (void)didFailToLoadMoreApps:(CBLocation)location withError:(CBLoadError)error
-{
-	queueChartboostEvent("didFailToLoadMoreApps", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, error, false);
-}
-
 // Called after the SDK has been successfully initialized.
 - (void)didInitialize:(BOOL)status
 {
@@ -137,7 +91,7 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 {
 	queueChartboostEvent("shouldDisplayRewardedVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 
-    return YES;
+	return YES;
 }
 
 // Called after a rewarded video has been displayed on the screen.
@@ -191,140 +145,154 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 	queueChartboostEvent("willDisplayVideo", [location cStringUsingEncoding:[NSString defaultCStringEncoding]], "", 0, -1, false);
 }
 
-// Whether Chartboost should show ads in the first session
-// Defaults to YES
-- (BOOL)shouldRequestInterstitialsInFirstSession
-{
-	return YES;
-}
-
 @end
 
 namespace samcodeschartboost
 {
-    void initChartboost(const char *appId, const char *appSignature)
-    {
-        MyChartboostDelegate *myObject = [MyChartboostDelegate new];
+	void initChartboost()
+	{
+		static dispatch_once_t once;
+		dispatch_once(&once, ^ {
+			MyChartboostDelegate *myObject = [MyChartboostDelegate new];
 
-        NSString *nsAppId = [[NSString alloc] initWithUTF8String:appId];
-        NSString *nsSignature = [[NSString alloc] initWithUTF8String:appSignature];
+			NSString *nsAppId = [[NSString alloc] initWithUTF8String:ChartboostAppId];
+			NSString *nsSignature = [[NSString alloc] initWithUTF8String:ChartboostAppSignature];
 
-        [Chartboost startWithAppId:nsAppId
-                      appSignature:nsSignature
-                          delegate:myObject];
-    }
+			[Chartboost startWithAppId:nsAppId
+						  appSignature:nsSignature
+							  delegate:myObject];
+		});
+	}
 	
 	void showInterstitial(const char* location)
 	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost showInterstitial:nsLocation];
-    }
-	
-    void cacheInterstitial(const char* location)
-    {
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost cacheInterstitial:nsLocation];
-    }
-	
-    bool hasInterstitial(const char* location)
-    {
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        return [Chartboost hasInterstitial:nsLocation];
-    }
-	
-	void showMoreApps(const char* location)
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		[Chartboost showInterstitial:nsLocation];
+	}
+
+	void cacheInterstitial(const char* location)
 	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost showMoreApps:nsLocation];
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		[Chartboost cacheInterstitial:nsLocation];
 	}
 	
-    void cacheMoreApps(const char* location)
+	bool hasInterstitial(const char* location)
 	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost cacheMoreApps:nsLocation];
-	}
-	
-    bool hasMoreApps(const char* location)
-	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        return [Chartboost hasMoreApps:nsLocation];
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		return [Chartboost hasInterstitial:nsLocation];
 	}
 	
 	void showRewardedVideo(const char* location)
 	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost showRewardedVideo:nsLocation];
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		[Chartboost showRewardedVideo:nsLocation];
+	}
+
+	void cacheRewardedVideo(const char* location)
+	{
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		[Chartboost cacheRewardedVideo:nsLocation];
 	}
 	
-    void cacheRewardedVideo(const char* location)
+	bool hasRewardedVideo(const char* location)
 	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        [Chartboost cacheRewardedVideo:nsLocation];
-	}
-	
-    bool hasRewardedVideo(const char* location)
-	{
-        NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
-        return [Chartboost hasRewardedVideo:nsLocation];
+		initChartboost();
+		
+		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		return [Chartboost hasRewardedVideo:nsLocation];
 	}
 	
 	bool isAnyViewVisible()
 	{
+		initChartboost();
+		
 		return [Chartboost isAnyViewVisible];
 	}
 	
 	void setCustomId(const char* id)
 	{
+		initChartboost();
+		
 		NSString *nsId = [[NSString alloc] initWithUTF8String:id];
 		[Chartboost setCustomId:nsId];
 	}
 	
 	const char* getCustomId()
 	{
+		initChartboost();
+		
 		NSString *nsId = [Chartboost getCustomId];
 		return [nsId UTF8String];
 	}
 	
 	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest)
 	{
+		initChartboost();
+		
 		[Chartboost setShouldRequestInterstitialsInFirstSession:shouldRequest];
 	}
 	
 	bool getAutoCacheAds()
 	{
+		initChartboost();
+		
 		return [Chartboost getAutoCacheAds];
 	}
 	
 	void setAutoCacheAds(bool autoCache)
 	{
+		initChartboost();
+		
 		[Chartboost setAutoCacheAds:autoCache];
-	}
-	
-	void setShouldDisplayLoadingViewForMoreApps(bool shouldDisplay)
-	{
-		[Chartboost setShouldDisplayLoadingViewForMoreApps:shouldDisplay];
 	}
 	
 	void setShouldPrefetchVideoContent(bool shouldPrefetch)
 	{
+		initChartboost();
+		
 		[Chartboost setShouldPrefetchVideoContent:shouldPrefetch];
 	}
 	
 	const char* getSDKVersion()
 	{
+		initChartboost();
+		
 		NSString *nsVersion = [Chartboost getSDKVersion];
 		return [nsVersion UTF8String];
 	}
 	
 	void setStatusBarBehavior(bool shouldHide)
 	{
-		if(shouldHide)
-		{
+		initChartboost();
+		
+		if(shouldHide) {
 			[Chartboost setStatusBarBehavior:CBStatusBarBehaviorIgnore];
-		}
-		else
-		{
+		} else {
 			[Chartboost setStatusBarBehavior:CBStatusBarBehaviorRespect];
 		}
+	}
+	
+	void setMuted(bool mute)
+	{
+		initChartboost();
+		
+		[Chartboost setMuted:muted];
+	}
+	
+	void restrictDataCollection(bool shouldRestrict)
+	{
+		initChartboost();
+		
+		[Chartboost setRestrictDataCollection:shouldRestrict];
 	}
 }

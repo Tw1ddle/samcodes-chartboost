@@ -1,35 +1,14 @@
 package extension.chartboost;
 
-#if android
-import openfl.utils.JNI;
-#end
-
-#if ios
-import flash.Lib;
-#end
-
 #if (android || ios)
+
+import lime.system.JNI;
+
 @:allow(extension.Chartboost) class Chartboost {
-	// Must be called before use of any other methods in this class
-	public static function init(?appId:String, ?appSignature:String):Void {
-		#if ios
-		if (appId == null || appSignature == null || appId.length <= 10 || appSignature.length <= 10) {
-			throw "Chartboost appId/appSignature not passed. On iOS appId and appSignature parameters must be passed in Chartboost.init.";
-		}
-		#end
-		
-		Chartboost.initBindings();
-		
-		#if ios
-		init_chartboost(appId, appSignature);
-		#end
-	}
-	
 	public static function setListener(listener:ChartboostListener):Void {
 		#if android
 		set_listener(listener);
 		#end
-		
 		#if ios
 		set_listener(listener.notify);
 		#end
@@ -45,18 +24,6 @@ import flash.Lib;
 
 	public static function hasInterstitial(id:String):Bool {
 		return has_interstitial(id);
-	}
-	
-	public static function showMoreApps(id:String):Void {
-		show_more_apps(id);
-	}
-	
-	public static function cacheMoreApps(id:String):Void {
-		cache_more_apps(id);
-	}
-	
-	public static function hasMoreApps(id:String):Bool {
-		return has_more_apps(id);
 	}
 	
 	public static function showRewardedVideo(id:String):Void {
@@ -101,10 +68,6 @@ import flash.Lib;
 		set_auto_cache_ads(autoCacheAds);
 	}
 	
-	public static function setShouldDisplayLoadingViewForMoreApps(shouldDisplay:Bool):Void {
-		set_should_display_loading_view_for_more_apps(shouldDisplay);
-	}
-	
 	public static function setShouldPrefetchVideoContent(shouldPrefetch:Bool):Void {
 		set_should_prefetch_video_content(shouldPrefetch);
 	}
@@ -117,90 +80,63 @@ import flash.Lib;
 		set_should_hide_system_ui(shouldHide);
 	}
 	
-	private static function initBindings() {
-		#if ios
-		if (init_chartboost == null) {
-			init_chartboost = Lib.load(ndllName, "init_chartboost", 2);
-		}
-		#end
-		
-		set_listener = initBinding("setListener", "(Lorg/haxe/lime/HaxeObject;)V", "set_listener", 1);
-		show_interstitial = initBinding("showInterstitial", "(Ljava/lang/String;)V", "show_interstitial", 1);
-		cache_interstitial = initBinding("cacheInterstitial", "(Ljava/lang/String;)V", "cache_interstitial", 1);
-		has_interstitial = initBinding("hasInterstitial", "(Ljava/lang/String;)Z", "has_interstitial", 1);
-		show_more_apps = initBinding("showMoreApps", "(Ljava/lang/String;)V", "show_more_apps", 1);
-		cache_more_apps = initBinding("cacheMoreApps", "(Ljava/lang/String;)V", "cache_more_apps", 1);
-		has_more_apps = initBinding("hasMoreApps", "(Ljava/lang/String;)Z", "has_more_apps", 1);
-		show_rewarded_video = initBinding("showRewardedVideo", "(Ljava/lang/String;)V", "show_rewarded_video", 1);
-		cache_rewarded_video = initBinding("cacheRewardedVideo", "(Ljava/lang/String;)V", "cache_rewarded_video", 1);
-		has_rewarded_video = initBinding("hasRewardedVideo", "(Ljava/lang/String;)Z", "has_rewarded_video", 1);
-		
-		#if android
-		close_impression = initBinding("closeImpression", "()V", "close_impression", 0);
-		#end
-		
-		is_any_view_visible = initBinding("isAnyViewVisible", "()Z", "is_any_view_visible", 0);
-		set_custom_id = initBinding("setCustomId", "(Ljava/lang/String;)V", "set_custom_id", 1);
-		get_custom_id = initBinding("getCustomId", "()Ljava/lang/String;", "get_custom_id", 0);
-		set_should_request_interstitials_in_first_session = initBinding("setShouldRequestInterstitialsInFirstSession", "(Z)V", "set_should_request_interstitials_in_first_session", 1);
-		get_auto_cache_ads = initBinding("getAutoCacheAds", "()Z", "get_auto_cache_ads", 0);
-		set_auto_cache_ads = initBinding("setAutoCacheAds", "(Z)V", "set_auto_cache_ads", 1);
-		set_should_display_loading_view_for_more_apps = initBinding("setShouldDisplayLoadingViewForMoreApps", "(Z)V", "set_should_display_loading_view_for_more_apps", 1);
-		set_should_prefetch_video_content = initBinding("setShouldPrefetchVideoContent", "(Z)V", "set_should_prefetch_video_content", 1);
-		get_sdk_version = initBinding("getSDKVersion", "()Ljava/lang/String;", "get_sdk_version", 0);
-		set_should_hide_system_ui = initBinding("setShouldHideSystemUI", "(Z)V", "set_status_bar_behavior", 1);
+	#if ios
+	public static function setMuted(mute:Bool):Void {
+		set_muted(mute);
 	}
+	#end
 	
-	private static inline function initBinding(jniMethod:String, jniSignature:String, ndllMethod:String, argCount:Int):Dynamic {
-		#if android
-		var binding = JNI.createStaticMethod(packageName, jniMethod, jniSignature);
-		#end
-		
-		#if ios
-		var binding = Lib.load(ndllName, ndllName + "_" + ndllMethod, argCount);
-		#end
-		
-		#if debug
-		if (binding == null) {
-			throw "Failed to bind method: " + jniMethod + ", " + jniSignature + ", " + ndllMethod + " (" + Std.string(argCount) + ").";
-		}
-		#end
-		
-		return binding;
+	public static function restrictDataCollection(shouldRestrict:Bool):Void {
+		restrict_data_collection(shouldRestrict);
 	}
 	
 	#if android
 	private static inline var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
-	#end
-	#if ios
-	private static inline var ndllName:String = "samcodeschartboost";
+	private static inline function bindJNI(jniMethod:String, jniSignature:String) {
+		return JNI.createStaticMethod(packageName, jniMethod, jniSignature);
+	}
+	
+	private static var close_impression:Dynamic = bindJNI("closeImpression", "()V");
+	
+	private static var set_listener:Dynamic = bindJNI("setListener", "(Lorg/haxe/lime/HaxeObject;)V");
+	private static var show_interstitial:Dynamic = bindJNI("showInterstitial", "(Ljava/lang/String;)V");
+	private static var cache_interstitial:Dynamic = bindJNI("cacheInterstitial", "(Ljava/lang/String;)V");
+	private static var has_interstitial:Dynamic = bindJNI("hasInterstitial", "(Ljava/lang/String;)Z");
+	private static var show_rewarded_video:Dynamic = bindJNI("showRewardedVideo", "(Ljava/lang/String;)V");
+	private static var cache_rewarded_video:Dynamic = bindJNI("cacheRewardedVideo", "(Ljava/lang/String;)V");
+	private static var has_rewarded_video:Dynamic = bindJNI("hasRewardedVideo", "(Ljava/lang/String;)Z");
+	private static var is_any_view_visible:Dynamic = bindJNI("isAnyViewVisible", "()Z");
+	private static var set_custom_id:Dynamic = bindJNI("setCustomId", "(Ljava/lang/String;)V");
+	private static var get_custom_id:Dynamic= bindJNI("getCustomId", "()Ljava/lang/String;");
+	private static var set_should_request_interstitials_in_first_session:Dynamic = bindJNI("setShouldRequestInterstitialsInFirstSession", "(Z)V");
+	private static var get_auto_cache_ads:Dynamic = bindJNI("getAutoCacheAds", "()Z");
+	private static var set_auto_cache_ads:Dynamic = bindJNI("setAutoCacheAds", "(Z)V");
+	private static var set_should_prefetch_video_content:Dynamic = bindJNI("setShouldPrefetchVideoContent", "(Z)V");
+	private static var get_sdk_version:Dynamic = bindJNI("getSDKVersion", "()Ljava/lang/String;");
+	private static var set_should_hide_system_ui:Dynamic = bindJNI("setShouldHideSystemUI", "(Z)V");
+	private static var restrict_data_collection:Dynamic = bindJNI("restrictDataCollection", "(Z)V");
 	#end
 	
 	#if ios
-	private static var init_chartboost:Dynamic = null;
+	private static var set_listener:ChartboostListener->Void = PrimeLoader.load("set_listener", "ov");
+	private static var show_interstitial:String->Void = PrimeLoader.load("show_interstitial", "sv");
+	private static var cache_interstitial:String->Void = PrimeLoader.load("cache_interstitial", "sv");
+	private static var has_interstitial:String->Bool = PrimeLoader.load("has_interstitial", "sb");
+	private static var show_rewarded_video:String->Void = PrimeLoader.load("show_rewarded_video", "sv");
+	private static var cache_rewarded_video:String->Void = PrimeLoader.load("cache_rewarded_video", "sv");
+	private static var has_rewarded_video:String->Bool = PrimeLoader.load("has_rewarded_video", "sb");
+	private static var is_any_view_visible:Void->Void = PrimeLoader.load("is_any_view_visible", "v");
+	private static var set_custom_id:String->Void = PrimeLoader.load("set_custom_id", "sv");
+	private static var get_custom_id:Void->String = PrimeLoader.load("get_custom_id", "s");
+	private static var set_should_request_interstitials_in_first_session:Bool->Void = PrimeLoader.load("set_should_request_interstitials_in_first_session", "bv");
+	private static var get_auto_cache_ads:Void->Bool = PrimeLoader.load("get_auto_cache_ads", "b");
+	private static var set_auto_cache_ads:Bool->Void = PrimeLoader.load("set_auto_cache_ads", "bv");
+	private static var set_should_prefetch_video_content:Bool->Void = PrimeLoader.load("set_should_prefetch_video_content", "bv");
+	private static var get_sdk_version:Void->String = PrimeLoader.load("get_sdk_version", "s");
+	private static var set_should_hide_system_ui:Bool->Void = PrimeLoader.load("set_status_bar_behavior", "bv");
+	private static var set_muted:Bool->Void = PrimeLoader.load("set_muted", "bv");
+	private static var restrict_data_collection:Bool->Void = PrimeLoader.load("restrict_data_collection", "bv");
 	#end
-	private static var set_listener:Dynamic = null;
-	private static var show_interstitial:Dynamic = null;
-	private static var cache_interstitial:Dynamic = null;
-	private static var has_interstitial:Dynamic = null;
-	private static var show_more_apps:Dynamic = null;
-	private static var cache_more_apps:Dynamic = null;
-	private static var has_more_apps:Dynamic = null;
-	private static var show_rewarded_video:Dynamic = null;
-	private static var cache_rewarded_video:Dynamic = null;
-	private static var has_rewarded_video:Dynamic = null;
-	#if android
-	private static var close_impression:Dynamic = null;
-	#end
-	private static var is_any_view_visible:Dynamic = null;
-	private static var set_custom_id:Dynamic = null;
-	private static var get_custom_id:Dynamic = null;
-	private static var set_should_request_interstitials_in_first_session:Dynamic = null;
-	private static var get_auto_cache_ads:Dynamic = null;
-	private static var set_auto_cache_ads:Dynamic = null;
-	private static var set_should_display_loading_view_for_more_apps:Dynamic = null;
-	private static var set_should_prefetch_video_content:Dynamic = null;
-	private static var get_sdk_version:Dynamic = null;
-	private static var set_should_hide_system_ui:Dynamic = null;
 }
+
 #end
