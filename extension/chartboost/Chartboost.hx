@@ -2,6 +2,10 @@ package extension.chartboost;
 
 #if (android || ios)
 
+#if ios
+import cpp.Object;
+#end
+
 import lime.system.JNI;
 
 @:allow(extension.Chartboost) class Chartboost {
@@ -118,7 +122,7 @@ import lime.system.JNI;
 	#end
 	
 	#if ios
-	private static var set_listener:ChartboostListener->Void = PrimeLoader.load("set_listener", "ov");
+	private static var set_listener:Object->Void = PrimeLoader.load("set_listener", "ov");
 	private static var show_interstitial:String->Void = PrimeLoader.load("show_interstitial", "sv");
 	private static var cache_interstitial:String->Void = PrimeLoader.load("cache_interstitial", "sv");
 	private static var has_interstitial:String->Bool = PrimeLoader.load("has_interstitial", "sb");
