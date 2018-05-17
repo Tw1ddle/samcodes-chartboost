@@ -17,113 +17,113 @@ using namespace samcodeschartboost;
 
 AutoGCRoot* chartboostEventHandle = 0;
 
-static void samcodeschartboost_set_listener(void* onEvent)
+static void set_listener(void* onEvent)
 {
 	chartboostEventHandle = new AutoGCRoot(onEvent);
 }
-DEFINE_PRIME1v(samcodeschartboost_set_listener);
+DEFINE_PRIME1v(set_listener);
 
-static void samcodeschartboost_show_interstitial(HxString location)
+static void show_interstitial(HxString location)
 {
 	showInterstitial(location.c_str());
 }
-DEFINE_PRIME1v(samcodeschartboost_show_interstitial);
+DEFINE_PRIME1v(show_interstitial);
 
-static void samcodeschartboost_cache_interstitial(HxString location)
+static void cache_interstitial(HxString location)
 {
 	cacheInterstitial(location.c_str());
 }
-DEFINE_PRIME1v(samcodeschartboost_cache_interstitial);
+DEFINE_PRIME1v(cache_interstitial);
 
-static void samcodeschartboost_has_interstitial(HxString location)
+static void has_interstitial(HxString location)
 {
 	return hasInterstitial(location.c_str());
 }
-DEFINE_PRIME1(samcodeschartboost_has_interstitial);
+DEFINE_PRIME1(has_interstitial);
 
-static void samcodeschartboost_show_rewarded_video(HxString location)
+static void show_rewarded_video(HxString location)
 {
 	showRewardedVideo(location.c_str());
 }
-DEFINE_PRIME1v(samcodeschartboost_show_rewarded_video);
+DEFINE_PRIME1v(show_rewarded_video);
 
-static void samcodeschartboost_cache_rewarded_video(HxString location)
+static void cache_rewarded_video(HxString location)
 {
 	cacheRewardedVideo(location.c_str());
 }
-DEFINE_PRIME1v(samcodeschartboost_cache_rewarded_video);
+DEFINE_PRIME1v(cache_rewarded_video);
 
-static bool samcodeschartboost_has_rewarded_video(HxString location)
+static bool has_rewarded_video(HxString location)
 {
 	returnhasRewardedVideo(location.c_str());
 }
-DEFINE_PRIME1(samcodeschartboost_has_rewarded_video);
+DEFINE_PRIME1(has_rewarded_video);
 
-static bool samcodeschartboost_is_any_view_visible()
+static bool is_any_view_visible()
 {
 	return isAnyViewVisible();
 }
-DEFINE_PRIME0(samcodeschartboost_is_any_view_visible);
+DEFINE_PRIME0(is_any_view_visible);
 
-static void samcodeschartboost_set_custom_id(HxString id)
+static void set_custom_id(HxString id)
 {
 	setCustomId(id.c_str());
 }
-DEFINE_PRIME1(samcodeschartboost_set_custom_id);
+DEFINE_PRIME1(set_custom_id);
 
-static const char* samcodeschartboost_get_custom_id()
+static const char* get_custom_id()
 {
 	return getCustomId();
 }
-DEFINE_PRIME0(samcodeschartboost_get_custom_id);
+DEFINE_PRIME0(get_custom_id);
 
-static void samcodeschartboost_set_should_request_interstitials_in_first_session(bool shouldRequest)
+static void set_should_request_interstitials_in_first_session(bool shouldRequest)
 {
 	setShouldRequestInterstitialsInFirstSession(shouldRequest);
 }
-DEFINE_PRIME1v(samcodeschartboost_set_should_request_interstitials_in_first_session);
+DEFINE_PRIME1v(set_should_request_interstitials_in_first_session);
 
-static bool samcodeschartboost_get_auto_cache_ads()
+static bool get_auto_cache_ads()
 {
 	return getAutoCacheAds();
 }
-DEFINE_PRIME0(samcodeschartboost_get_auto_cache_ads);
+DEFINE_PRIME0(get_auto_cache_ads);
 
-static void samcodeschartboost_set_auto_cache_ads(bool autoCache)
+static void set_auto_cache_ads(bool autoCache)
 {
 	setAutoCacheAds(autoCache);
 }
-DEFINE_PRIME1v(samcodeschartboost_set_auto_cache_ads);
+DEFINE_PRIME1v(set_auto_cache_ads);
 
-static void samcodeschartboost_set_should_prefetch_video_content(bool shouldPrefetch)
+static void set_should_prefetch_video_content(bool shouldPrefetch)
 {
 	setShouldPrefetchVideoContent(shouldPrefetch);
 }
-DEFINE_PRIME1v(samcodeschartboost_set_should_prefetch_video_content);
+DEFINE_PRIME1v(set_should_prefetch_video_content);
 
-static HxString samcodeschartboost_get_sdk_version()
+static HxString get_sdk_version()
 {
 	return HxString(getSDKVersion());
 }
-DEFINE_PRIME1(samcodeschartboost_get_sdk_version);
+DEFINE_PRIME1(get_sdk_version);
 
-static void samcodeschartboost_set_status_bar_behavior(bool shouldHide)
+static void set_status_bar_behavior(bool shouldHide)
 {
 	setStatusBarBehavior(val_bool(shouldHide));
 }
-DEFINE_PRIME1v(samcodeschartboost_set_status_bar_behavior);
+DEFINE_PRIME1v(set_status_bar_behavior);
 
-static void samcodeschartboost_set_muted(bool mute)
+static void set_muted(bool mute)
 {
 	setMuted(mute);
 }
-DEFINE_PRIME1v(samcodeschartboost_set_muted);
+DEFINE_PRIME1v(set_muted);
 
-static void samcodeschartboost_restrict_data_collection(bool shouldRestrict)
+static void restrict_data_collection(bool shouldRestrict)
 {
 	restrictDataCollection(shouldRestrict);
 }
-DEFINE_PRIME1v(samcodeschartboost_restrict_data_collection);
+DEFINE_PRIME1v(restrict_data_collection);
 
 extern "C" void samcodeschartboost_main()
 {
