@@ -129,7 +129,7 @@ import lime.system.JNI;
 	private static var show_rewarded_video = PrimeLoader.load("show_rewarded_video", "sv");
 	private static var cache_rewarded_video = PrimeLoader.load("cache_rewarded_video", "sv");
 	private static var has_rewarded_video = PrimeLoader.load("has_rewarded_video", "sb");
-	private static var is_any_view_visible = PrimeLoader.load("is_any_view_visible", "v");
+	private static var is_any_view_visible = PrimeLoader.load("is_any_view_visible", "b");
 	private static var set_custom_id = PrimeLoader.load("set_custom_id", "sv");
 	private static var get_custom_id = PrimeLoader.load("get_custom_id", "s");
 	private static var set_should_request_interstitials_in_first_session = PrimeLoader.load("set_should_request_interstitials_in_first_session", "bv");
