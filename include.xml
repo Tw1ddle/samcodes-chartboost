@@ -3,8 +3,8 @@
 	<ndll name="samcodeschartboost" if="ios" />
 
 	<section if="ios">
-		<dependency name="Chartboost" path="project/include/Chartboost" />
-		<dependency name="CHAMoatMobileAppKit" path="project/include/CHAMoatMobileAppKit" />
+		<dependency path="project/include/Chartboost.framework" />
+		<dependency path="project/include/CHAMoatMobileAppKit.framework" />
 		
 		<dependency name="AdSupport.framework" />
 		<dependency name="AVFoundation.framework" />

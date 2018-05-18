@@ -9,6 +9,8 @@
 	<files id="iphone">
 		<compilerflag value="-IiPhone/include"/>
 		<compilerflag value="-Iinclude"/>
+		<compilerflag value="-Iinclude/Chartboost.framework/Versions/A/Headers" />
+		
 		<file name="iphone/SamcodesChartboost.mm"/>
 	</files>
 	

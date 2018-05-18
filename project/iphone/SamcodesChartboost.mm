@@ -1,9 +1,10 @@
-#import <UIKit/UIKit.h>
-#import <CoreFoundation/CoreFoundation.h>
 #include <ctype.h>
 #include <objc/runtime.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <UIKit/UIKit.h>
 
 #import "Chartboost.h"
+
 #include "SamcodesChartboost.h"
 
 extern "C" void sendChartboostEvent(const char* type, const char* location, const char* uri, int reward_coins, int error, bool status);
