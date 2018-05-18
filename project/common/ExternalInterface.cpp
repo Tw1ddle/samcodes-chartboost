@@ -17,109 +17,113 @@ using namespace samcodeschartboost;
 
 AutoGCRoot* chartboostEventHandle = 0;
 
-static void set_listener(void* onEvent)
+void set_listener(value onEvent)
 {
-	chartboostEventHandle = new AutoGCRoot(onEvent);
+	if(chartboostEventHandle == 0) {
+		chartboostEventHandle = new AutoGCRoot(onEvent);
+	} else {
+		chartboostEventHandle->set(onEvent);
+	}
 }
 DEFINE_PRIME1v(set_listener);
 
-static void show_interstitial(HxString location)
+void show_interstitial(HxString location)
 {
 	showInterstitial(location.c_str());
 }
 DEFINE_PRIME1v(show_interstitial);
 
-static void cache_interstitial(HxString location)
+void cache_interstitial(HxString location)
 {
 	cacheInterstitial(location.c_str());
 }
 DEFINE_PRIME1v(cache_interstitial);
 
-static void has_interstitial(HxString location)
+bool has_interstitial(HxString location)
 {
 	return hasInterstitial(location.c_str());
 }
 DEFINE_PRIME1(has_interstitial);
 
-static void show_rewarded_video(HxString location)
+void show_rewarded_video(HxString location)
 {
 	showRewardedVideo(location.c_str());
 }
 DEFINE_PRIME1v(show_rewarded_video);
 
-static void cache_rewarded_video(HxString location)
+void cache_rewarded_video(HxString location)
 {
 	cacheRewardedVideo(location.c_str());
 }
 DEFINE_PRIME1v(cache_rewarded_video);
 
-static bool has_rewarded_video(HxString location)
+bool has_rewarded_video(HxString location)
 {
-	returnhasRewardedVideo(location.c_str());
+	return hasRewardedVideo(location.c_str());
 }
 DEFINE_PRIME1(has_rewarded_video);
 
-static bool is_any_view_visible()
+bool is_any_view_visible()
 {
 	return isAnyViewVisible();
 }
 DEFINE_PRIME0(is_any_view_visible);
 
-static void set_custom_id(HxString id)
+void set_custom_id(HxString id)
 {
 	setCustomId(id.c_str());
 }
 DEFINE_PRIME1(set_custom_id);
 
-static const char* get_custom_id()
+HxString get_custom_id()
 {
-	return getCustomId();
+	return HxString(getCustomId());
 }
 DEFINE_PRIME0(get_custom_id);
 
-static void set_should_request_interstitials_in_first_session(bool shouldRequest)
+void set_should_request_interstitials_in_first_session(bool shouldRequest)
 {
 	setShouldRequestInterstitialsInFirstSession(shouldRequest);
 }
 DEFINE_PRIME1v(set_should_request_interstitials_in_first_session);
 
-static bool get_auto_cache_ads()
+bool get_auto_cache_ads()
 {
 	return getAutoCacheAds();
 }
 DEFINE_PRIME0(get_auto_cache_ads);
 
-static void set_auto_cache_ads(bool autoCache)
+void set_auto_cache_ads(bool autoCache)
 {
 	setAutoCacheAds(autoCache);
 }
 DEFINE_PRIME1v(set_auto_cache_ads);
 
-static void set_should_prefetch_video_content(bool shouldPrefetch)
+void set_should_prefetch_video_content(bool shouldPrefetch)
 {
 	setShouldPrefetchVideoContent(shouldPrefetch);
 }
 DEFINE_PRIME1v(set_should_prefetch_video_content);
 
-static HxString get_sdk_version()
+HxString get_sdk_version()
 {
 	return HxString(getSDKVersion());
 }
-DEFINE_PRIME1(get_sdk_version);
+DEFINE_PRIME0(get_sdk_version);
 
-static void set_status_bar_behavior(bool shouldHide)
+void set_status_bar_behavior(bool shouldHide)
 {
 	setStatusBarBehavior(val_bool(shouldHide));
 }
 DEFINE_PRIME1v(set_status_bar_behavior);
 
-static void set_muted(bool mute)
+void set_muted(bool mute)
 {
 	setMuted(mute);
 }
 DEFINE_PRIME1v(set_muted);
 
-static void restrict_data_collection(bool shouldRestrict)
+void restrict_data_collection(bool shouldRestrict)
 {
 	restrictDataCollection(shouldRestrict);
 }
