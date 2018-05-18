@@ -1,7 +1,9 @@
 package extension.chartboost;
 
-// Helpers for getting names of errors
-// Note the methods need updating whenever the Chartboost SDK is updated/changes or adds new errors, else there's no guarantee that the mappings to the enums are correct.
+/**
+    Helpers for getting names of errors
+    Note the methods need updating whenever the Chartboost SDK is updated/changes or adds new errors, else there's no guarantee that the mappings to the enums are correct.
+**/
 class ChartboostError {
 	#if ios
 	private static function getImpressionErrorDescription(id:Int):String {

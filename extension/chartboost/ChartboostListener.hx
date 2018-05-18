@@ -1,5 +1,10 @@
 package extension.chartboost;
 
+/**
+   Customizable listener for responding to Chartboost SDK events.
+   Note - in the Chartboost SDK itself, you can return true/false from the shouldRequest/shouldDisplay* methods to indicate whether an ad should be requested or displayed.
+   However you can't do that here, so you should implement logic prior to requesting/displaying an ad in your the game, rather than in here
+**/
 class ChartboostListener {
 	public function shouldRequestInterstitial(location:String):Void {
 		

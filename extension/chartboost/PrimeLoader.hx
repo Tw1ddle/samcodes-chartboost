@@ -4,9 +4,11 @@ package extension.chartboost;
 import haxe.macro.Expr;
 #end
 
-// Helper class for setting up bindings using CFFI PRIME
-// See https://github.com/HaxeFoundation/hxcpp/blob/master/test/cffi/src/Loader.hx
-// See https://github.com/snowkit/hxcpp-guide/issues/1#issue-133283091
+/**
+   Helper class for setting up bindings using CFFI PRIME
+   See https://github.com/HaxeFoundation/hxcpp/blob/master/test/cffi/src/Loader.hx
+   See https://github.com/snowkit/hxcpp-guide/issues/1#issue-133283091
+**/
 class PrimeLoader {
 	#if cpp
 	public static function __init__() {

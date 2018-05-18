@@ -6,9 +6,15 @@ package extension.chartboost;
 import cpp.Object;
 #end
 
+#if android
 import lime.system.JNI;
+#end
 
-@:allow(extension.Chartboost) class Chartboost {
+/**
+   The Chartboost class provides bindings to the main functionality of the Chartboost ads SDK on iOS and Android
+   See: https://github.com/Tw1ddle/samcodes-chartboost
+**/
+class Chartboost {
 	public static function setListener(listener:ChartboostListener):Void {
 		#if android
 		set_listener(listener);
@@ -122,24 +128,24 @@ import lime.system.JNI;
 	#end
 	
 	#if ios
-	private static var set_listener = PrimeLoader.load("set_listener", "ov");
-	private static var show_interstitial = PrimeLoader.load("show_interstitial", "sv");
-	private static var cache_interstitial = PrimeLoader.load("cache_interstitial", "sv");
-	private static var has_interstitial = PrimeLoader.load("has_interstitial", "sb");
-	private static var show_rewarded_video = PrimeLoader.load("show_rewarded_video", "sv");
-	private static var cache_rewarded_video = PrimeLoader.load("cache_rewarded_video", "sv");
-	private static var has_rewarded_video = PrimeLoader.load("has_rewarded_video", "sb");
-	private static var is_any_view_visible = PrimeLoader.load("is_any_view_visible", "b");
-	private static var set_custom_id = PrimeLoader.load("set_custom_id", "sv");
-	private static var get_custom_id = PrimeLoader.load("get_custom_id", "s");
-	private static var set_should_request_interstitials_in_first_session = PrimeLoader.load("set_should_request_interstitials_in_first_session", "bv");
-	private static var get_auto_cache_ads = PrimeLoader.load("get_auto_cache_ads", "b");
-	private static var set_auto_cache_ads = PrimeLoader.load("set_auto_cache_ads", "bv");
-	private static var set_should_prefetch_video_content = PrimeLoader.load("set_should_prefetch_video_content", "bv");
-	private static var get_sdk_version = PrimeLoader.load("get_sdk_version", "s");
-	private static var set_should_hide_system_ui = PrimeLoader.load("set_status_bar_behavior", "bv");
-	private static var set_muted = PrimeLoader.load("set_muted", "bv");
-	private static var restrict_data_collection = PrimeLoader.load("restrict_data_collection", "bv");
+	private static var set_listener = PrimeLoader.load("samcodeschartboost_set_listener", "ov");
+	private static var show_interstitial = PrimeLoader.load("samcodeschartboost_show_interstitial", "sv");
+	private static var cache_interstitial = PrimeLoader.load("samcodeschartboost_cache_interstitial", "sv");
+	private static var has_interstitial = PrimeLoader.load("samcodeschartboost_has_interstitial", "sb");
+	private static var show_rewarded_video = PrimeLoader.load("samcodeschartboost_show_rewarded_video", "sv");
+	private static var cache_rewarded_video = PrimeLoader.load("samcodeschartboost_cache_rewarded_video", "sv");
+	private static var has_rewarded_video = PrimeLoader.load("samcodeschartboost_has_rewarded_video", "sb");
+	private static var is_any_view_visible = PrimeLoader.load("samcodeschartboost_is_any_view_visible", "b");
+	private static var set_custom_id = PrimeLoader.load("samcodeschartboost_set_custom_id", "sv");
+	private static var get_custom_id = PrimeLoader.load("samcodeschartboost_get_custom_id", "s");
+	private static var set_should_request_interstitials_in_first_session = PrimeLoader.load("samcodeschartboost_set_should_request_interstitials_in_first_session", "bv");
+	private static var get_auto_cache_ads = PrimeLoader.load("samcodeschartboost_get_auto_cache_ads", "b");
+	private static var set_auto_cache_ads = PrimeLoader.load("samcodeschartboost_set_auto_cache_ads", "bv");
+	private static var set_should_prefetch_video_content = PrimeLoader.load("samcodeschartboost_set_should_prefetch_video_content", "bv");
+	private static var get_sdk_version = PrimeLoader.load("samcodeschartboost_get_sdk_version", "s");
+	private static var set_should_hide_system_ui = PrimeLoader.load("samcodeschartboost_set_status_bar_behavior", "bv");
+	private static var set_muted = PrimeLoader.load("samcodeschartboost_set_muted", "bv");
+	private static var restrict_data_collection = PrimeLoader.load("samcodeschartboost_restrict_data_collection", "bv");
 	#end
 }
 
