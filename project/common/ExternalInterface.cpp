@@ -73,7 +73,7 @@ void set_custom_id(HxString id)
 {
 	setCustomId(id.c_str());
 }
-DEFINE_PRIME1(set_custom_id);
+DEFINE_PRIME1v(set_custom_id);
 
 HxString get_custom_id()
 {
@@ -113,7 +113,7 @@ DEFINE_PRIME0(get_sdk_version);
 
 void set_status_bar_behavior(bool shouldHide)
 {
-	setStatusBarBehavior(val_bool(shouldHide));
+	setStatusBarBehavior(shouldHide);
 }
 DEFINE_PRIME1v(set_status_bar_behavior);
 
