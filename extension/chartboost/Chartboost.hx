@@ -15,6 +15,12 @@ import lime.system.JNI;
    See: https://github.com/Tw1ddle/samcodes-chartboost
 **/
 class Chartboost {
+	#if ios
+	public static function initChartboost(appId:String, appSignature:String):Void {
+		init_chartboost(appId, appSignature);
+	}
+	#end
+	
 	public static function setListener(listener:ChartboostListener):Void {
 		#if android
 		set_listener(listener);
@@ -128,6 +134,8 @@ class Chartboost {
 	#end
 	
 	#if ios
+	private static var init_chartboost = PrimeLoader.load("samcodeschartboost_init_chartboost", "ssv");
+	
 	private static var set_listener = PrimeLoader.load("samcodeschartboost_set_listener", "ov");
 	private static var show_interstitial = PrimeLoader.load("samcodeschartboost_show_interstitial", "sv");
 	private static var cache_interstitial = PrimeLoader.load("samcodeschartboost_cache_interstitial", "sv");

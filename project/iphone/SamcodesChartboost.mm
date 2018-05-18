@@ -149,14 +149,14 @@ void queueChartboostEvent(const char* type, const char* location, const char* ur
 
 namespace samcodeschartboost
 {
-	void initChartboost()
+	void initChartboost(const char* appId, const char* appSignature)
 	{
 		static dispatch_once_t once;
 		dispatch_once(&once, ^ {
 			MyChartboostDelegate *myObject = [MyChartboostDelegate new];
 
-			NSString *nsAppId = [[NSString alloc] initWithUTF8String:ChartboostAppId];
-			NSString *nsSignature = [[NSString alloc] initWithUTF8String:ChartboostAppSignature];
+			NSString *nsAppId = [[NSString alloc] initWithUTF8String:appId];
+			NSString *nsSignature = [[NSString alloc] initWithUTF8String:appSignature];
 
 			[Chartboost startWithAppId:nsAppId
 						  appSignature:nsSignature
@@ -166,115 +166,85 @@ namespace samcodeschartboost
 	
 	void showInterstitial(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		[Chartboost showInterstitial:nsLocation];
 	}
 
 	void cacheInterstitial(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		[Chartboost cacheInterstitial:nsLocation];
 	}
 	
 	bool hasInterstitial(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		return [Chartboost hasInterstitial:nsLocation];
 	}
 	
 	void showRewardedVideo(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		[Chartboost showRewardedVideo:nsLocation];
 	}
 
 	void cacheRewardedVideo(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		[Chartboost cacheRewardedVideo:nsLocation];
 	}
 	
 	bool hasRewardedVideo(const char* location)
 	{
-		initChartboost();
-		
 		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
 		return [Chartboost hasRewardedVideo:nsLocation];
 	}
 	
 	bool isAnyViewVisible()
 	{
-		initChartboost();
-		
 		return [Chartboost isAnyViewVisible];
 	}
 	
 	void setCustomId(const char* id)
 	{
-		initChartboost();
-		
 		NSString *nsId = [[NSString alloc] initWithUTF8String:id];
 		[Chartboost setCustomId:nsId];
 	}
 	
 	const char* getCustomId()
 	{
-		initChartboost();
-		
 		NSString *nsId = [Chartboost getCustomId];
 		return [nsId UTF8String];
 	}
 	
 	void setShouldRequestInterstitialsInFirstSession(bool shouldRequest)
 	{
-		initChartboost();
-		
 		[Chartboost setShouldRequestInterstitialsInFirstSession:shouldRequest];
 	}
 	
 	bool getAutoCacheAds()
 	{
-		initChartboost();
-		
 		return [Chartboost getAutoCacheAds];
 	}
 	
 	void setAutoCacheAds(bool autoCache)
 	{
-		initChartboost();
-		
 		[Chartboost setAutoCacheAds:autoCache];
 	}
 	
 	void setShouldPrefetchVideoContent(bool shouldPrefetch)
 	{
-		initChartboost();
-		
 		[Chartboost setShouldPrefetchVideoContent:shouldPrefetch];
 	}
 	
 	const char* getSDKVersion()
 	{
-		initChartboost();
-		
 		NSString *nsVersion = [Chartboost getSDKVersion];
 		return [nsVersion UTF8String];
 	}
 	
 	void setStatusBarBehavior(bool shouldHide)
 	{
-		initChartboost();
-		
 		if(shouldHide) {
 			[Chartboost setStatusBarBehavior:CBStatusBarBehaviorIgnore];
 		} else {
@@ -284,15 +254,11 @@ namespace samcodeschartboost
 	
 	void setMuted(bool mute)
 	{
-		initChartboost();
-		
 		[Chartboost setMuted:mute];
 	}
 	
 	void restrictDataCollection(bool shouldRestrict)
 	{
-		initChartboost();
-		
 		[Chartboost restrictDataCollection:shouldRestrict];
 	}
 }

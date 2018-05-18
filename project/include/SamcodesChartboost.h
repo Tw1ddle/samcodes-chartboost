@@ -3,6 +3,7 @@
 
 namespace samcodeschartboost
 {
+	void initChartboost(const char* appId, const char* appSignature);
 	void showInterstitial(const char* location);
 	void cacheInterstitial(const char* location);
 	bool hasInterstitial(const char* location);
