@@ -41,13 +41,18 @@ Include the haxelib through Project.xml:
 <haxelib name="samcodes-chartboost" />
 ```
 
-Specify your app id and app signature in Project.xml:
+To use test ads, first ensure "test mode" is enabled on your Chartboost app dashboard.
+
+For Android, set the app identifier and signature in the Project.xml file:
 ```xml
 <!-- Enter your app id and app signatures here -->
 <setenv name="ChartboostAppId" value="YOUR_ID" if="android" />
 <setenv name="ChartboostAppSignature" value="YOUR_SIG" if="android" />
-<haxeflag name="ChartboostAppId" value="YOUR_ID" if="ios" />
-<haxeflag name="ChartboostAppSignature" value="YOUR_SIG" if="ios" />
+```
+
+For iOS, pass the app identifier and signature in AdsWrapper.hx:
+```haxe
+Chartboost.initChartboost(yourAppId, yourAppSignature);
 ```
 
 ```haxe
