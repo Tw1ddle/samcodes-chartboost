@@ -286,13 +286,13 @@ namespace samcodeschartboost
 	{
 		initChartboost();
 		
-		[Chartboost setMuted:muted];
+		[Chartboost setMuted:mute];
 	}
 	
 	void restrictDataCollection(bool shouldRestrict)
 	{
 		initChartboost();
 		
-		[Chartboost setRestrictDataCollection:shouldRestrict];
+		[Chartboost restrictDataCollection:shouldRestrict];
 	}
 }
