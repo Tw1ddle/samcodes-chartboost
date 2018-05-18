@@ -123,7 +123,7 @@ void samcodeschartboost_set_muted(bool mute)
 }
 DEFINE_PRIME1v(samcodeschartboost_set_muted);
 
-void restrict_data_collection(bool shouldRestrict)
+void samcodeschartboost_restrict_data_collection(bool shouldRestrict)
 {
 	restrictDataCollection(shouldRestrict);
 }
