@@ -19,7 +19,7 @@ AutoGCRoot* chartboostEventHandle = 0;
 
 void samcodeschartboost_init_chartboost(HxString appId, HxString appSignature)
 {
-	init_chartboost(appId.c_str(), appSignature.c_str());
+	initChartboost(appId.c_str(), appSignature.c_str());
 }
 DEFINE_PRIME2v(samcodeschartboost_init_chartboost);
 
