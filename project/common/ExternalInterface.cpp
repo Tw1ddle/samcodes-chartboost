@@ -61,7 +61,7 @@ bool samcodeschartboost_has_rewarded_video(HxString location)
 {
 	return hasRewardedVideo(location.c_str());
 }
-DEFINE_PRIME1samcodeschartboost_(has_rewarded_video);
+DEFINE_PRIME1(samcodeschartboost_has_rewarded_video);
 
 bool samcodeschartboost_is_any_view_visible()
 {
