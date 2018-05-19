@@ -2,10 +2,6 @@ package extension.chartboost;
 
 #if (android || ios)
 
-#if ios
-import cpp.Object;
-#end
-
 #if android
 import lime.system.JNI;
 #end

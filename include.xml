@@ -9,6 +9,7 @@
 		<dependency name="AVFoundation.framework" />
 		<dependency name="CoreGraphics.framework" />
 		<dependency name="Foundation.framework" />
+		<dependency name="Security.framework" />
 		<dependency name="StoreKit.framework" />
 		<dependency name="UIKit.framework" />
 		<dependency name="WebKit.framework" />
