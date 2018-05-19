@@ -5,7 +5,6 @@
  * Numerous updates to support OpenFL 8.
  * Removed deprecated More Apps support.
  * Updated bindings, including restrictDataCollection method to facilitate compliance with GDPR.
- * Removed initChartboost method on iOS. Specify your app id and signature in Project.xml instead.
 
 ## 1.0.8 -> 1.0.9
  * Upgraded to latest Chartboost SDK (iOS 6.6.1).
