@@ -72,6 +72,4 @@ If in doubt, refer to the official [Chartboost](https://www.chartboost.com/) doc
 
 Use ```#if (android || ios)``` conditionals around your imports and calls to this library for cross platform projects - there is no stub/fallback implementation included in the haxelib.
 
-For iOS you need to drag the ads library framework files e.g. ```Chartboost``` into the "link binaries with libraries" section under the "build phases" tab in Xcode.
-
 If you need to rebuild the iOS or simulator ndlls, navigate to ```/project``` and run ```rebuild_ndlls.sh```.
