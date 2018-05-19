@@ -6,14 +6,12 @@
 		<dependency path="project/include/Chartboost.framework" />
 		<dependency path="project/include/CHAMoatMobileAppKit.framework" />
 		
-		<dependency name="AdSupport.framework" />
 		<dependency name="AVFoundation.framework" />
 		<dependency name="CoreGraphics.framework" />
 		<dependency name="Foundation.framework" />
-		<dependency name="QuartzCore.framework" />
 		<dependency name="StoreKit.framework" />
-		<dependency name="SystemConfiguration.framework" />
 		<dependency name="UIKit.framework" />
+		<dependency name="WebKit.framework" />
 	</section>
 	
 	<section if="android">
