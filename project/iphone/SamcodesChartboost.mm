@@ -262,4 +262,16 @@ namespace samcodeschartboost
 	{
 		[Chartboost restrictDataCollection:shouldRestrict];
 	}
+	
+	int get_pi_data_use_consent()
+	{
+		CBPIDataUseConsent currentConsent = [Chartboost getPIDataUseConsent];
+		return (int)(currentConsent);
+	}
+	
+	void set_pi_data_use_consent(int consent)
+	{
+		CBPIDataUseConsent consentEnum = (CBPIDataUseConsent)(consent);
+		[Chartboost setPIDataUseConsent:consent];
+	}
 }

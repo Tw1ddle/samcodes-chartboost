@@ -16,12 +16,8 @@
 	</section>
 	
 	<section if="android">
-		<!-- See: https://github.com/player-03/google-play-services -->
+		<!-- Note you can set your own version of the base and ads libraries by overriding this -->
 		<set name="playServicesVersion" value="+" unless="playServicesVersion" />
-		
-		<set name="google-mobile-ads" />
-		
-		<haxelib name="google-play-services" />
 		
 		<dependency name="samcodes-chartboost" path="dependencies/samcodes-chartboost"/>
 		<android extension="com.samcodes.chartboost.ChartboostExtension" />

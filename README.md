@@ -3,7 +3,7 @@
 [![Travis Build Status](https://img.shields.io/travis/Tw1ddle/samcodes-chartboost.svg?style=flat-square)](https://travis-ci.org/Tw1ddle/samcodes-chartboost)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/samcodes-chartboost/blob/master/LICENSE)
 
-Unofficial Chartboost ads library support for OpenFL Android and iOS targets. See the demo app [here](https://github.com/Tw1ddle/samcodes-ads-demo).
+Unofficial Chartboost ads library support for Haxe OpenFL Android and iOS targets. See the demo app [here](https://github.com/Tw1ddle/samcodes-ads-demo).
 
 ### Features
 
@@ -12,6 +12,7 @@ Supports:
 * Rewarded videos.
 * Ad caching and custom ad locations.
 * Customizable listener for reacting to all SDK events.
+* GDPR personal data consent method bindings.
 
 Doesn't support:
 * Chartboost InPlay type ads.
@@ -30,9 +31,9 @@ haxelib install samcodes-chartboost
 
 See the [demo app](https://github.com/Tw1ddle/samcodes-ads-demo) for a complete example using a custom listener.
 
-![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-interstitial.png?raw=true "Demo app")
+![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-interstitial.png?raw=true "Demo app with Chartboost interstitial")
 
-![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-video.png?raw=true "Demo app")
+![Screenshot of demo app](https://github.com/Tw1ddle/samcodes-ads-demo/blob/master/screenshots/chartboost-video.png?raw=true "Demo app with Chartboost video")
 
 ### Usage
 
@@ -41,16 +42,7 @@ Include the haxelib through Project.xml:
 <haxelib name="samcodes-chartboost" />
 ```
 
-To use test ads, first ensure "test mode" is enabled on your Chartboost app dashboard.
-
-For Android, set the app identifier and signature in the Project.xml file:
-```xml
-<!-- Enter your app id and app signatures here -->
-<setenv name="ChartboostAppId" value="YOUR_ID" if="android" />
-<setenv name="ChartboostAppSignature" value="YOUR_SIG" if="android" />
-```
-
-For iOS, pass the app identifier and signature in AdsWrapper.hx:
+On both Android and iOS, pass the app identifier and signature in when initializing Chartboost:
 ```haxe
 Chartboost.initChartboost(yourAppId, yourAppSignature);
 ```
@@ -68,7 +60,7 @@ Chartboost.showInterstitial("mylocation"); // Show an interstitial at 'mylocatio
 
 ### Notes
 
-If in doubt, refer to the official [Chartboost](https://www.chartboost.com/) documentation.
+Refer to the official [Chartboost](https://www.chartboost.com/) documentation.
 
 Use ```#if (android || ios)``` conditionals around your imports and calls to this library for cross platform projects - there is no stub/fallback implementation included in the haxelib.
 

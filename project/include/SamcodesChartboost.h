@@ -21,6 +21,8 @@ namespace samcodeschartboost
 	void setStatusBarBehavior(bool shouldHide);
 	void setMuted(bool mute);
 	void restrictDataCollection(bool shouldRestrict);
+	int get_pi_data_use_consent();
+	void set_pi_data_use_consent(int consent);
 }
 
 #endif

@@ -11,11 +11,9 @@ import lime.system.JNI;
    See: https://github.com/Tw1ddle/samcodes-chartboost
 **/
 class Chartboost {
-	#if ios
 	public static function initChartboost(appId:String, appSignature:String):Void {
 		init_chartboost(appId, appSignature);
 	}
-	#end
 	
 	public static function setListener(listener:ChartboostListener):Void {
 		#if android
@@ -102,6 +100,14 @@ class Chartboost {
 		restrict_data_collection(shouldRestrict);
 	}
 	
+	public static function getPIDataUseConsent():ChartboostConsent {
+		return get_pi_data_use_consent();
+	}
+	
+	public static function setPIDataUseConsent(consent:ChartboostConsent):Void {
+		set_pi_data_use_consent(consent);
+	}
+	
 	#if android
 	private static inline var packageName:String = "com/samcodes/chartboost/ChartboostExtension";
 	private static inline function bindJNI(jniMethod:String, jniSignature:String) {
@@ -109,6 +115,8 @@ class Chartboost {
 	}
 	
 	private static var close_impression = bindJNI("closeImpression", "()V");
+	
+	private static var init_chartboost = bindJNI("initChartboost", "(Ljava/lang/String;Ljava/lang/String;)V");
 	
 	private static var set_listener = bindJNI("setListener", "(Lorg/haxe/lime/HaxeObject;)V");
 	private static var show_interstitial = bindJNI("showInterstitial", "(Ljava/lang/String;)V");
@@ -127,6 +135,8 @@ class Chartboost {
 	private static var get_sdk_version = bindJNI("getSDKVersion", "()Ljava/lang/String;");
 	private static var set_should_hide_system_ui = bindJNI("setShouldHideSystemUI", "(Z)V");
 	private static var restrict_data_collection = bindJNI("restrictDataCollection", "(Z)V");
+	private static var get_pi_data_use_consent = bindJNI("getPIDataUseConsent", "()I");
+	private static var set_pi_data_use_consent = bindJNI("setPIDataUseConsent", "(I)V");
 	#end
 	
 	#if ios
@@ -150,6 +160,8 @@ class Chartboost {
 	private static var set_should_hide_system_ui = PrimeLoader.load("samcodeschartboost_set_status_bar_behavior", "bv");
 	private static var set_muted = PrimeLoader.load("samcodeschartboost_set_muted", "bv");
 	private static var restrict_data_collection = PrimeLoader.load("samcodeschartboost_restrict_data_collection", "bv");
+	private static var get_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_get_pi_data_use_consent", "i");
+	private static var set_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_set_pi_data_use_consent", "iv");
 	#end
 }
 

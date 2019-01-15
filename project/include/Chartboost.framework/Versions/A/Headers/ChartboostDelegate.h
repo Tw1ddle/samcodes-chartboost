@@ -163,6 +163,22 @@ typedef NS_ENUM(NSUInteger, CBStatusBarBehavior) {
     CBStatusBarBehaviorRespect
 };
 
+
+/*!
+ @typedef NS_ENUM (NSUInteger, CBPIDataUseConsent)
+ 
+ @abstract
+ GDPR compliance settings:
+ */
+typedef NS_ENUM(NSInteger, CBPIDataUseConsent) {
+  /*! Publisher hasn't implemented functionality or the user has the option to not answer. */
+  Unknown = -1,
+  /*! User does not consent to targeting (Contextual ads). */
+  NoBehavioral = 0,
+  /*! User consents (Behavioral and Contextual Ads). */
+  YesBehavioral = 1
+};
+
 /*!
  @typedef CBLocation
  

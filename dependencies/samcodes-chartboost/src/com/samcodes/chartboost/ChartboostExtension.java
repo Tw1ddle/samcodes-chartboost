@@ -11,18 +11,31 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.chartboost.sdk.*;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
+import com.chartboost.sdk.Chartboost;
+import com.chartboost.sdk.ChartboostDelegate;
+import com.chartboost.sdk.Chartboost.CBPIDataUseConsent;
 import com.chartboost.sdk.Model.CBError.CBClickError;
 import com.chartboost.sdk.Model.CBError.CBImpressionError;
 import com.chartboost.sdk.CBLocation;
 
 public class ChartboostExtension extends Extension
 {
-	private static String appId = "::ENV_ChartboostAppId::";
-	private static String appSignature = "::ENV_ChartboostAppSignature::";
 	private static String TAG = "ChartboostExtension";
+	
+	public static void initChartboost(String appId, String appSignature) {
+		if(appId == null || appSignature == null) {
+			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
+			Log.e(TAG, "Refer to the Chartboost SDK documentation");
+			Log.e(TAG, "Pass the id and signature into the initChartboost call from Haxe");
+			return;
+		}
+		
+		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + appId + " AND APP SIGNATURE " + appSignature);
+		
+		Chartboost.startWithAppId(Extension.mainActivity, appId, appSignature);
+	}
 	
 	public static HaxeObject callback = null;
 	public static void setListener(HaxeObject haxeCallback) {
@@ -235,16 +248,7 @@ public class ChartboostExtension extends Extension
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		if(ChartboostExtension.appId == "null" || ChartboostExtension.appSignature == "null") {
-			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
-			Log.e(TAG, "Refer to the Chartboost SDK documentation");
-			Log.e(TAG, "Set the id and signature in your Project.xml file: <setenv name='ChartboostAppId' value='your app id' /> <setenv name='ChartboostAppSignature' name='your app signature' /> ");
-			return;
-		}
-		
-		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + ChartboostExtension.appId + " AND APP SIGNATURE " + ChartboostExtension.appSignature);
 		Chartboost.setDelegate(delegate);
-		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.appId, ChartboostExtension.appSignature);
 		Chartboost.onCreate(Extension.mainActivity);
 	}
 	
@@ -354,5 +358,23 @@ public class ChartboostExtension extends Extension
 	
 	public static void restrictDataCollection(boolean shouldRestrict) {
 		Chartboost.restrictDataCollection(Extension.mainActivity, shouldRestrict);
+	}
+	
+	public static void setPIDataUseConsent(int consent) {
+		if(consent == -1) {
+			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.UNKNOWN);
+		}
+		if(consent == 0) {
+			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.NO_BEHAVIORAL);
+		}
+		if(consent == 1) {
+			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.YES_BEHAVIORAL);
+		}
+		
+		Log.w(TAG, "FAILED TO SET PERSONAL DATA USE CONSENT STATE, DID YOU PASS A VALID VALUE?");
+	}
+	
+	public static int getPIDataUseConsent() {
+		return Chartboost.getPIDataUseConsent().getValue();
 	}
 }

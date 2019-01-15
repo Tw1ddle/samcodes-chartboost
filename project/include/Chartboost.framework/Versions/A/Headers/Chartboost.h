@@ -397,15 +397,22 @@
 
 /*!
  @abstract
- Set to restrict Chartboost's ability to collect personal data from the device. When this is set to YES. IDFA and ip address will not
- be collected by the SDK or the server. Use this to communicate an EEU Data Subject's preference regarding data collection.
+ Set to restrict Chartboost's ability to collect personal data from the device. See CBPIDataUseConsent declaration for details
  Note: This method should be called before starting the Chartboost SDK with startWithAppId:appSignature:delegate.
- @param restrict: Whether to restrict data collection or not
- @discussion Default value is NOT
+ @param consent: set the consent level
+ @discussion Default value is Unknown
  */
-+ (void)restrictDataCollection:(BOOL)shouldRestrict;
++ (void)setPIDataUseConsent:(CBPIDataUseConsent)consent;
+
+/*!
+ @abstract
+ Get the current consent setting
+ */
++ (CBPIDataUseConsent)getPIDataUseConsent;
 
 #pragma mark - Deprecated
++ (void)restrictDataCollection:(BOOL)shouldRestrict __attribute__((deprecated("Use setPIDataUseConsent:(CBPIDataUseConsent)consent instead")));
+
 + (BOOL)hasMoreApps:(CBLocation)location  __attribute__((deprecated("This method is deprecated will always return false")));
 + (void)showMoreApps:(CBLocation)location __attribute__((deprecated("This method is deprecated and is a no-op")));
 + (void)showMoreApps:(UIViewController *)viewController

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.0 -> 1.1.1
+ * Upgraded to latest Chartboost SDK (iOS 7.3.0, Android 7.3.1).
+ * You must now call initChartboost manually from Haxe code on launch on Android.
+ * Updated bindings, including setPIDataUseConsent method to facilitate compliance with GDPR.
+
 ## 1.0.9 -> 1.1.0
  * Upgraded to latest Chartboost SDK (iOS 7.2.0, Android 7.2.0).
  * Numerous updates to support OpenFL 8.
