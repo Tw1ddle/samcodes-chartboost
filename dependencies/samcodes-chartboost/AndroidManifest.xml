@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.samcodes.chartboost" >
+	<application android:debuggable="::DEBUG::">
+		<activity android:name="com.chartboost.sdk.CBImpressionActivity"
+		android:excludeFromRecents="true"
+		android:hardwareAccelerated="true"
+		android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+		android:configChanges="keyboardHidden|orientation|screenSize"
+		/>
+	</application>
+	
+	<!-- Required -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	
+	<!-- Optional, allows the SDK to more accurately identify users -->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<!-- Optional, allows the SDK to cache ad assets in external memory -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<!-- Optional, lets the SDK manage calls that interrupt video ad playback -->
+	<!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/> -->
+</manifest>
