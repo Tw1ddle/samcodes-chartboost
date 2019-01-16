@@ -16,8 +16,9 @@
 	</section>
 	
 	<section if="android">
-		<!-- Note you can set your own version of the base and ads libraries by overriding this -->
-		<set name="playServicesVersion" value="+" unless="playServicesVersion" />
+		<!-- Note you can set your own version of the base and ads libraries by overriding these -->
+		<set name="playServicesBaseVersion" value="+" unless="playServicesBaseVersion" />
+		<set name="playServicesAdsVersion" value="+" unless="playServicesAdsVersion" />
 		
 		<dependency name="samcodes-chartboost" path="dependencies/samcodes-chartboost"/>
 		<android extension="com.samcodes.chartboost.ChartboostExtension" />
