@@ -27,12 +27,6 @@ script:
   - ./rebuild_ndlls.sh
   - popd
 
-# Move stuff into the folder that we're going to deploy
-before_deploy:
-  - cd $TRAVIS_BUILD_DIR/ndll/
-  - mkdir ndll
-  - mv !(ndll) ndll
-
 # Deploy the generated ndlls using Travis builtin GitHub Pages support
 deploy:
   provider: pages
@@ -40,6 +34,5 @@ deploy:
   local_dir: $TRAVIS_BUILD_DIR/ndll/
   github_token: $GITHUB_API_KEY
   keep-history: true
-  target-branch: master
   on:
     branch: master
