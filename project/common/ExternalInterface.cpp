@@ -135,6 +135,18 @@ void samcodeschartboost_restrict_data_collection(bool shouldRestrict)
 }
 DEFINE_PRIME1v(samcodeschartboost_restrict_data_collection);
 
+int samcodeschartboost_get_pi_data_use_consent()
+{
+	return getPIDataUseConsent();
+}
+DEFINE_PRIME1(samcodeschartboost_get_pi_data_use_consent);
+
+void samcodeschartboost_set_pi_data_use_consent(int consent)
+{
+	setPIDataUseConsent(consent);
+}
+DEFINE_PRIME1v(samcodechartboost_set_pi_data_use_consent);
+
 extern "C" void samcodeschartboost_main()
 {
 }
