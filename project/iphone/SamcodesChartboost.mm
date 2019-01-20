@@ -156,48 +156,48 @@ namespace samcodeschartboost
 		dispatch_once(&once, ^ {
 			MyChartboostDelegate *myObject = [MyChartboostDelegate new];
 
-			NSString *nsAppId = [[NSString alloc] initWithUTF8String:appId];
-			NSString *nsSignature = [[NSString alloc] initWithUTF8String:appSignature];
+			NSString *nsAppId = [NSString stringWithUTF8String:appId];
+			NSString *nsSignature = [NSString stringWithUTF8String:appSignature];
 
 			[Chartboost startWithAppId:nsAppId
-						  appSignature:nsSignature
-							  delegate:myObject];
+							appSignature:nsSignature
+							delegate:myObject];
 		});
 	}
 	
 	void showInterstitial(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		[Chartboost showInterstitial:nsLocation];
 	}
 
 	void cacheInterstitial(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		[Chartboost cacheInterstitial:nsLocation];
 	}
 	
 	bool hasInterstitial(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		return [Chartboost hasInterstitial:nsLocation];
 	}
 	
 	void showRewardedVideo(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		[Chartboost showRewardedVideo:nsLocation];
 	}
 
 	void cacheRewardedVideo(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		[Chartboost cacheRewardedVideo:nsLocation];
 	}
 	
 	bool hasRewardedVideo(const char* location)
 	{
-		NSString *nsLocation = [[NSString alloc] initWithUTF8String:location];
+		NSString *nsLocation = [NSString stringWithUTF8String:location];
 		return [Chartboost hasRewardedVideo:nsLocation];
 	}
 	
@@ -208,7 +208,7 @@ namespace samcodeschartboost
 	
 	void setCustomId(const char* id)
 	{
-		NSString *nsId = [[NSString alloc] initWithUTF8String:id];
+		NSString *nsId = [NSString stringWithUTF8String:id];
 		[Chartboost setCustomId:nsId];
 	}
 	
