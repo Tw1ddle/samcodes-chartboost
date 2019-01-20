@@ -12,4 +12,16 @@ package extension.chartboost;
 	var NO_BEHAVIORAL = 0;
 	/* User consents (Behavioral and Contextual Ads). */
 	var YES_BEHAVIORAL = 1;
+	
+	@:to public static function toString(pref:Int):String {
+		return switch(pref) {
+			case UNKNOWN: "unknown";
+			case NO_BEHAVIORAL: "no_behavioral";
+			case YES_BEHAVIORAL: "yes_behavioral";
+		case _: {
+			trace ("Tried to stringify invalid Chartboost consent status, will return 'unknown' instead");
+			"unknown";
+		}
+		};
+	}
 }
