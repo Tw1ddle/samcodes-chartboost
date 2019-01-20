@@ -363,15 +363,13 @@ public class ChartboostExtension extends Extension
 	public static void setPIDataUseConsent(int consent) {
 		if(consent == -1) {
 			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.UNKNOWN);
-		}
-		if(consent == 0) {
+		} else if(consent == 0) {
 			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.NO_BEHAVIORAL);
-		}
-		if(consent == 1) {
+		} else if(consent == 1) {
 			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.YES_BEHAVIORAL);
+		} else {
+			Log.w(TAG, "FAILED TO SET PERSONAL DATA USE CONSENT STATE, DID YOU PASS A VALID VALUE?");
 		}
-		
-		Log.w(TAG, "FAILED TO SET PERSONAL DATA USE CONSENT STATE, DID YOU PASS A VALID VALUE?");
 	}
 	
 	public static int getPIDataUseConsent() {
