@@ -145,7 +145,7 @@ void samcodeschartboost_set_pi_data_use_consent(int consent)
 {
 	setPIDataUseConsent(consent);
 }
-DEFINE_PRIME1v(samcodechartboost_set_pi_data_use_consent);
+DEFINE_PRIME1v(samcodeschartboost_set_pi_data_use_consent);
 
 extern "C" void samcodeschartboost_main()
 {
