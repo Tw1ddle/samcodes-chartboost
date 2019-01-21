@@ -139,7 +139,7 @@ int samcodeschartboost_get_pi_data_use_consent()
 {
 	return getPIDataUseConsent();
 }
-DEFINE_PRIME1(samcodeschartboost_get_pi_data_use_consent);
+DEFINE_PRIME0(samcodeschartboost_get_pi_data_use_consent);
 
 void samcodeschartboost_set_pi_data_use_consent(int consent)
 {
