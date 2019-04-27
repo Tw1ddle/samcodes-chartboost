@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class UIView;
 
@@ -86,7 +87,9 @@ typedef NS_ENUM(NSUInteger, CBMediation) {
     /*! HyprMX */
     CBMediationHyprMX,
     /*! AerServ */
-    CBMediationAerServ
+    CBMediationAerServ,
+    /*! Helium */
+    CBMediationHelium
 };
 
 
@@ -127,7 +130,9 @@ typedef NS_ENUM(NSUInteger, CBLoadError) {
     /*! Error Originating from the JS side of a Web View */
     CBLoadErrorWebViewScriptError = 22,
     /*! Network is unavailable while attempting to show. */
-    CBLoadErrorInternetUnavailableAtShow = 25
+    CBLoadErrorInternetUnavailableAtShow = 25,
+    /*! Error trying to present the ad. */
+    CBLoadErrorAdPresentationFailure = 33
 };
 
 /*!
@@ -178,6 +183,25 @@ typedef NS_ENUM(NSInteger, CBPIDataUseConsent) {
   /*! User consents (Behavioral and Contextual Ads). */
   YesBehavioral = 1
 };
+
+
+
+/*!
+ @typedef CBBannerSize
+ 
+ @abstract
+ Defines standard sizes used to initialize Banner objects.
+ 
+ @discussion Standard sizes used to describe default Banner bounds.
+ */
+typedef CGSize const CBBannerSize;
+/*! "Banner" - Standard banner size on phones. */
+FOUNDATION_EXPORT CBBannerSize const CBBannerSizeStandard;
+/*! "Medium Rect" - Medium banner size on phones. */
+FOUNDATION_EXPORT CBBannerSize const CBBannerSizeMedium;
+/*! "Tablet" - Leaderboard banner size on tablets. */
+FOUNDATION_EXPORT CBBannerSize const CBBannerSizeLeaderboard;
+
 
 /*!
  @typedef CBLocation

@@ -24,18 +24,9 @@ public class ChartboostExtension extends Extension
 {
 	private static String TAG = "ChartboostExtension";
 	
-	public static void initChartboost(String appId, String appSignature) {
-		if(appId == null || appSignature == null) {
-			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
-			Log.e(TAG, "Refer to the Chartboost SDK documentation");
-			Log.e(TAG, "Pass the id and signature into the initChartboost call from Haxe");
-			return;
-		}
-		
-		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + appId + " AND APP SIGNATURE " + appSignature);
-		
-		Chartboost.startWithAppId(Extension.mainActivity, appId, appSignature);
-	}
+	// This Chartboost app id and signature should be as environment variables in your project file
+	private static String chartboostAppId = "::ENV_ChartboostAppId";
+	private static String chartboostAppSignature = "::ENV_ChartboostAppSignature";
 	
 	public static HaxeObject callback = null;
 	public static void setListener(HaxeObject haxeCallback) {
@@ -248,6 +239,16 @@ public class ChartboostExtension extends Extension
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		if(ChartboostExtension.chartboostAppId == null || ChartboostExtension.chartboostAppSignature == null) {
+			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
+			Log.e(TAG, "Refer to the Chartboost SDK documentation");
+			Log.e(TAG, "Set the id and signature in your project settings");
+			return;
+		}
+		
+		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + ChartboostExtension.chartboostAppId + " AND APP SIGNATURE " + ChartboostExtension.chartboostAppSignature);
+		
+		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.chartboostAppId, ChartboostExtension.chartboostAppSignature);
 		Chartboost.setDelegate(delegate);
 		Chartboost.onCreate(Extension.mainActivity);
 	}

@@ -11,9 +11,11 @@ import lime.system.JNI;
    See: https://github.com/Tw1ddle/samcodes-chartboost
 **/
 class Chartboost {
+	#if ios
 	public static function initChartboost(appId:String, appSignature:String):Void {
 		init_chartboost(appId, appSignature);
 	}
+	#end
 	
 	public static function setListener(listener:ChartboostListener):Void {
 		#if android
@@ -115,8 +117,6 @@ class Chartboost {
 	}
 	
 	private static var close_impression = bindJNI("closeImpression", "()V");
-	
-	private static var init_chartboost = bindJNI("initChartboost", "(Ljava/lang/String;Ljava/lang/String;)V");
 	
 	private static var set_listener = bindJNI("setListener", "(Lorg/haxe/lime/HaxeObject;)V");
 	private static var show_interstitial = bindJNI("showInterstitial", "(Ljava/lang/String;)V");

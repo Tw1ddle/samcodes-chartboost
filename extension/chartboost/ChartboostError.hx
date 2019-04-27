@@ -38,6 +38,8 @@ class ChartboostError {
 				"WEB_VIEW_SCRIPT_ERROR";
 			case 25:
 				"INTERNET_UNAVAILABLE_AT_SHOW";
+			case 33:
+				"AD_PRESENTATION_FAILURE";
 			default:
 				"UNKNOWN CHARTBOOST IMPRESSION ERROR";
 		};

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1 -> 1.1.2
+ * Upgraded to latest Chartboost SDK (iOS 7.5).
+ * Reverted to initializing Chartboost on Android via activity onCreate, doing it later via initChartboost apparently broke ads. You must set app id and signature in project.xml as before.
+
 ## 1.1.0 -> 1.1.1
  * Upgraded to latest Chartboost SDK (iOS 7.3.0, Android 7.3.1).
  * You must now call initChartboost manually from Haxe code on launch on Android.

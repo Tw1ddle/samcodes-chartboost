@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"tags": ["chartboost","ads","interstitials","android","ios"],
 	"description": "Unofficial Chartboost ads support for Android and iOS",
-	"version": "1.1.1",
-	"releasenote": "Upgraded to latest Chartboost SDK (iOS 7.3.0, Android 7.3.1), GDPR changes, initChartboost must be called from Haxe on Android now.",
+	"version": "1.1.2",
+	"releasenote": "Upgraded to latest Chartboost SDK (iOS 7.5), reverted back to initializing Chartboost via onCreate on Android.",
 	"contributors": ["samcodes"],
 	"dependencies": {}
 }

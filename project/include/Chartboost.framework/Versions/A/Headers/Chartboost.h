@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChartboostDelegate.h"
 @class CBInPlay;
+FOUNDATION_EXPORT BOOL ChartboostInitialized(const char* function);
 @interface Chartboost : NSObject
 #pragma mark - Main Chartboost API
 
@@ -109,6 +110,7 @@
  the method will attempt to fetch data from the Chartboost API server.
  */
 + (void)cacheInterstitial:(CBLocation)location;
+
 /*!
  @abstract
  Present an interstitial for the given CBLocation.
@@ -135,8 +137,6 @@
  the method will attempt to fetch data from the Chartboost API server.
  */
 + (void)cacheRewardedVideo:(CBLocation)location;
-
-
 
 /*!
  @abstract
@@ -294,14 +294,15 @@
 /*!
  @abstract
  Set a custom mediation library to append to the POST body of every request.
- example setMediation:CBMediationMoPub withVersion:@"3.8.0"
+ example setMediation:CBMediationMoPub withLibraryVersion:@"3.8.0" adapterVersionn:@"2.0"
  
  @param library The constant for the name of the mediation library.
- @param libraryVersion The version sent as a string.
+ @param libraryVersion The mediation library version sent as a string.
+ @param adapterVersion The adapter version sent as a string.
  
  @discussion This is an internal method used by mediation partners to track their usage.
  */
-+ (void)setMediation:(CBMediation)library withVersion:(NSString*)libraryVersion;
++ (void)setMediation:(CBMediation)library withLibraryVersion:(NSString*)libraryVersion adapterVersion:(NSString*)adapterVersion;
 
 /*!
  @abstract
@@ -368,18 +369,6 @@
 
 /*!
  @abstract
- Set to control how the fullscreen ad units should interact with the status bar. (CBStatusBarBehaviorIgnore by default).
- 
- @param statusBarBehavior The param to set if fullscreen video should respect the status bar.
- 
- @discussion See the enum value comments for descriptions on the values and their behavior.  Only use this feature if your
- application has the status bar enabled.
- */
-+ (void)setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior;
-
-
-/*!
- @abstract
  returns YES if auto IAP tracking is enabled, NO if it isn't.
  
  @discussion Call to check if automatic tracking of in-app purchases is enabled.
@@ -419,5 +408,7 @@
             location:(CBLocation)location  __attribute__((deprecated("This method is deprecated and is a no-op")));
 + (void)setShouldDisplayLoadingViewForMoreApps:(BOOL)shouldDisplay __attribute__((deprecated("This method is deprecated and is a no-op")));
 + (void)cacheMoreApps:(CBLocation)location __attribute__((deprecated("This method is deprecated and is a no-op")));
++ (void)setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior __attribute__((deprecated("This method is deprecated and is a no-op")));
++ (void)setMediation:(CBMediation)library withVersion:(NSString*)libraryVersion DEPRECATED_MSG_ATTRIBUTE("Please use setMediation:withLibraryVersion:adapterVersion: instead.");
 
 @end
