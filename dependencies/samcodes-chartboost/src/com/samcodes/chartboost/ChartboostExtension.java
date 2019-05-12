@@ -25,8 +25,8 @@ public class ChartboostExtension extends Extension
 	private static String TAG = "ChartboostExtension";
 	
 	// This Chartboost app id and signature should be as environment variables in your project file
-	private static String chartboostAppId = "::ENV_ChartboostAppId";
-	private static String chartboostAppSignature = "::ENV_ChartboostAppSignature";
+	private static String chartboostAppId = "::ENV_ChartboostAppId::";
+	private static String chartboostAppSignature = "::ENV_ChartboostAppSignature::";
 	
 	public static HaxeObject callback = null;
 	public static void setListener(HaxeObject haxeCallback) {
