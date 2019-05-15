@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.2 -> 1.1.3
+ * Went back to calling initChartboost manually from Haxe code on launch on Android. You must now call initChartboost manually from Haxe code on launch on Android.
+ This works around an issue on HTC One A9 (Android version 6.0.1) and several other devices. Calling Chartboost.startWithAppId() in in the extension's onCreate method prevented SDL from subsequently loading libApplicationMain.so
+ Calls to dlopen would fail unless we passed absolute paths to .so files. We couldn't make sense of this, but deferring Chartboost setup until later works around this.
+
 ## 1.1.1 -> 1.1.2
  * Upgraded to latest Chartboost SDK (iOS 7.5).
  * Reverted to initializing Chartboost on Android via activity onCreate, doing it later via initChartboost apparently broke ads. You must set app id and signature in project.xml as before.

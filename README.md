@@ -42,13 +42,7 @@ Include the haxelib through Project.xml:
 <haxelib name="samcodes-chartboost" />
 ```
 
-On Android, simply set the app identifier and signature in your project settings:
-```xml
-<setenv name="ChartboostAppId" value="YOUR_ID" if="android" />
-<setenv name="ChartboostAppSignature" value="YOUR_SIG" if="android" />
-```
-
-On iOS, pass the app identifier and signature in when initializing Chartboost:
+On Android and iOS, pass the app identifier and signature in for your chosen app/platform when initializing Chartboost:
 ```haxe
 Chartboost.initChartboost(yourAppId, yourAppSignature);
 ```

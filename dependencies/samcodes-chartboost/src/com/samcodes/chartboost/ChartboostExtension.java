@@ -24,10 +24,6 @@ public class ChartboostExtension extends Extension
 {
 	private static String TAG = "ChartboostExtension";
 	
-	// This Chartboost app id and signature should be as environment variables in your project file
-	private static String chartboostAppId = "::ENV_ChartboostAppId::";
-	private static String chartboostAppSignature = "::ENV_ChartboostAppSignature::";
-	
 	public static HaxeObject callback = null;
 	public static void setListener(HaxeObject haxeCallback) {
 		Log.i(TAG, "Setting Haxe Chartboost delegate object");
@@ -238,17 +234,6 @@ public class ChartboostExtension extends Extension
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		if(ChartboostExtension.chartboostAppId == null || ChartboostExtension.chartboostAppSignature == null) {
-			Log.e(TAG, "CHARTBOOST APP ID AND/OR APP SIGNATURE HAVE NOT BEEN SET.");
-			Log.e(TAG, "Refer to the Chartboost SDK documentation");
-			Log.e(TAG, "Set the id and signature in your project settings");
-			return;
-		}
-		
-		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + ChartboostExtension.chartboostAppId + " AND APP SIGNATURE " + ChartboostExtension.chartboostAppSignature);
-		
-		Chartboost.startWithAppId(Extension.mainActivity, ChartboostExtension.chartboostAppId, ChartboostExtension.chartboostAppSignature);
 		Chartboost.setDelegate(delegate);
 		Chartboost.onCreate(Extension.mainActivity);
 	}
@@ -291,6 +276,18 @@ public class ChartboostExtension extends Extension
 		} else {
 			return super.onBackPressed();
 		}
+	}
+	
+	public static void initChartboost(final String appId, final String appSignature) {
+		Log.i(TAG, "STARTING CHARTBOOST WITH APP ID: " + appId + " AND APP SIGNATURE " + appSignature);
+		
+		Extension.mainActivity.runOnUiThread(new Runnable() {
+			public void run() {
+				Chartboost.startWithAppId(Extension.mainActivity, appId, appSignature);
+				Chartboost.onCreate(Extension.mainActivity);
+				Chartboost.onStart(Extension.mainActivity);
+			}
+		});
 	}
 	
 	public static boolean hasInterstitial(String id) {

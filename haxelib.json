@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"tags": ["chartboost","ads","interstitials","android","ios"],
 	"description": "Unofficial Chartboost ads support for Android and iOS",
-	"version": "1.1.2",
-	"releasenote": "Upgraded to latest Chartboost SDK (iOS 7.5), reverted back to initializing Chartboost via onCreate on Android.",
+	"version": "1.1.3",
+	"releasenote": "Work around a crash bug affecting some Android devices/versions. Initialize Chartboost via Chartboost.initChartboost call on Android again.",
 	"contributors": ["samcodes"],
 	"dependencies": {}
 }
