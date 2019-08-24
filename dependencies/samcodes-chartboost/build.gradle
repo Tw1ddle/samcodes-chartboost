@@ -31,4 +31,5 @@ dependencies {
 	compile fileTree(dir: "libs", include: ['*.jar'])
 	compile 'com.google.android.gms:play-services-base:::SET_PLAY_SERVICES_BASE_VERSION::'
 	compile 'com.google.android.gms:play-services-ads-identifier:::SET_PLAY_SERVICES_ADS_IDENTIFIER_VERSION::'
+	compile 'com.android.support:support-v4:::SET_ANDROID_SUPPORT_LIBRARY_V4_VERSION::'
 }

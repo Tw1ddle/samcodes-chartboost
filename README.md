@@ -63,5 +63,6 @@ Chartboost.showInterstitial("mylocation"); // Show an interstitial at 'mylocatio
 
   * Refer to the official [Chartboost](https://www.chartboost.com/) documentation.
   * Use ```#if (android || ios)``` conditionals around your imports and calls to this library for cross platform projects - there is no stub/fallback implementation included in the haxelib.
+  * You may need to edit the build.gradle file in order to select working combinations of the Android support library and Play Services, depending on your targeted SDK versions and other libraries used in your project.
   * If you need to rebuild the iOS or simulator ndlls, navigate to ```/project``` and run ```rebuild_ndlls.sh```.
   * Got an idea or suggestion? Open an issue on GitHub, or send Sam a message on [Twitter](https://twitter.com/Sam_Twidale).
