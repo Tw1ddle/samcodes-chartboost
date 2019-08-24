@@ -1,5 +1,8 @@
 language: haxe
 
+# NOTE this is just for checking that it is possible to build the ndlls for iOS. It's probably safer to build them
+# locally on your own system using your current build of HXCPP and version of Xcode for your own use
+
 # Add secure key for Github
 env:
   global:

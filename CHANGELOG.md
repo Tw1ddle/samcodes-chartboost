@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.3 -> 1.1.4
+ * Upgraded to latest Chartboost SDK (iOS 8.0.1, Android 7.5.0).
+
 ## 1.1.2 -> 1.1.3
  * Went back to calling initChartboost manually from Haxe code on launch on Android. You must now call initChartboost manually from Haxe code on launch on Android.
  This works around an issue on HTC One A9 (Android version 6.0.1) and several other devices. Calling Chartboost.startWithAppId() in in the extension's onCreate method prevented SDL from subsequently loading libApplicationMain.so

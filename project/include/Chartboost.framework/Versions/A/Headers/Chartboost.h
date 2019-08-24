@@ -85,19 +85,6 @@ FOUNDATION_EXPORT BOOL ChartboostInitialized(const char* function);
  additional Chartboost API server requests to fetch data to present.
  */
 + (BOOL)hasRewardedVideo:(CBLocation)location;
-/*!
- @abstract
- Determine if a locally cached InPlay object exists for the given CBLocation.
- 
- @param location The location for the Chartboost impression type.
- 
- @return YES if there a locally cached InPlay object, and NO if not.
- 
- @discussion A return value of YES here indicates that the corresponding
- getInPlay:(CBLocation)location method will return an InPlay object without making
- additional Chartboost API server requests to fetch data to present.
- */
-+ (BOOL)hasInPlay:(CBLocation)location;
 
 /*!
  @abstract
@@ -152,35 +139,6 @@ FOUNDATION_EXPORT BOOL ChartboostInitialized(const char* function);
  is a no-op.
  */
 + (void)showRewardedVideo:(CBLocation)location;
-/*!
- @abstract
- Cache a number of InPlay objects for the given CBLocation.
- 
- @param location The location for the Chartboost impression type.
- 
- @discussion This method will first check if there is a locally cached InPlay object set
- for the given CBLocation and, if found, will do nothing. If no locally cached data exists
- the method will attempt to fetch data from the Chartboost API server.
- */
-+ (void)cacheInPlay:(CBLocation)location;
-
-
-/*!
- @abstract
- Return an InPlay object for the given CBLocation.
- 
- @param location The location for the Chartboost impression type.
- 
- @return CBInPlay object if one exists in the InPlay cache or nil if one is not yet available.
- 
- @discussion This method will first check if there is a locally cached InPlay object
- for the given CBLocation and, if found, will return the object using the locally cached data.
- If no locally cached data exists the method will attempt to fetch data from the
- Chartboost API server.  If the Chartboost API server is unavailable
- or there is no eligible InPlay object to present in the given CBLocation this method
- is a no-op.
- */
-+ (CBInPlay *)getInPlay:(CBLocation)location;
 
 #pragma mark - Advanced Configuration & Use
 /*!
@@ -388,7 +346,7 @@ FOUNDATION_EXPORT BOOL ChartboostInitialized(const char* function);
  @abstract
  Set to restrict Chartboost's ability to collect personal data from the device. See CBPIDataUseConsent declaration for details
  Note: This method should be called before starting the Chartboost SDK with startWithAppId:appSignature:delegate.
- @param consent: set the consent level
+ @param consent set the consent level
  @discussion Default value is Unknown
  */
 + (void)setPIDataUseConsent:(CBPIDataUseConsent)consent;
@@ -410,5 +368,8 @@ FOUNDATION_EXPORT BOOL ChartboostInitialized(const char* function);
 + (void)cacheMoreApps:(CBLocation)location __attribute__((deprecated("This method is deprecated and is a no-op")));
 + (void)setStatusBarBehavior:(CBStatusBarBehavior)statusBarBehavior __attribute__((deprecated("This method is deprecated and is a no-op")));
 + (void)setMediation:(CBMediation)library withVersion:(NSString*)libraryVersion DEPRECATED_MSG_ATTRIBUTE("Please use setMediation:withLibraryVersion:adapterVersion: instead.");
++ (void)cacheInPlay:(CBLocation)location DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
++ (BOOL)hasInPlay:(CBLocation)location DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
++ (CBInPlay *)getInPlay:(CBLocation)location DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 
 @end

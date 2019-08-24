@@ -185,24 +185,6 @@ typedef NS_ENUM(NSInteger, CBPIDataUseConsent) {
 };
 
 
-
-/*!
- @typedef CBBannerSize
- 
- @abstract
- Defines standard sizes used to initialize Banner objects.
- 
- @discussion Standard sizes used to describe default Banner bounds.
- */
-typedef CGSize const CBBannerSize;
-/*! "Banner" - Standard banner size on phones. */
-FOUNDATION_EXPORT CBBannerSize const CBBannerSizeStandard;
-/*! "Medium Rect" - Medium banner size on phones. */
-FOUNDATION_EXPORT CBBannerSize const CBBannerSizeMedium;
-/*! "Tablet" - Leaderboard banner size on tablets. */
-FOUNDATION_EXPORT CBBannerSize const CBBannerSizeLeaderboard;
-
-
 /*!
  @typedef CBLocation
  
