@@ -3,7 +3,11 @@ package extension.chartboost;
 #if (android || ios)
 
 #if android
+#if (openfl < "4.0.0")
+import openfl.utils.JNI;
+#else
 import lime.system.JNI;
+#end
 #end
 
 /**
