@@ -15,9 +15,7 @@ Supports:
 * GDPR personal data consent method bindings.
 
 Doesn't support:
-* Chartboost InPlay type ads.
-* Chartboost Analytics.
-* iOS banner ads.
+* Banner ads.
 * Age gates.
 
 If there is something you would like adding please open an issue. Pull requests welcomed too!
