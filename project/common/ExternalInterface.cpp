@@ -129,12 +129,6 @@ void samcodeschartboost_set_muted(bool mute)
 }
 DEFINE_PRIME1v(samcodeschartboost_set_muted);
 
-void samcodeschartboost_restrict_data_collection(bool shouldRestrict)
-{
-	restrictDataCollection(shouldRestrict);
-}
-DEFINE_PRIME1v(samcodeschartboost_restrict_data_collection);
-
 int samcodeschartboost_get_pi_data_use_consent()
 {
 	return getPIDataUseConsent();

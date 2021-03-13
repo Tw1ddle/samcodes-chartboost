@@ -20,7 +20,6 @@ namespace samcodeschartboost
 	const char* getSDKVersion();
 	void setStatusBarBehavior(bool shouldHide);
 	void setMuted(bool mute);
-	void restrictDataCollection(bool shouldRestrict);
 	int getPIDataUseConsent();
 	void setPIDataUseConsent(int consent);
 }

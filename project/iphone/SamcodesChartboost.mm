@@ -283,11 +283,6 @@ namespace samcodeschartboost
         [Chartboost setMuted:mute];
     }
     
-    void restrictDataCollection(bool shouldRestrict)
-    {
-        [Chartboost restrictDataCollection:shouldRestrict];
-    }
-    
     int getPIDataUseConsent()
     {
         CBPIDataUseConsent currentConsent = [Chartboost getPIDataUseConsent];
