@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"tags": ["chartboost","ads","interstitials","android","ios"],
 	"description": "Unofficial Chartboost ads support for Android and iOS",
-	"version": "1.1.4",
-	"releasenote": "Update to latest Chartboost SDK (iOS 8.0.1, Android 7.5.0).",
+	"version": "1.1.5",
+	"releasenote": "Update to latest Chartboost SDK (iOS 8.4.1, Android 8.2.0).",
 	"contributors": ["samcodes"],
 	"dependencies": {}
 }

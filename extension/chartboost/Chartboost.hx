@@ -100,10 +100,6 @@ class Chartboost {
 	}
 	#end
 	
-	public static function restrictDataCollection(shouldRestrict:Bool):Void {
-		restrict_data_collection(shouldRestrict);
-	}
-	
 	public static function getPIDataUseConsent():ChartboostConsent {
 		return get_pi_data_use_consent();
 	}
@@ -137,7 +133,6 @@ class Chartboost {
 	private static var set_should_prefetch_video_content = bindJNI("setShouldPrefetchVideoContent", "(Z)V");
 	private static var get_sdk_version = bindJNI("getSDKVersion", "()Ljava/lang/String;");
 	private static var set_should_hide_system_ui = bindJNI("setShouldHideSystemUI", "(Z)V");
-	private static var restrict_data_collection = bindJNI("restrictDataCollection", "(Z)V");
 	private static var get_pi_data_use_consent = bindJNI("getPIDataUseConsent", "()I");
 	private static var set_pi_data_use_consent = bindJNI("setPIDataUseConsent", "(I)V");
 	#end
@@ -161,7 +156,6 @@ class Chartboost {
 	private static var get_sdk_version = PrimeLoader.load("samcodeschartboost_get_sdk_version", "s");
 	private static var set_should_hide_system_ui = PrimeLoader.load("samcodeschartboost_set_status_bar_behavior", "bv");
 	private static var set_muted = PrimeLoader.load("samcodeschartboost_set_muted", "bv");
-	private static var restrict_data_collection = PrimeLoader.load("samcodeschartboost_restrict_data_collection", "bv");
 	private static var get_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_get_pi_data_use_consent", "i");
 	private static var set_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_set_pi_data_use_consent", "iv");
 	#end

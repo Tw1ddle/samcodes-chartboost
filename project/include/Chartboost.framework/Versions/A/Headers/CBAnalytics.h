@@ -64,7 +64,8 @@ typedef NS_ENUM(NSUInteger, CBLevelType) {
              productDescription:(NSString *)productDescription
                    productPrice:(NSDecimalNumber *)productPrice
                 productCurrency:(NSString *)productCurrency
-              productIdentifier:(NSString *)productIdentifier;
+              productIdentifier:(NSString *)productIdentifier
+DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 
 /*!
  @abstract
@@ -90,7 +91,8 @@ typedef NS_ENUM(NSUInteger, CBLevelType) {
                        productDescription:(NSString *)productDescription
                              productPrice:(NSDecimalNumber *)productPrice
                           productCurrency:(NSString *)productCurrency
-                        productIdentifier:(NSString *)productIdentifier;
+                        productIdentifier:(NSString *)productIdentifier
+DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 /*!
  @abstract
  Track an In App Purchase Event.
@@ -103,7 +105,8 @@ typedef NS_ENUM(NSUInteger, CBLevelType) {
  and targeting.
  */
 + (void)trackInAppPurchaseEvent:(NSData *)receipt
-                        product:(SKProduct *)product;
+                        product:(SKProduct *)product
+DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 
 
 /*!
@@ -127,7 +130,8 @@ typedef NS_ENUM(NSUInteger, CBLevelType) {
             eventField:(CBLevelType)eventField
              mainLevel:(NSUInteger)mainLevel
               subLevel:(NSUInteger)subLevel
-           description:(NSString*)description;
+           description:(NSString*)description
+DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 
 /*!
  @abstract
@@ -147,6 +151,7 @@ typedef NS_ENUM(NSUInteger, CBLevelType) {
 + (void)trackLevelInfo:(NSString*)eventLabel
             eventField:(CBLevelType)eventField
              mainLevel:(NSUInteger)mainLevel
-           description:(NSString*)description;
+           description:(NSString*)description
+DEPRECATED_MSG_ATTRIBUTE("This method is deprecated and will be removed in a future version.");
 
 @end

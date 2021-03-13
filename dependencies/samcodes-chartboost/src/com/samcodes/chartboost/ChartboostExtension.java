@@ -232,43 +232,6 @@ public class ChartboostExtension extends Extension
 	private ChartboostDelegate delegate = new AChartboostDelegate();
 	
 	@Override
-	public void onCreate (Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Chartboost.setDelegate(delegate);
-		Chartboost.onCreate(Extension.mainActivity);
-	}
-	
-	@Override
-	public void onStart() {
-		super.onStart();
-		Chartboost.onStart(Extension.mainActivity);
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		Chartboost.onResume(Extension.mainActivity);
-	}
-	
-	@Override
-	public void onPause() {
-		super.onPause();
-		Chartboost.onPause(Extension.mainActivity);
-	}
-	
-	@Override
-	public void onStop() {
-		super.onStop();
-		Chartboost.onStop(Extension.mainActivity);
-	}
-	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		Chartboost.onDestroy(Extension.mainActivity);
-	}
-	
-	@Override
 	public boolean onBackPressed() {
 		// If an interstitial is onscreen, close it
 		if(Chartboost.onBackPressed()) {
@@ -284,8 +247,6 @@ public class ChartboostExtension extends Extension
 		Extension.mainActivity.runOnUiThread(new Runnable() {
 			public void run() {
 				Chartboost.startWithAppId(Extension.mainActivity, appId, appSignature);
-				Chartboost.onCreate(Extension.mainActivity);
-				Chartboost.onStart(Extension.mainActivity);
 			}
 		});
 	}
@@ -352,10 +313,6 @@ public class ChartboostExtension extends Extension
 	
 	public static void setShouldHideSystemUI(boolean shouldHide) {
 		Chartboost.setShouldHideSystemUI(shouldHide);
-	}
-	
-	public static void restrictDataCollection(boolean shouldRestrict) {
-		Chartboost.restrictDataCollection(Extension.mainActivity, shouldRestrict);
 	}
 	
 	public static void setPIDataUseConsent(int consent) {

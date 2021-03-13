@@ -41,14 +41,14 @@ FOUNDATION_EXPORT CHBBannerSize const CHBBannerSizeLeaderboard;
  The developer should not give the banner view object a frame size different than its CHBBannerSize property.
  If you are using AutoLayout just give the banner an X and Y position constraint and it will be automatically sized.
  
- By default a banner will automatically update its content on its own. This means you only need to call showFromViewController: once and the banner will get a new ads and show them, gracefully handling errors if they occur.
+ By default a banner will automatically update its content on its own. This means you only need to call showFromViewController: once and the banner will get new ads and show them, gracefully handling errors if they occur.
  
  You can create and present as many banners as you want at the same time.
  
  A typical implementation would look like this:
  @code
  - (void)createAndShowBanner {
-    CHBBanner *banner = [[CHBBanner alloc] initWithSize:CHBBannerSizeStandard location:CBLocationMainMenu delegate:self];
+    CHBBanner *banner = [[CHBBanner alloc] initWithSize:CHBBannerSizeStandard location:CBLocationDefault delegate:self];
     banner.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:banner];
     [NSLayoutConstraint activateConstraints:@[[banner.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
@@ -105,6 +105,11 @@ FOUNDATION_EXPORT CHBBannerSize const CHBBannerSizeLeaderboard;
 - (instancetype)initWithSize:(CHBBannerSize)size location:(CBLocation)location delegate:(nullable id<CHBBannerDelegate>)delegate;
 
 /*!
+ @brief Please use initWithSize:location:delegate: instead.
+*/
+- (instancetype)init NS_UNAVAILABLE;
+
+/*!
  @brief Caches an ad.
  @discussion This method will first check if there is a cached ad and, if found, will do nothing.
  If no cached ad exists the method will attempt to fetch it from the Chartboost server.
@@ -119,6 +124,7 @@ FOUNDATION_EXPORT CHBBannerSize const CHBBannerSizeLeaderboard;
  If no cached ad exists the method will attempt to fetch it from the Chartboost server first.
  If automaticallyRefreshesContent is YES (the default), calling this method causes the banner to start automatically updating its content.
  It is highly recommended that a non-nil view controller is passed, as it is required for enhanced ad presentation and some features like opening links in an in-app web browser.
+ Implement didShowAd:error: in your ad delegate to be notified of a show request result, and didCacheAd:error: to be notified of the result of a cache request triggered by showing a non-cached banner.
  */
 - (void)showFromViewController:(nullable UIViewController *)viewController;
 

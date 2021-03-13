@@ -6,7 +6,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Chartboost.h"
+#import "ChartboostDelegate.h"
+
+@protocol CHBAdDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Provides an interface for basic functionalities common to all ads.
  */
 @protocol CHBAd <NSObject>
+
+/*!
+ @brief The delegate instance to receive ad callbacks.
+ */
+@property (nonatomic, weak, nullable) id<CHBAdDelegate> delegate;
 
 /*!
  @brief Chartboost location for the ad.
