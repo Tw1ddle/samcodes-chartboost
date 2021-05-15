@@ -40,6 +40,10 @@ class ChartboostError {
 				"INTERNET_UNAVAILABLE_AT_SHOW";
 			case 33:
 				"AD_PRESENTATION_FAILURE";
+			case 34:
+				"NO_CACHED_AD";
+			case 35:
+				"PUBLISHER_DISABLED";		
 			default:
 				"UNKNOWN CHARTBOOST IMPRESSION ERROR";
 		};
