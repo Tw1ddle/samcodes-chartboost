@@ -4,7 +4,6 @@
 
 	<section if="ios">
 		<dependency path="project/include/Chartboost.framework" />
-		<dependency path="project/include/CHAMoatMobileAppKit.framework" />
 		
 		<dependency name="AVFoundation.framework" />
 		<dependency name="CoreGraphics.framework" />

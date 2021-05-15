@@ -117,12 +117,6 @@ HxString samcodeschartboost_get_sdk_version()
 }
 DEFINE_PRIME0(samcodeschartboost_get_sdk_version);
 
-void samcodeschartboost_set_status_bar_behavior(bool shouldHide)
-{
-	setStatusBarBehavior(shouldHide);
-}
-DEFINE_PRIME1v(samcodeschartboost_set_status_bar_behavior);
-
 void samcodeschartboost_set_muted(bool mute)
 {
 	setMuted(mute);

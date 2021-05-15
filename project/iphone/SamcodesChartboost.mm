@@ -269,15 +269,6 @@ namespace samcodeschartboost
         return [nsVersion UTF8String];
     }
     
-    void setStatusBarBehavior(bool shouldHide)
-    {
-        if(shouldHide) {
-            [Chartboost setStatusBarBehavior:CBStatusBarBehaviorIgnore];
-        } else {
-            [Chartboost setStatusBarBehavior:CBStatusBarBehaviorRespect];
-        }
-    }
-    
     void setMuted(bool mute)
     {
         [Chartboost setMuted:mute];
@@ -292,6 +283,6 @@ namespace samcodeschartboost
     void setPIDataUseConsent(int consent)
     {
         CBPIDataUseConsent consentEnum = (CBPIDataUseConsent)(consent);
-        [Chartboost setPIDataUseConsent:consent];
+        [Chartboost setPIDataUseConsent:consentEnum];
     }
 }

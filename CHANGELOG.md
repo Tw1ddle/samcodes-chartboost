@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.4 -> 1.1.5
+ * Upgraded to latest Chartboost SDK (iOS 8.4.1, Android 8.2.0).
+
 ## 1.1.3 -> 1.1.4
  * Upgraded to latest Chartboost SDK (iOS 8.0.1, Android 7.5.0).
 

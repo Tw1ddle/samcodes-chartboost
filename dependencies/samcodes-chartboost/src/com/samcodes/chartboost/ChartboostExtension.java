@@ -311,10 +311,6 @@ public class ChartboostExtension extends Extension
 		return Chartboost.getSDKVersion();
 	}
 	
-	public static void setShouldHideSystemUI(boolean shouldHide) {
-		Chartboost.setShouldHideSystemUI(shouldHide);
-	}
-	
 	public static void setPIDataUseConsent(int consent) {
 		if(consent == -1) {
 			Chartboost.setPIDataUseConsent(Extension.mainActivity, Chartboost.CBPIDataUseConsent.UNKNOWN);

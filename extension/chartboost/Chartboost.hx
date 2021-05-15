@@ -90,10 +90,6 @@ class Chartboost {
 		return get_sdk_version();
 	}
 	
-	public static function setShouldHideSystemUI(shouldHide:Bool):Void {
-		set_should_hide_system_ui(shouldHide);
-	}
-	
 	#if ios
 	public static function setMuted(mute:Bool):Void {
 		set_muted(mute);
@@ -132,7 +128,6 @@ class Chartboost {
 	private static var set_auto_cache_ads = bindJNI("setAutoCacheAds", "(Z)V");
 	private static var set_should_prefetch_video_content = bindJNI("setShouldPrefetchVideoContent", "(Z)V");
 	private static var get_sdk_version = bindJNI("getSDKVersion", "()Ljava/lang/String;");
-	private static var set_should_hide_system_ui = bindJNI("setShouldHideSystemUI", "(Z)V");
 	private static var get_pi_data_use_consent = bindJNI("getPIDataUseConsent", "()I");
 	private static var set_pi_data_use_consent = bindJNI("setPIDataUseConsent", "(I)V");
 	#end
@@ -154,7 +149,6 @@ class Chartboost {
 	private static var set_auto_cache_ads = PrimeLoader.load("samcodeschartboost_set_auto_cache_ads", "bv");
 	private static var set_should_prefetch_video_content = PrimeLoader.load("samcodeschartboost_set_should_prefetch_video_content", "bv");
 	private static var get_sdk_version = PrimeLoader.load("samcodeschartboost_get_sdk_version", "s");
-	private static var set_should_hide_system_ui = PrimeLoader.load("samcodeschartboost_set_status_bar_behavior", "bv");
 	private static var set_muted = PrimeLoader.load("samcodeschartboost_set_muted", "bv");
 	private static var get_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_get_pi_data_use_consent", "i");
 	private static var set_pi_data_use_consent = PrimeLoader.load("samcodeschartboost_set_pi_data_use_consent", "iv");
