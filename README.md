@@ -1,9 +1,10 @@
 # Haxe Chartboost
 
-[![Travis Build Status](https://img.shields.io/travis/Tw1ddle/samcodes-chartboost.svg?style=flat-square)](https://travis-ci.org/Tw1ddle/samcodes-chartboost)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/samcodes-chartboost/blob/master/LICENSE)
+[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/samcodes-chartboost/blob/master/LICENSE)
 
 Unofficial Chartboost ads library support for Haxe OpenFL Android and iOS targets. See the demo app [here](https://github.com/Tw1ddle/samcodes-ads-demo).
+
+*Deprecation note. I am not currently using the Chartboost ads haxelib in any games, so this is likely to be out of date.*
 
 ### Features
 
